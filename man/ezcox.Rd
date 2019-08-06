@@ -6,7 +6,7 @@
 \usage{
 ezcox(data, covariates, controls = NULL, time = "time",
   status = "status", global_method = c("likelihood", "wald",
-  "logrank"))
+  "logrank"), return_models = FALSE)
 }
 \arguments{
 \item{data}{a \code{data.frame}.}
@@ -26,6 +26,9 @@ These three methods are asymptotically equivalent. For large enough N,
 they will give similar results. For small N, they may differ somewhat.
 The Likelihood ratio test has better behavior for small sample sizes,
 so it is generally preferred.}
+
+\item{return_models}{default \code{FALSE}. If \code{TRUE}, return a \code{list} contains
+cox models.}
 }
 \value{
 a \code{tibble} or a \code{list}

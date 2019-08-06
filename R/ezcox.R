@@ -12,6 +12,8 @@
 #' they will give similar results. For small N, they may differ somewhat.
 #' The Likelihood ratio test has better behavior for small sample sizes,
 #' so it is generally preferred.
+#' @param return_models default `FALSE`. If `TRUE`, return a `list` contains
+#' cox models.
 #' @import survival
 #' @importFrom stats as.formula
 #' @importFrom dplyr tibble
@@ -30,7 +32,8 @@
 #' ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 ezcox <- function(data, covariates, controls = NULL,
                   time = "time", status = "status",
-                  global_method = c("likelihood", "wald", "logrank")) {
+                  global_method = c("likelihood", "wald", "logrank"),
+                  return_models = FALSE) {
   if (!"survival" %in% .packages()) {
     loadNamespace("survival")
   }
@@ -54,7 +57,12 @@ ezcox <- function(data, covariates, controls = NULL,
     controls <- ifelse(isValidAndUnreserved(controls), controls, paste0("`", controls, "`"))
   }
 
-  batch_one <- function(x, y, controls = NULL) {
+  if (return_models) {
+    model_env = new.env(parent = emptyenv())
+    model_env$models = dplyr::tibble()
+  }
+
+  batch_one <- function(x, y, controls = NULL, return_models = FALSE) {
     if (!is.null(controls)) {
       type <- "multi"
     } else {
@@ -104,6 +112,20 @@ ezcox <- function(data, covariates, controls = NULL,
       cox <- NA
     }
 
+
+    if (return_models) {
+      tp = dplyr::tibble(
+        Variable = y,
+        model = cox,
+        status = ifelse(
+          class(cox) == "coxph",
+          TRUE,
+          FALSE
+        )
+      )
+      model_env$models %<>% dplyr::bind_rows(tp)
+    }
+
     if (class(cox) != "coxph" | all(is.na(tbl[["ref_level"]]))) {
       glob.pval <- p.value <- beta <- HR <- lower_95 <- upper_95 <- NA
     } else {
@@ -138,5 +160,14 @@ ezcox <- function(data, covariates, controls = NULL,
     )
   }
 
-  purrr::map2_df(covariates2, covariates, batch_one, controls = controls)
+  res = purrr::map2_df(covariates2, covariates, batch_one, controls = controls,
+                 return_models = return_models)
+
+  if (return_models) {
+    list(res = res,
+         models = model_env$models)
+  } else {
+    res
+  }
+
 }
