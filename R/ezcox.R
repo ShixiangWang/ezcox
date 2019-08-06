@@ -1,11 +1,36 @@
+#' Run Cox Analysis in Batch Mode
+#'
+#' @param data a `data.frame`.
+#' @param covariates column names specifying variables.
+#' @param controls column names specifying controls.
+#' @param time column name specifying time, default is 'time'.
+#' @param status column name specifying event status, default is 'status'.
+#' @param global_method method used to obtain global p value for cox model,
+#' should be one of "likelihood", "wald", "logrank".
+#' The likelihood-ratio test, Wald test, and score logrank statistics.
+#' These three methods are asymptotically equivalent. For large enough N,
+#' they will give similar results. For small N, they may differ somewhat.
+#' The Likelihood ratio test has better behavior for small sample sizes,
+#' so it is generally preferred.
+#' @import survival
+#' @importFrom stats as.formula
+#' @importFrom dplyr tibble
+#' @importFrom purrr map2_df
+#' @return a `tibble` or a `list`
+#' @export
+#'
+#' @examples
+#' library(survival)
+#'
+#' # Build unvariable models
+#' ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
+#'
+#' # Build multi-variable models
+#' # Control variable 'age'
+#' ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 ezcox <- function(data, covariates, controls = NULL,
-                      time = "time", status = "status",
-                      global_method = c("likelihood", "wald", "logrank")) {
-  # The likelihood-ratio test, Wald test, and score logrank statistics.
-  # These three methods are asymptotically equivalent. For large enough N,
-  # they will give similar results. For small N, they may differ somewhat.
-  # The Likelihood ratio test has better behavior for small sample sizes,
-  # so it is generally preferred.
+                  time = "time", status = "status",
+                  global_method = c("likelihood", "wald", "logrank")) {
   if (!"survival" %in% .packages()) {
     loadNamespace("survival")
   }
@@ -15,9 +40,9 @@ ezcox <- function(data, covariates, controls = NULL,
 
   test_method <- match.arg(global_method)
   test_method <- switch(test_method,
-                        likelihood = test <- "logtest",
-                        wald = test <- "waldtest",
-                        logrank = test <- "sctest"
+    likelihood = test <- "logtest",
+    wald = test <- "waldtest",
+    logrank = test <- "sctest"
   )
 
   # https://stackoverflow.com/questions/8396577/check-if-character-value-is-a-valid-r-object-name
@@ -45,10 +70,10 @@ ezcox <- function(data, covariates, controls = NULL,
       ))
       message("==> Building Cox model...")
       cox <- tryCatch(coxph(fm, data = data),
-                      error = function(e) {
-                        message("==> Something wrong with variable ", y)
-                        message("====> ", e)
-                      }
+        error = function(e) {
+          message("==> Something wrong with variable ", y)
+          message("====> ", e)
+        }
       )
 
       tbl <- purrr::map_df(c(y, controls), function(x) {
@@ -79,7 +104,7 @@ ezcox <- function(data, covariates, controls = NULL,
       cox <- NA
     }
 
-    if (class(cox) != "coxph" | is.na(tbl[["ref_level"]])) {
+    if (class(cox) != "coxph" | all(is.na(tbl[["ref_level"]]))) {
       glob.pval <- p.value <- beta <- HR <- lower_95 <- upper_95 <- NA
     } else {
       cox <- summary(cox)
@@ -91,10 +116,10 @@ ezcox <- function(data, covariates, controls = NULL,
       beta <- signif(cox$coefficients[, 1], digits = 3)
       HR <- signif(cox$coefficients[, 2], digits = 3)
       lower_95 <- tryCatch(signif(cox$conf.int[, "lower .95"], 3),
-                           error = function(e) NA
+        error = function(e) NA
       )
       upper_95 <- tryCatch(signif(cox$conf.int[, "upper .95"], 3),
-                           error = function(e) NA
+        error = function(e) NA
       )
     }
     message("==> Done.")
