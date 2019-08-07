@@ -30,6 +30,12 @@
 #' # Build multi-variable models
 #' # Control variable 'age'
 #' ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+#'
+#' # Return models
+#' ezcox(lung, covariates = c("age", "sex", "ph.ecog"),
+#'             return_models = TRUE)
+#' ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age",
+#'             return_models = TRUE)
 ezcox <- function(data, covariates, controls = NULL,
                   time = "time", status = "status",
                   global_method = c("likelihood", "wald", "logrank"),
@@ -54,12 +60,18 @@ ezcox <- function(data, covariates, controls = NULL,
   }
   covariates2 <- ifelse(isValidAndUnreserved(covariates), covariates, paste0("`", covariates, "`"))
   if (!is.null(controls)) {
+    controls2 <- controls
     controls <- ifelse(isValidAndUnreserved(controls), controls, paste0("`", controls, "`"))
   }
 
   if (return_models) {
     model_env = new.env(parent = emptyenv())
-    model_env$models = dplyr::tibble()
+    model_env$Variable = covariates
+    model_env$controls = ifelse(exists("controls2"),
+                                paste(controls2, collapse = ","),
+                                NA_character_)
+    model_env$models = list()
+    model_env$status = logical()
   }
 
   batch_one <- function(x, y, controls = NULL, return_models = FALSE) {
@@ -114,16 +126,8 @@ ezcox <- function(data, covariates, controls = NULL,
 
 
     if (return_models) {
-      tp = dplyr::tibble(
-        Variable = y,
-        model = cox,
-        status = ifelse(
-          class(cox) == "coxph",
-          TRUE,
-          FALSE
-        )
-      )
-      model_env$models %<>% dplyr::bind_rows(tp)
+      model_env$models[[length(model_env$models) + 1]] = cox
+      model_env$status %<>% append(ifelse(class(cox) == "coxph", TRUE, FALSE))
     }
 
     if (class(cox) != "coxph" | all(is.na(tbl[["ref_level"]]))) {
@@ -164,10 +168,16 @@ ezcox <- function(data, covariates, controls = NULL,
                  return_models = return_models)
 
   if (return_models) {
-    list(res = res,
-         models = model_env$models)
-  } else {
-    res
+    models = dplyr::tibble(
+      Variable = model_env$Variable,
+      control = model_env$controls,
+      model = model_env$models,
+      status = model_env$status
+    )
+    res = list(res = res,
+         models = models)
+    class(res) = "ezcox"
   }
 
+  res
 }

@@ -15,9 +15,11 @@ knitr::opts_chunk$set(
 # ezcox: Easily Process a Batch of Cox Models
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/ezcox)](https://CRAN.R-project.org/package=ezcox)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/ezcox?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/ezcox)
 [![Travis build status](https://travis-ci.org/ShixiangWang/ezcox.svg?branch=master)](https://travis-ci.org/ShixiangWang/ezcox)
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Codecov test coverage](https://codecov.io/gh/ShixiangWang/ezcox/branch/master/graph/badge.svg)](https://codecov.io/gh/ShixiangWang/ezcox?branch=master)
 <!-- badges: end -->
 
 The goal of ezcox is to ...

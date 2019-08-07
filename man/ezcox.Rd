@@ -45,4 +45,10 @@ ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
 # Build multi-variable models
 # Control variable 'age'
 ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+
+# Return models
+ezcox(lung, covariates = c("age", "sex", "ph.ecog"),
+            return_models = TRUE)
+ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age",
+            return_models = TRUE)
 }
