@@ -7,5 +7,6 @@
 ^codecov\.yml$
 ^\.github$
 ^doc$
+^docs$
 ^Meta$
 ^CRAN-RELEASE$
