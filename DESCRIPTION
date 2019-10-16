@@ -25,8 +25,11 @@ Imports:
 Suggests: 
     covr (>= 3.2.1),
     testthat (>= 2.1.0),
-    roxygen2 (>= 6.1.1)
+    roxygen2 (>= 6.1.1),
+    knitr,
+    rmarkdown
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+VignetteBuilder: knitr

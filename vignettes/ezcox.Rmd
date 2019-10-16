@@ -1,0 +1,49 @@
+---
+title: "ezcox: Easily Process a Batch of Cox Models"
+author: "Shixiang Wang <w_shixiang@163.com>"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ezcox}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The goal of ezcox is to operate a batch of univariate or multivariate Cox models and return tidy result.
+
+## Installation
+
+You can install the released version of ezcox from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("ezcox")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("ShixiangWang/ezcox")
+```
+## Example
+
+This is a basic example which shows you how to get result from a batch of cox models.
+
+```{r example}
+library(ezcox)
+data("lung", package = "survival")
+
+# Build unvariable models
+ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
+
+# Build multi-variable models
+# Control variable 'age'
+ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+```

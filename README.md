@@ -7,6 +7,7 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ezcox)](https://CRAN.R-project.org/package=ezcox)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/ezcox?color=blue)](https://cran.r-project.org/package=ezcox)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![AppVeyor build
@@ -17,7 +18,8 @@ status](https://travis-ci.org/ShixiangWang/ezcox.svg?branch=master)](https://tra
 coverage](https://codecov.io/gh/ShixiangWang/ezcox/branch/master/graph/badge.svg)](https://codecov.io/gh/ShixiangWang/ezcox?branch=master)
 <!-- badges: end -->
 
-The goal of ezcox is to …
+The goal of ezcox is to operate a batch of univariate or multivariate
+Cox models and return tidy result.
 
 ## Installation
 
