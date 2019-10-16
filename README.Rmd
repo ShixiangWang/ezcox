@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/ShixiangWang/ezcox/branch/master/graph/badge.svg)](https://codecov.io/gh/ShixiangWang/ezcox?branch=master)
 <!-- badges: end -->
 
-The goal of ezcox is to ...
+The goal of ezcox is to operate a batch of univariate or multivariate Cox models and return tidy result.
 
 ## Installation
 
