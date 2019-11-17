@@ -1,7 +1,7 @@
 Type: Package
 Package: ezcox
 Title: Easily Process a Batch of Cox Models
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person(given = "Shixiang",
            family = "Wang",
@@ -27,7 +27,9 @@ Suggests:
     testthat (>= 2.1.0),
     roxygen2 (>= 6.1.1),
     knitr,
-    rmarkdown
+    rmarkdown,
+    future,
+    furrr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

@@ -6,7 +6,7 @@
 \usage{
 ezcox(data, covariates, controls = NULL, time = "time",
   status = "status", global_method = c("likelihood", "wald",
-  "logrank"), return_models = FALSE)
+  "logrank"), return_models = FALSE, parallel = FALSE)
 }
 \arguments{
 \item{data}{a \code{data.frame}.}
@@ -29,6 +29,8 @@ so it is generally preferred.}
 
 \item{return_models}{default \code{FALSE}. If \code{TRUE}, return a \code{list} contains
 cox models.}
+
+\item{parallel}{if \code{TRUE}, do parallel computation by \strong{furrr} package.}
 }
 \value{
 a \code{tibble} or a \code{list}

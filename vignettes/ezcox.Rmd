@@ -47,3 +47,7 @@ ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
 # Control variable 'age'
 ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 ```
+
+## Citation
+
+* Wang, Shixiang, et al. “The predictive power of tumor mutational burden in lung cancer immunotherapy response is influenced by patients’ sex.” International journal of cancer (2019).

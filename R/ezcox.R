@@ -14,6 +14,7 @@
 #' so it is generally preferred.
 #' @param return_models default `FALSE`. If `TRUE`, return a `list` contains
 #' cox models.
+#' @param parallel if `TRUE`, do parallel computation by **furrr** package.
 #' @import survival
 #' @importFrom stats as.formula
 #' @importFrom dplyr tibble
@@ -39,7 +40,7 @@
 ezcox <- function(data, covariates, controls = NULL,
                   time = "time", status = "status",
                   global_method = c("likelihood", "wald", "logrank"),
-                  return_models = FALSE) {
+                  return_models = FALSE, parallel=FALSE) {
   if (!"survival" %in% .packages()) {
     loadNamespace("survival")
   }
@@ -164,8 +165,25 @@ ezcox <- function(data, covariates, controls = NULL,
     )
   }
 
-  res = purrr::map2_df(covariates2, covariates, batch_one, controls = controls,
-                 return_models = return_models)
+  if (parallel) {
+    if (!requireNamespace("furrr")) {
+      stop("Please install 'furrr' package firstly!")
+    }
+
+    if (length(covariates2) < 50) {
+      warning("Warning: variable < 50, parallel option is not recommended!")
+    }
+
+    oplan <- future::plan()
+    future::plan("multiprocess")
+    on.exit(future::plan(oplan), add = TRUE)
+
+    res = furrr::future_map2_dfr(covariates2, covariates, batch_one, controls = controls,
+                         return_models = return_models)
+  } else {
+    res = purrr::map2_df(covariates2, covariates, batch_one, controls = controls,
+                         return_models = return_models)
+  }
 
   if (return_models) {
     models = dplyr::tibble(

@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@
 
     <pre class="usage"><span class='fu'>ezcox</span>(<span class='no'>data</span>, <span class='no'>covariates</span>, <span class='kw'>controls</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"time"</span>,
   <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>global_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"likelihood"</span>, <span class='st'>"wald"</span>,
-  <span class='st'>"logrank"</span>), <span class='kw'>return_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='st'>"logrank"</span>), <span class='kw'>return_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,6 +161,10 @@ so it is generally preferred.</p></td>
       <th>return_models</th>
       <td><p>default <code>FALSE</code>. If <code>TRUE</code>, return a <code>list</code> contains
 cox models.</p></td>
+    </tr>
+    <tr>
+      <th>parallel</th>
+      <td><p>if <code>TRUE</code>, do parallel computation by <strong>furrr</strong> package.</p></td>
     </tr>
     </table>
 
