@@ -21,7 +21,15 @@ t4 <- ezcox(lung,
   return_models = TRUE
 )
 
+t5 <- ezcox(lung,
+            covariates = c("sex", "ph.ecog"), controls = "age",
+            return_models = TRUE,
+            verbose = FALSE
+)
+
+
 test_that("Return ezcox object works", {
   expect_s3_class(t3, "ezcox")
   expect_s3_class(t4, "ezcox")
+  expect_s3_class(t5, "ezcox")
 })

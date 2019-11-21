@@ -4,9 +4,17 @@
 \alias{ezcox}
 \title{Run Cox Analysis in Batch Mode}
 \usage{
-ezcox(data, covariates, controls = NULL, time = "time",
-  status = "status", global_method = c("likelihood", "wald",
-  "logrank"), return_models = FALSE, parallel = FALSE)
+ezcox(
+  data,
+  covariates,
+  controls = NULL,
+  time = "time",
+  status = "status",
+  global_method = c("likelihood", "wald", "logrank"),
+  return_models = FALSE,
+  parallel = FALSE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{data}{a \code{data.frame}.}
@@ -31,6 +39,9 @@ so it is generally preferred.}
 cox models.}
 
 \item{parallel}{if \code{TRUE}, do parallel computation by \strong{furrr} package.}
+
+\item{verbose}{if \code{TRUE}, print extra info. If \code{parallel} is \code{TRUE},
+set \code{verbose} to \code{FALSE} may speed up.}
 }
 \value{
 a \code{tibble} or a \code{list}
@@ -48,9 +59,21 @@ ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
 # Control variable 'age'
 ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 
+\donttest{
+# Set verbose=FALSE
+# may speed up when use parallel computation
+# parallel=TRUE is not recommended for
+# number of variables less than 100
+ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age", parallel = TRUE, verbose = FALSE)
+}
+
 # Return models
-ezcox(lung, covariates = c("age", "sex", "ph.ecog"),
-            return_models = TRUE)
-ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age",
-            return_models = TRUE)
+ezcox(lung,
+  covariates = c("age", "sex", "ph.ecog"),
+  return_models = TRUE
+)
+ezcox(lung,
+  covariates = c("sex", "ph.ecog"), controls = "age",
+  return_models = TRUE
+)
 }

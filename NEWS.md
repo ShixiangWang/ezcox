@@ -1,3 +1,7 @@
+# ezcox 0.2.1
+
+* Add `verbose` option. This may speed up parallel computation.
+
 # ezcox 0.2.0
 
 * Parallel computation is implemented in `parallel` option by **furrr** package.

@@ -15,6 +15,8 @@
 #' @param return_models default `FALSE`. If `TRUE`, return a `list` contains
 #' cox models.
 #' @param parallel if `TRUE`, do parallel computation by **furrr** package.
+#' @param verbose if `TRUE`, print extra info. If `parallel` is `TRUE`,
+#' set `verbose` to `FALSE` may speed up.
 #' @import survival
 #' @importFrom stats as.formula
 #' @importFrom dplyr tibble
@@ -32,6 +34,14 @@
 #' # Control variable 'age'
 #' ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 #'
+#' \donttest{
+#' # Set verbose=FALSE
+#' # may speed up when use parallel computation
+#' # parallel=TRUE is not recommended for
+#' # number of variables less than 100
+#' ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age", parallel = TRUE, verbose = FALSE)
+#' }
+#'
 #' # Return models
 #' ezcox(lung,
 #'   covariates = c("age", "sex", "ph.ecog"),
@@ -44,7 +54,7 @@
 ezcox <- function(data, covariates, controls = NULL,
                   time = "time", status = "status",
                   global_method = c("likelihood", "wald", "logrank"),
-                  return_models = FALSE, parallel = FALSE) {
+                  return_models = FALSE, parallel = FALSE, verbose = TRUE) {
   if (!"survival" %in% .packages()) {
     loadNamespace("survival")
   }
@@ -80,25 +90,28 @@ ezcox <- function(data, covariates, controls = NULL,
     model_env$status <- logical()
   }
 
-  batch_one <- function(x, y, controls = NULL, return_models = FALSE) {
+  batch_one <- function(x, y, controls = NULL, return_models = FALSE, verbose = TRUE) {
     if (!is.null(controls)) {
       type <- "multi"
     } else {
       type <- "single"
     }
-    message("=> Processing variable ", y)
+
+    if (verbose) message("=> Processing variable ", y)
 
     if (length(table(data[[y]])) > 1) {
-      message("==> Building Surv object...")
+      if (verbose) message("==> Building Surv object...")
       fm <- as.formula(paste(
         "Surv(time, status)~", x,
         ifelse(type == "multi", paste0("+", paste(controls, collapse = "+")), "")
       ))
-      message("==> Building Cox model...")
+      if (verbose) message("==> Building Cox model...")
       cox <- tryCatch(coxph(fm, data = data),
         error = function(e) {
-          message("==> Something wrong with variable ", y)
-          message("====> ", e)
+          if (verbose) {
+            message("==> Something wrong with variable ", y)
+            message("====> ", e)
+          }
         }
       )
 
@@ -120,7 +133,7 @@ ezcox <- function(data, covariates, controls = NULL,
         }
       })
     } else {
-      message("==> Variable ", y, "has less than 2 levels, skipping it...")
+      if (verbose) message("==> Variable ", y, "has less than 2 levels, skipping it...")
       tbl <- dplyr::tibble(
         contrast_level = NA,
         ref_level = NA,
@@ -154,7 +167,7 @@ ezcox <- function(data, covariates, controls = NULL,
         error = function(e) NA
       )
     }
-    message("==> Done.")
+    if (verbose) message("==> Done.")
     dplyr::tibble(
       Variable = y,
       contrast_level = tbl[["contrast_level"]],
@@ -176,7 +189,7 @@ ezcox <- function(data, covariates, controls = NULL,
     }
 
     if (length(covariates2) < 50) {
-      warning("Warning: variable < 50, parallel option is not recommended!")
+      if (verbose) warning("Warning: variable < 50, parallel option is not recommended!")
     }
 
     oplan <- future::plan()
@@ -185,12 +198,15 @@ ezcox <- function(data, covariates, controls = NULL,
 
     res <- furrr::future_map2_dfr(covariates2, covariates, batch_one,
       controls = controls,
-      return_models = return_models, .progress = TRUE
+      return_models = return_models,
+      verbose = verbose,
+      .progress = TRUE
     )
   } else {
     res <- purrr::map2_df(covariates2, covariates, batch_one,
       controls = controls,
-      return_models = return_models
+      return_models = return_models,
+      verbose = verbose
     )
   }
 
