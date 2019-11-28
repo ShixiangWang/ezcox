@@ -22,9 +22,9 @@ t4 <- ezcox(lung,
 )
 
 t5 <- ezcox(lung,
-            covariates = c("sex", "ph.ecog"), controls = "age",
-            return_models = TRUE,
-            verbose = FALSE
+  covariates = c("sex", "ph.ecog"), controls = "age",
+  return_models = TRUE,
+  verbose = FALSE
 )
 
 
@@ -33,3 +33,18 @@ test_that("Return ezcox object works", {
   expect_s3_class(t4, "ezcox")
   expect_s3_class(t5, "ezcox")
 })
+
+
+# Filter ezcox
+zz <- ezcox(lung, covariates = c("sex", "age"), controls = "ph.ecog")
+zz
+filter_ezcox(zz, c("0", "2"))
+filter_ezcox(zz, c("0", "2"), type = "contrast")
+filter_ezcox(zz, c("0", "2"), type = "ref")
+
+
+# Get models
+zz <- ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age", return_models = TRUE)
+mds <- get_models(zz)
+str(mds, max.level = 1)
+

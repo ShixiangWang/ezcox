@@ -21,7 +21,8 @@
 #' @importFrom stats as.formula
 #' @importFrom dplyr tibble
 #' @importFrom purrr map2_df
-#' @return a `tibble` or a `list`
+#' @return a `ezcox` object
+#' @author Shixiang Wang <w_shixiang@163.com>
 #' @export
 #'
 #' @examples
@@ -33,7 +34,6 @@
 #' # Build multi-variable models
 #' # Control variable 'age'
 #' ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
-#'
 #' \donttest{
 #' # Set verbose=FALSE
 #' # may speed up when use parallel computation
@@ -69,10 +69,6 @@ ezcox <- function(data, covariates, controls = NULL,
     logrank = test <- "sctest"
   )
 
-  # https://stackoverflow.com/questions/8396577/check-if-character-value-is-a-valid-r-object-name
-  isValidAndUnreserved <- function(string) {
-    make.names(string) == string
-  }
   covariates2 <- ifelse(isValidAndUnreserved(covariates), covariates, paste0("`", covariates, "`"))
   if (!is.null(controls)) {
     controls2 <- controls
@@ -221,8 +217,9 @@ ezcox <- function(data, covariates, controls = NULL,
       res = res,
       models = models
     )
-    class(res) <- "ezcox"
   }
 
+  class(res) <- c("ezcox", class(res))
+  attr(res, "controls") <- controls
   res
 }

@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -120,9 +120,17 @@
     <p>Run Cox Analysis in Batch Mode</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ezcox</span>(<span class='no'>data</span>, <span class='no'>covariates</span>, <span class='kw'>controls</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"time"</span>,
-  <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>global_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"likelihood"</span>, <span class='st'>"wald"</span>,
-  <span class='st'>"logrank"</span>), <span class='kw'>return_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>ezcox</span>(
+  <span class='no'>data</span>,
+  <span class='no'>covariates</span>,
+  <span class='kw'>controls</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"time"</span>,
+  <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"status"</span>,
+  <span class='kw'>global_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"likelihood"</span>, <span class='st'>"wald"</span>, <span class='st'>"logrank"</span>),
+  <span class='kw'>return_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,11 +174,16 @@ cox models.</p></td>
       <th>parallel</th>
       <td><p>if <code>TRUE</code>, do parallel computation by <strong>furrr</strong> package.</p></td>
     </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>if <code>TRUE</code>, print extra info. If <code>parallel</code> is <code>TRUE</code>,
+set <code>verbose</code> to <code>FALSE</code> may speed up.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a <code>tibble</code> or a <code>list</code></p>
+    <p>a <code>ezcox</code> object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>survival</span>)
@@ -182,7 +195,7 @@ cox models.</p></td>
 #&gt; 1 age      age            age              228   228  0.0187 1.02     1    
 #&gt; 2 sex      sex            sex              228   228 -0.531  0.588    0.424
 #&gt; 3 ph.ecog  ph.ecog        ph.ecog          227   227  0.476  1.61     1.29 
-#&gt; # … with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div><div class='input'>
+#&gt; # ... with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div><div class='input'>
 <span class='co'># Build multi-variable models</span>
 <span class='co'># Control variable 'age'</span>
 <span class='fu'>ezcox</span>(<span class='no'>lung</span>, <span class='kw'>covariates</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>), <span class='kw'>controls</span> <span class='kw'>=</span> <span class='st'>"age"</span>)</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; # A tibble: 4 x 11
@@ -192,17 +205,32 @@ cox models.</p></td>
 #&gt; 2 sex      age            age              228   228  0.017  1.02     0.999
 #&gt; 3 ph.ecog  ph.ecog        ph.ecog          227   227  0.443  1.56     1.24 
 #&gt; 4 ph.ecog  age            age              228   228  0.0113 1.01     0.993
-#&gt; # … with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div><div class='input'>
+#&gt; # ... with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div><div class='input'><span class='co'># \donttest{</span>
+<span class='co'># Set verbose=FALSE</span>
+<span class='co'># may speed up when use parallel computation</span>
+<span class='co'># parallel=TRUE is not recommended for</span>
+<span class='co'># number of variables less than 100</span>
+<span class='fu'>ezcox</span>(<span class='no'>lung</span>, <span class='kw'>covariates</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>), <span class='kw'>controls</span> <span class='kw'>=</span> <span class='st'>"age"</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: furrr</span></div><div class='output co'>#&gt; # A tibble: 4 x 11
+#&gt;   Variable contrast_level ref_level n_contrast n_ref    beta    HR lower_95
+#&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1 sex      sex            sex              228   228 -0.513  0.599    0.431
+#&gt; 2 sex      age            age              228   228  0.017  1.02     0.999
+#&gt; 3 ph.ecog  ph.ecog        ph.ecog          227   227  0.443  1.56     1.24 
+#&gt; 4 ph.ecog  age            age              228   228  0.0113 1.01     0.993
+#&gt; # ... with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div><div class='input'><span class='co'># }</span>
+
 <span class='co'># Return models</span>
-<span class='fu'>ezcox</span>(<span class='no'>lung</span>, <span class='kw'>covariates</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age"</span>, <span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>),
-            <span class='kw'>return_models</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable age</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; $res
+<span class='fu'>ezcox</span>(<span class='no'>lung</span>,
+  <span class='kw'>covariates</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age"</span>, <span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>),
+  <span class='kw'>return_models</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable age</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; $res
 #&gt; # A tibble: 3 x 11
 #&gt;   Variable contrast_level ref_level n_contrast n_ref    beta    HR lower_95
 #&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
 #&gt; 1 age      age            age              228   228  0.0187 1.02     1    
 #&gt; 2 sex      sex            sex              228   228 -0.531  0.588    0.424
 #&gt; 3 ph.ecog  ph.ecog        ph.ecog          227   227  0.476  1.61     1.29 
-#&gt; # … with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;
+#&gt; # ... with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;
 #&gt; 
 #&gt; $models
 #&gt; # A tibble: 3 x 4
@@ -213,8 +241,10 @@ cox models.</p></td>
 #&gt; 3 ph.ecog  &lt;NA&gt;    &lt;coxph&gt; TRUE  
 #&gt; 
 #&gt; attr(,"class")
-#&gt; [1] "ezcox"</div><div class='input'><span class='fu'>ezcox</span>(<span class='no'>lung</span>, <span class='kw'>covariates</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>), <span class='kw'>controls</span> <span class='kw'>=</span> <span class='st'>"age"</span>,
-            <span class='kw'>return_models</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; $res
+#&gt; [1] "ezcox" "list" </div><div class='input'><span class='fu'>ezcox</span>(<span class='no'>lung</span>,
+  <span class='kw'>covariates</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>), <span class='kw'>controls</span> <span class='kw'>=</span> <span class='st'>"age"</span>,
+  <span class='kw'>return_models</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; $res
 #&gt; # A tibble: 4 x 11
 #&gt;   Variable contrast_level ref_level n_contrast n_ref    beta    HR lower_95
 #&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
@@ -222,7 +252,7 @@ cox models.</p></td>
 #&gt; 2 sex      age            age              228   228  0.017  1.02     0.999
 #&gt; 3 ph.ecog  ph.ecog        ph.ecog          227   227  0.443  1.56     1.24 
 #&gt; 4 ph.ecog  age            age              228   228  0.0113 1.01     0.993
-#&gt; # … with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;
+#&gt; # ... with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;
 #&gt; 
 #&gt; $models
 #&gt; # A tibble: 2 x 4
@@ -232,7 +262,9 @@ cox models.</p></td>
 #&gt; 2 ph.ecog  age     &lt;coxph&gt; TRUE  
 #&gt; 
 #&gt; attr(,"class")
-#&gt; [1] "ezcox"</div></pre>
+#&gt; [1] "ezcox" "list" 
+#&gt; attr(,"controls")
+#&gt; [1] "age"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -242,6 +274,8 @@ cox models.</p></td>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
+    <h2>Author</h2>
+    <p>Shixiang Wang <a href='mailto:w_shixiang@163.com'>w_shixiang@163.com</a></p>
   </div>
 </div>
 

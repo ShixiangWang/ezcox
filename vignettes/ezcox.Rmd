@@ -48,6 +48,34 @@ ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
 ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 ```
 
+## Filter
+
+Sometimes, we may need to filter result from multi-variable models.
+
+```{r}
+zz = ezcox(lung, covariates = c("sex", "age"), controls = "ph.ecog")
+zz
+
+filter_ezcox(zz, c("0", "2"))
+filter_ezcox(zz, c("0", "2"), type = "contrast")
+filter_ezcox(zz, c("0", "2"), type = "ref")
+# More see ?filter_ezcox
+```
+
+## Get models
+
+Get raw models may help users understand the detail and do further visualization.
+
+```{r}
+zz = ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age", return_models=TRUE)
+mds = get_models(zz)
+str(mds)
+```
+
+## Show models
+
+TODO
+
 ## Citation
 
 * Wang, Shixiang, et al. “The predictive power of tumor mutational burden in lung cancer immunotherapy response is influenced by patients’ sex.” International journal of cancer (2019).

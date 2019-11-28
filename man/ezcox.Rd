@@ -44,7 +44,7 @@ cox models.}
 set \code{verbose} to \code{FALSE} may speed up.}
 }
 \value{
-a \code{tibble} or a \code{list}
+a \code{ezcox} object
 }
 \description{
 Run Cox Analysis in Batch Mode
@@ -58,7 +58,6 @@ ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
 # Build multi-variable models
 # Control variable 'age'
 ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
-
 \donttest{
 # Set verbose=FALSE
 # may speed up when use parallel computation
@@ -76,4 +75,7 @@ ezcox(lung,
   covariates = c("sex", "ph.ecog"), controls = "age",
   return_models = TRUE
 )
+}
+\author{
+Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}
 }
