@@ -53,7 +53,8 @@ ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 Sometimes, we may need to filter result from multi-variable models.
 
 ```{r}
-zz = ezcox(lung, covariates = c("sex", "age"), controls = "ph.ecog")
+lung$ph.ecog = factor(lung$ph.ecog)
+zz = ezcox(lung, covariates = "sex", controls = "ph.ecog")
 zz
 
 filter_ezcox(zz, c("0", "2"))
@@ -69,7 +70,7 @@ Get raw models may help users understand the detail and do further visualization
 ```{r}
 zz = ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age", return_models=TRUE)
 mds = get_models(zz)
-str(mds)
+str(mds, max.level = 1)
 ```
 
 ## Show models
