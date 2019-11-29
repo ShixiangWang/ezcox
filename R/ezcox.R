@@ -86,11 +86,11 @@ ezcox <- function(data, covariates, controls = NULL,
   }
 
   if (return_models | keep_models) {
-    model_df = dplyr::tibble(
+    model_df <- dplyr::tibble(
       Variable = covariates,
       control = ifelse(exists("controls2"),
-                         paste(controls2, collapse = ","),
-                         NA_character_
+        paste(controls2, collapse = ","),
+        NA_character_
       )
     )
   }
@@ -150,8 +150,8 @@ ezcox <- function(data, covariates, controls = NULL,
 
 
     if (return_models) {
-      model_file = tempfile(pattern = "ezcox_", tmpdir = model_dir)
-      model_df = dplyr::tibble(
+      model_file <- tempfile(pattern = "ezcox_", tmpdir = model_dir)
+      model_df <- dplyr::tibble(
         Variable = y,
         model = list(cox),
         status = ifelse(class(cox) == "coxph", TRUE, FALSE)
@@ -207,12 +207,11 @@ ezcox <- function(data, covariates, controls = NULL,
     future::plan("multiprocess")
     on.exit(future::plan(oplan), add = TRUE)
     res <- furrr::future_map2_dfr(covariates2, covariates, batch_one,
-                                  controls = controls,
-                                  return_models = return_models | keep_models,
-                                  verbose = verbose,
-                                  .progress = TRUE
+      controls = controls,
+      return_models = return_models | keep_models,
+      verbose = verbose,
+      .progress = TRUE
     )
-
   } else {
     res <- purrr::map2_df(covariates2, covariates, batch_one,
       controls = controls,
@@ -222,8 +221,7 @@ ezcox <- function(data, covariates, controls = NULL,
   }
 
   if (return_models | keep_models) {
-
-    models = dplyr::left_join(
+    models <- dplyr::left_join(
       model_df,
       res %>%
         dplyr::select(c("Variable", "model_file")) %>%
@@ -233,25 +231,27 @@ ezcox <- function(data, covariates, controls = NULL,
 
     if (return_models) {
       if (parallel) {
-        model_df = furrr::future_map_dfr(models$model_file, function(x) {
+        model_df <- furrr::future_map_dfr(models$model_file, function(x) {
           readRDS(x)
         }, .progress = TRUE)
       } else {
-        model_df = purrr::map_df(models$model_file, function(x) {
+        model_df <- purrr::map_df(models$model_file, function(x) {
           readRDS(x)
         })
       }
 
-      models = dplyr::left_join(models, model_df, by = "Variable")
+      models <- dplyr::left_join(models, model_df, by = "Variable")
     }
 
+    res$model_file <- NULL
     res <- list(
       res = res,
       models = models
     )
+  } else {
+    res$model_file <- NULL
   }
 
-  res$res$model_file = NULL
   class(res) <- c("ezcox", class(res))
   attr(res, "controls") <- controls
   res

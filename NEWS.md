@@ -1,3 +1,8 @@
+# ezcox 0.2.4
+
+* Fix bug: cannot get model result from parallel model
+* Add `clean_model_dir()`
+
 # ezcox 0.2.3
 
 * Add `show_models()`

@@ -16,18 +16,25 @@ get_models <- function(x, variables = NULL) {
   if (is.data.frame(x)) {
     stop("Please run ezcox() with return_models=TRUE or keep_models=TRUE firstly!")
   }
-  model_df = x$models
+  model_df <- x$models
   if (!is.null(variables)) {
-    model_df = model_df %>%
+    model_df <- model_df %>%
       dplyr::filter(.data$Variable %in% variables)
   }
   if (ncol(model_df) < 4) {
-    models = purrr::map_df(model_df$model_file, function(x) {
+    models <- purrr::map_df(model_df$model_file, function(x) {
       readRDS(x)
     })
-  } else {
-    models <- model_df$model
+    model_df <- dplyr::left_join(model_df, models, by = "Variable")
   }
+
+  status_index <- which(!model_df$status)
+  if (length(status_index) > 0) {
+    message("Skipping the following failed variables:")
+    message("\t", paste0(model_df$Variable[status_index], collapse = ", "))
+    model_df <- dplyr::filter(model_df, model_df$status)
+  }
+  models <- model_df$model
 
   model_names <- Map(function(x, y) {
     cc <- strsplit(y, ",")[[1]]
