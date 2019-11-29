@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -159,12 +159,12 @@ filtering only reference level.</p></td>
 #&gt; 6 age      1              0                113    63  0.359  1.43     0.969
 #&gt; 7 age      2              0                 50    63  0.857  2.36     1.5  
 #&gt; 8 age      3              0                  1    63  2.11   8.23     1.09 
-#&gt; # ... with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div><div class='input'><span class='fu'>filter_ezcox</span>(<span class='no'>zz</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"0"</span>, <span class='st'>"2"</span>))</div><div class='output co'>#&gt; <span class='message'>Filtering control variables (levels)...</span></div><div class='output co'>#&gt; # A tibble: 2 x 11
+#&gt; # … with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div><div class='input'><span class='fu'>filter_ezcox</span>(<span class='no'>zz</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"0"</span>, <span class='st'>"2"</span>))</div><div class='output co'>#&gt; <span class='message'>Filtering control variables (levels)...</span></div><div class='output co'>#&gt; # A tibble: 2 x 11
 #&gt;   Variable contrast_level ref_level n_contrast n_ref    beta    HR lower_95
 #&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
 #&gt; 1 sex      sex            sex              228   228 -0.545  0.580    0.417
 #&gt; 2 age      age            age              228   228  0.0108 1.01     0.992
-#&gt; # ... with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div><div class='input'><span class='fu'>filter_ezcox</span>(<span class='no'>zz</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"0"</span>, <span class='st'>"2"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"contrast"</span>)</div><div class='output co'>#&gt; <span class='message'>Filtering control variables (levels)...</span></div><div class='output co'>#&gt; # A tibble: 6 x 11
+#&gt; # … with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div><div class='input'><span class='fu'>filter_ezcox</span>(<span class='no'>zz</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"0"</span>, <span class='st'>"2"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"contrast"</span>)</div><div class='output co'>#&gt; <span class='message'>Filtering control variables (levels)...</span></div><div class='output co'>#&gt; # A tibble: 6 x 11
 #&gt;   Variable contrast_level ref_level n_contrast n_ref    beta    HR lower_95
 #&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
 #&gt; 1 sex      sex            sex              228   228 -0.545  0.580    0.417
@@ -173,12 +173,12 @@ filtering only reference level.</p></td>
 #&gt; 4 age      age            age              228   228  0.0108 1.01     0.992
 #&gt; 5 age      1              0                113    63  0.359  1.43     0.969
 #&gt; 6 age      3              0                  1    63  2.11   8.23     1.09 
-#&gt; # ... with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div><div class='input'><span class='fu'>filter_ezcox</span>(<span class='no'>zz</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"0"</span>, <span class='st'>"2"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"ref"</span>)</div><div class='output co'>#&gt; <span class='message'>Filtering control variables (levels)...</span></div><div class='output co'>#&gt; # A tibble: 2 x 11
+#&gt; # … with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div><div class='input'><span class='fu'>filter_ezcox</span>(<span class='no'>zz</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"0"</span>, <span class='st'>"2"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"ref"</span>)</div><div class='output co'>#&gt; <span class='message'>Filtering control variables (levels)...</span></div><div class='output co'>#&gt; # A tibble: 2 x 11
 #&gt;   Variable contrast_level ref_level n_contrast n_ref    beta    HR lower_95
 #&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
 #&gt; 1 sex      sex            sex              228   228 -0.545  0.580    0.417
 #&gt; 2 age      age            age              228   228  0.0108 1.01     0.992
-#&gt; # ... with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div></pre>
+#&gt; # … with 3 more variables: upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

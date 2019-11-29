@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -133,16 +133,20 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a named <code>list</code></p>
+    <p>a named <code>list</code> with class <code>ezcox_models</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>survival</span>)
 <span class='no'>zz</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ezcox.html'>ezcox</a></span>(<span class='no'>lung</span>, <span class='kw'>covariates</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>), <span class='kw'>controls</span> <span class='kw'>=</span> <span class='st'>"age"</span>, <span class='kw'>return_models</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='input'><span class='no'>mds</span> <span class='kw'>&lt;-</span> <span class='fu'>get_models</span>(<span class='no'>zz</span>)
 <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>mds</span>, <span class='kw'>max.level</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; List of 2
-#&gt;  $ sex ~ age    :List of 19
+#&gt;  $ Surv ~ sex + age    :List of 19
 #&gt;   ..- attr(*, "class")= chr "coxph"
-#&gt;  $ ph.ecog ~ age:List of 20
-#&gt;   ..- attr(*, "class")= chr "coxph"</div></pre>
+#&gt;   ..- attr(*, "Variable")= chr "sex"
+#&gt;  $ Surv ~ ph.ecog + age:List of 20
+#&gt;   ..- attr(*, "class")= chr "coxph"
+#&gt;   ..- attr(*, "Variable")= chr "ph.ecog"
+#&gt;  - attr(*, "class")= chr [1:2] "ezcox_models" "list"
+#&gt;  - attr(*, "has_control")= logi TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
