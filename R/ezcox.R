@@ -148,6 +148,14 @@ ezcox <- function(data, covariates, controls = NULL,
       cox <- NA
     }
 
+    if (is.numeric(data[[y]])) {
+      n_var = 1
+    } else {
+      n_var = length(table(data[[y]])) - 1
+    }
+
+    tbl$is_control = c(rep(FALSE, n_var), rep(TRUE, nrow(tbl) - n_var))
+
 
     if (return_models) {
       model_file <- tempfile(pattern = "ezcox_", tmpdir = model_dir)
@@ -180,6 +188,7 @@ ezcox <- function(data, covariates, controls = NULL,
     if (verbose) message("==> Done.")
     dplyr::tibble(
       Variable = y,
+      is_control = tbl[["is_control"]],
       contrast_level = tbl[["contrast_level"]],
       ref_level = tbl[["ref_level"]],
       n_contrast = tbl[["n_contrast"]],

@@ -1,7 +1,7 @@
 #' Filter ezcox
 #'
 #' @param x a `ezcox` object from [ezcox()].
-#' @param levels levels to filter.
+#' @param levels levels to filter, default is 'auto', it will filter all control variables.
 #' @param type default is 'both' for filtering both contrast level and reference level.
 #' It can also be 'contrast' for filtering only contrast level and 'ref' for
 #' filtering only reference level.
@@ -14,31 +14,39 @@
 #' lung$ph.ecog <- factor(lung$ph.ecog)
 #' zz <- ezcox(lung, covariates = c("sex", "age"), controls = "ph.ecog")
 #' zz
+#' filter_ezcox(zz)
 #' filter_ezcox(zz, c("0", "2"))
 #' filter_ezcox(zz, c("0", "2"), type = "contrast")
 #' filter_ezcox(zz, c("0", "2"), type = "ref")
-filter_ezcox <- function(x, levels, type = c("both", "contrast", "ref")) {
+filter_ezcox <- function(x, levels="auto", type = c("both", "contrast", "ref")) {
   stopifnot(inherits(x, "ezcox"))
   controls <- attr(x, "controls")
+  type <- match.arg(type)
+
   if (is.null(controls)) {
     message("Nothing to be simpler!")
   } else {
-    message("Filtering control variables (levels)...")
     if (!is.data.frame(x)) {
       data <- x$res
     } else {
       data <- x
     }
-    type <- match.arg(type)
-    if (type == "both") {
-      index <- !(data$contrast_level %in% levels | data$ref_level %in% levels)
-    } else if (type == "contrast") {
-      index <- !data$contrast_level %in% levels
+    if (identical(levels, "auto")) {
+      data = dplyr::filter(data, !data$is_control)
     } else {
-      index <- !data$ref_level %in% levels
+      message("Filtering control levels", " in '", type, "' mode:")
+      message("\t", paste0(levels, collapse = ", "))
+
+      if (type == "both") {
+        index <- !(data$contrast_level %in% levels | data$ref_level %in% levels)
+      } else if (type == "contrast") {
+        index <- !data$contrast_level %in% levels
+      } else {
+        index <- !data$ref_level %in% levels
+      }
+      data <- data[index, ]
     }
 
-    data <- data[index, ]
     if (!is.data.frame(x)) {
       x$res <- data
       return(x)

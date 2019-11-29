@@ -1,3 +1,7 @@
+# ezcox 0.2.5
+
+* Add 'auto' option for filtering
+
 # ezcox 0.2.4
 
 * Fix bug: cannot get model result from parallel model

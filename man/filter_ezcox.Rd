@@ -4,12 +4,12 @@
 \alias{filter_ezcox}
 \title{Filter ezcox}
 \usage{
-filter_ezcox(x, levels, type = c("both", "contrast", "ref"))
+filter_ezcox(x, levels = "auto", type = c("both", "contrast", "ref"))
 }
 \arguments{
 \item{x}{a \code{ezcox} object from \code{\link[=ezcox]{ezcox()}}.}
 
-\item{levels}{levels to filter.}
+\item{levels}{levels to filter, default is 'auto', it will filter all control variables.}
 
 \item{type}{default is 'both' for filtering both contrast level and reference level.
 It can also be 'contrast' for filtering only contrast level and 'ref' for
@@ -26,6 +26,7 @@ library(survival)
 lung$ph.ecog <- factor(lung$ph.ecog)
 zz <- ezcox(lung, covariates = c("sex", "age"), controls = "ph.ecog")
 zz
+filter_ezcox(zz)
 filter_ezcox(zz, c("0", "2"))
 filter_ezcox(zz, c("0", "2"), type = "contrast")
 filter_ezcox(zz, c("0", "2"), type = "ref")
