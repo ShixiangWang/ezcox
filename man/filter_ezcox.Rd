@@ -23,7 +23,7 @@ Filter ezcox
 }
 \examples{
 library(survival)
-lung$ph.ecog = factor(lung$ph.ecog)
+lung$ph.ecog <- factor(lung$ph.ecog)
 zz <- ezcox(lung, covariates = c("sex", "age"), controls = "ph.ecog")
 zz
 filter_ezcox(zz, c("0", "2"))

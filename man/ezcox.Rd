@@ -11,7 +11,9 @@ ezcox(
   time = "time",
   status = "status",
   global_method = c("likelihood", "wald", "logrank"),
+  keep_models = FALSE,
   return_models = FALSE,
+  model_dir = file.path(tempdir(), "ezcox"),
   parallel = FALSE,
   verbose = TRUE
 )
@@ -35,8 +37,12 @@ they will give similar results. For small N, they may differ somewhat.
 The Likelihood ratio test has better behavior for small sample sizes,
 so it is generally preferred.}
 
+\item{keep_models}{If \code{TRUE}, keep models as local files.}
+
 \item{return_models}{default \code{FALSE}. If \code{TRUE}, return a \code{list} contains
 cox models.}
+
+\item{model_dir}{a path for storing model results.}
 
 \item{parallel}{if \code{TRUE}, do parallel computation by \strong{furrr} package.}
 

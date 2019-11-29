@@ -12,8 +12,10 @@
 #' they will give similar results. For small N, they may differ somewhat.
 #' The Likelihood ratio test has better behavior for small sample sizes,
 #' so it is generally preferred.
+#' @param keep_models If `TRUE`, keep models as local files.
 #' @param return_models default `FALSE`. If `TRUE`, return a `list` contains
 #' cox models.
+#' @param model_dir a path for storing model results.
 #' @param parallel if `TRUE`, do parallel computation by **furrr** package.
 #' @param verbose if `TRUE`, print extra info. If `parallel` is `TRUE`,
 #' set `verbose` to `FALSE` may speed up.
@@ -54,9 +56,17 @@
 ezcox <- function(data, covariates, controls = NULL,
                   time = "time", status = "status",
                   global_method = c("likelihood", "wald", "logrank"),
-                  return_models = FALSE, parallel = FALSE, verbose = TRUE) {
+                  keep_models = FALSE,
+                  return_models = FALSE,
+                  model_dir = file.path(tempdir(), "ezcox"),
+                  parallel = FALSE,
+                  verbose = TRUE) {
   if (!"survival" %in% .packages()) {
     loadNamespace("survival")
+  }
+
+  if (!dir.exists(model_dir)) {
+    dir.create(model_dir, recursive = TRUE)
   }
 
   data$time <- data[[time]]
@@ -75,15 +85,14 @@ ezcox <- function(data, covariates, controls = NULL,
     controls <- ifelse(isValidAndUnreserved(controls), controls, paste0("`", controls, "`"))
   }
 
-  if (return_models) {
-    model_env <- new.env(parent = emptyenv())
-    model_env$Variable <- covariates
-    model_env$controls <- ifelse(exists("controls2"),
-      paste(controls2, collapse = ","),
-      NA_character_
+  if (return_models | keep_models) {
+    model_df = dplyr::tibble(
+      Variable = covariates,
+      control = ifelse(exists("controls2"),
+                         paste(controls2, collapse = ","),
+                         NA_character_
+      )
     )
-    model_env$models <- list()
-    model_env$status <- logical()
   }
 
   batch_one <- function(x, y, controls = NULL, return_models = FALSE, verbose = TRUE) {
@@ -141,8 +150,13 @@ ezcox <- function(data, covariates, controls = NULL,
 
 
     if (return_models) {
-      model_env$models[[length(model_env$models) + 1]] <- cox
-      model_env$status %<>% append(ifelse(class(cox) == "coxph", TRUE, FALSE))
+      model_file = tempfile(pattern = "ezcox_", tmpdir = model_dir)
+      model_df = dplyr::tibble(
+        Variable = y,
+        model = list(cox),
+        status = ifelse(class(cox) == "coxph", TRUE, FALSE)
+      )
+      saveRDS(model_df, file = model_file)
     }
 
     if (class(cox) != "coxph" | all(is.na(tbl[["ref_level"]]))) {
@@ -175,50 +189,69 @@ ezcox <- function(data, covariates, controls = NULL,
       lower_95 = lower_95,
       upper_95 = upper_95,
       p.value = p.value,
-      global.pval = glob.pval
+      global.pval = glob.pval,
+      model_file = ifelse(exists("model_file"), model_file, NA_character_)
     )
   }
 
   if (parallel) {
-    if (!requireNamespace("furrr")) {
-      stop("Please install 'furrr' package firstly!")
+    if (length(covariates2) < 50) {
+      if (verbose) message("Warning: variable < 50, parallel option is not recommended!")
     }
 
-    if (length(covariates2) < 50) {
-      if (verbose) warning("Warning: variable < 50, parallel option is not recommended!")
+    if (!requireNamespace("furrr")) {
+      stop("Please install 'furrr' package firstly!")
     }
 
     oplan <- future::plan()
     future::plan("multiprocess")
     on.exit(future::plan(oplan), add = TRUE)
-
     res <- furrr::future_map2_dfr(covariates2, covariates, batch_one,
-      controls = controls,
-      return_models = return_models,
-      verbose = verbose,
-      .progress = TRUE
+                                  controls = controls,
+                                  return_models = return_models | keep_models,
+                                  verbose = verbose,
+                                  .progress = TRUE
     )
+
   } else {
     res <- purrr::map2_df(covariates2, covariates, batch_one,
       controls = controls,
-      return_models = return_models,
+      return_models = return_models | keep_models,
       verbose = verbose
     )
   }
 
-  if (return_models) {
-    models <- dplyr::tibble(
-      Variable = model_env$Variable,
-      control = model_env$controls,
-      model = model_env$models,
-      status = model_env$status
+  if (return_models | keep_models) {
+
+    models = dplyr::left_join(
+      model_df,
+      res %>%
+        dplyr::select(c("Variable", "model_file")) %>%
+        unique(),
+      by = "Variable"
     )
+
+    if (return_models) {
+      if (parallel) {
+        model_df = furrr::future_map_dfr(models$model_file, function(x) {
+          readRDS(x)
+        }, .progress = TRUE)
+      } else {
+        model_df = purrr::map_df(models$model_file, function(x) {
+          readRDS(x)
+        })
+      }
+
+      models = dplyr::left_join(models, model_df, by = "Variable")
+    }
+
     res <- list(
       res = res,
       models = models
     )
   }
 
+  res$res$model_file = NULL
   class(res) <- c("ezcox", class(res))
   attr(res, "controls") <- controls
   res
