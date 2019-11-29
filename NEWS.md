@@ -1,3 +1,7 @@
+# ezcox 0.2.3
+
+* Add `show_models()`
+
 # ezcox 0.2.2
 
 * Add `filter_ezcox()` and `get_models()`

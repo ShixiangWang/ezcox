@@ -8,14 +8,15 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ezcox)](https://CRAN.R-project.org/package=ezcox)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/ezcox?color=blue)](https://cran.r-project.org/package=ezcox)
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![HitCount](http://hits.dwyl.io/ShixiangWang/ezcox.svg)](http://hits.dwyl.io/ShixiangWang/ezcox)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/ezcox?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/ezcox)
 [![Travis build
 status](https://travis-ci.org/ShixiangWang/ezcox.svg?branch=master)](https://travis-ci.org/ShixiangWang/ezcox)
 [![Codecov test
 coverage](https://codecov.io/gh/ShixiangWang/ezcox/branch/master/graph/badge.svg)](https://codecov.io/gh/ShixiangWang/ezcox?branch=master)
+[![Lifecycle:
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 <!-- badges: end -->
 
 The goal of ezcox is to operate a batch of univariate or multivariate
@@ -66,8 +67,7 @@ ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
 #> 1 age      age            age              228   228  0.0187 1.02     1    
 #> 2 sex      sex            sex              228   228 -0.531  0.588    0.424
 #> 3 ph.ecog  ph.ecog        ph.ecog          227   227  0.476  1.61     1.29 
-#> # … with 3 more variables: upper_95 <dbl>, p.value <dbl>,
-#> #   global.pval <dbl>
+#> # … with 3 more variables: upper_95 <dbl>, p.value <dbl>, global.pval <dbl>
 
 # Build multi-variable models
 # Control variable 'age'
@@ -87,8 +87,7 @@ ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 #> 2 sex      age            age              228   228  0.017  1.02     0.999
 #> 3 ph.ecog  ph.ecog        ph.ecog          227   227  0.443  1.56     1.24 
 #> 4 ph.ecog  age            age              228   228  0.0113 1.01     0.993
-#> # … with 3 more variables: upper_95 <dbl>, p.value <dbl>,
-#> #   global.pval <dbl>
+#> # … with 3 more variables: upper_95 <dbl>, p.value <dbl>, global.pval <dbl>
 ```
 
 ## Citation

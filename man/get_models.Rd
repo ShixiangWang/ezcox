@@ -10,7 +10,7 @@ get_models(x)
 \item{x}{a \code{ezcox} object from \code{\link[=ezcox]{ezcox()}}.}
 }
 \value{
-a named \code{list}
+a named \code{list} with class \code{ezcox_models}
 }
 \description{
 Models are renamed by the formulas.

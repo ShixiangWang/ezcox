@@ -75,7 +75,15 @@ str(mds, max.level = 1)
 
 ## Show models
 
-TODO
+```{r}
+show_models(mds)
+# Set model names
+show_models(mds, model_names = paste0("Model ", 1:2))
+# Merge all models and drop control variables
+show_models(mds, merge_models = TRUE, drop_controls = TRUE)
+```
+
+More see `?show_models`.
 
 ## Citation
 

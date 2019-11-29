@@ -47,4 +47,3 @@ filter_ezcox(zz, c("0", "2"), type = "ref")
 zz <- ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age", return_models = TRUE)
 mds <- get_models(zz)
 str(mds, max.level = 1)
-

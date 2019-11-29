@@ -1,7 +1,7 @@
 Type: Package
 Package: ezcox
 Title: Easily Process a Batch of Cox Models
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: 
     person(given = "Shixiang",
            family = "Wang",
@@ -21,7 +21,8 @@ Imports:
     magrittr (>= 1.5),
     purrr (>= 0.3.2),
     survival,
-    rlang (>= 0.1.2)
+    rlang (>= 0.1.2),
+    forestmodel
 Suggests: 
     covr (>= 3.2.1),
     testthat (>= 2.1.0),
@@ -30,6 +31,7 @@ Suggests:
     rmarkdown,
     future,
     furrr
+remotes: ShixiangWang/forestmodel
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
