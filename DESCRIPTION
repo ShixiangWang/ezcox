@@ -31,7 +31,6 @@ Suggests:
     rmarkdown,
     future,
     furrr
-remotes: ShixiangWang/forestmodel
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

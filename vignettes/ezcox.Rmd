@@ -32,6 +32,13 @@ And the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("ShixiangWang/ezcox")
 ```
+
+Visualization feature of **ezcox** needs the recent version of **forestmodel**, please run the following commands:
+
+```r
+remotes::install_github("ShixiangWang/forestmodel")
+```
+
 ## Example
 
 This is a basic example which shows you how to get result from a batch of cox models.

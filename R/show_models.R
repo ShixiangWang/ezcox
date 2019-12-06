@@ -9,6 +9,7 @@
 #' @param ... other arguments passing to [forestmodel::forest_model()].
 #'
 #' @return a `ggplot` object
+#' @importFrom utils packageVersion
 #' @export
 #'
 #' @examples
@@ -24,6 +25,13 @@
 show_models <- function(models, model_names = NULL, covariates = NULL,
                         merge_models = FALSE, drop_controls = FALSE, ...) {
   stopifnot(inherits(models, "ezcox_models") | all(sapply(models, function(x) inherits(x, "coxph"))))
+  pkg_version = packageVersion("forestmodel")
+  if (pkg_version$major == 0 & pkg_version$minor < 6) {
+    message("Please install the recent version of forestmodel firstly.")
+    message("Run the following command:")
+    message("  remotes::install_github(\"ShixiangWang/forestmodel\")")
+    return(invisible())
+  }
 
   if (!is.null(model_names)) {
     names(models) <- model_names
