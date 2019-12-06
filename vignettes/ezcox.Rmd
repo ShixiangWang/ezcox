@@ -48,6 +48,16 @@ ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
 ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 ```
 
+## Run parallelly
+
+For parallel computation, users can use `ezcox_parallel()`. This function has same arguments as `ezcox()`.
+For variables < 200, this function is not recommended.
+
+```{r}
+ezcox_parallel(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+```
+
+
 ## Filter
 
 Sometimes, we may need to filter result from multi-variable models.

@@ -18,7 +18,7 @@
 #' filter_ezcox(zz, c("0", "2"))
 #' filter_ezcox(zz, c("0", "2"), type = "contrast")
 #' filter_ezcox(zz, c("0", "2"), type = "ref")
-filter_ezcox <- function(x, levels="auto", type = c("both", "contrast", "ref")) {
+filter_ezcox <- function(x, levels = "auto", type = c("both", "contrast", "ref")) {
   stopifnot(inherits(x, "ezcox"))
   controls <- attr(x, "controls")
   type <- match.arg(type)
@@ -32,7 +32,7 @@ filter_ezcox <- function(x, levels="auto", type = c("both", "contrast", "ref")) 
       data <- x
     }
     if (identical(levels, "auto")) {
-      data = dplyr::filter(data, !data$is_control)
+      data <- dplyr::filter(data, !data$is_control)
     } else {
       message("Filtering control levels", " in '", type, "' mode:")
       message("\t", paste0(levels, collapse = ", "))

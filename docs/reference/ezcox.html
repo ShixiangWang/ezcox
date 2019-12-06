@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -130,7 +130,6 @@
   <span class='kw'>keep_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>return_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>model_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"ezcox"</span>),
-  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
 
@@ -139,7 +138,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>a <code>data.frame</code>.</p></td>
+      <td><p>a <code>data.frame</code> containing variables, time and os status.</p></td>
     </tr>
     <tr>
       <th>covariates</th>
@@ -181,13 +180,8 @@ cox models.</p></td>
       <td><p>a path for storing model results.</p></td>
     </tr>
     <tr>
-      <th>parallel</th>
-      <td><p>if <code>TRUE</code>, do parallel computation by <strong>furrr</strong> package.</p></td>
-    </tr>
-    <tr>
       <th>verbose</th>
-      <td><p>if <code>TRUE</code>, print extra info. If <code>parallel</code> is <code>TRUE</code>,
-set <code>verbose</code> to <code>FALSE</code> may speed up.</p></td>
+      <td><p>if <code>TRUE</code>, print extra info.</p></td>
     </tr>
     </table>
 
@@ -217,21 +211,7 @@ set <code>verbose</code> to <code>FALSE</code> may speed up.</p></td>
 #&gt; </span><span style='color: #555555;'>3</span><span> ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.443  1.56 
 #&gt; </span><span style='color: #555555;'>4</span><span> ph.ecog  TRUE       age            age              228   228  0.011</span><span style='text-decoration: underline;'>3</span><span> 1.01 
 #&gt; </span><span style='color: #555555;'># … with 4 more variables: lower_95 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, upper_95 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, p.value </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   global.pval </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># Set verbose=FALSE</span>
-<span class='co'># may speed up when use parallel computation</span>
-<span class='co'># parallel=TRUE is not recommended for</span>
-<span class='co'># number of variables less than 100</span>
-<span class='fu'>ezcox</span>(<span class='no'>lung</span>, <span class='kw'>covariates</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>), <span class='kw'>controls</span> <span class='kw'>=</span> <span class='st'>"age"</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>载入需要的名字空间：furrr</span></div><div class='output co'>#&gt; <span class='warning'>Warning: [ONE-TIME WARNING] Forked processing ('multicore') is disabled in future (&gt;= 1.13.0) when running R from RStudio, because it is considered unstable. Because of this, plan("multicore") will fall back to plan("sequential"), and plan("multiprocess") will fall back to plan("multisession") - not plan("multicore") as in the past. For more details, how to control forked processing or not, and how to silence this warning in future R sessions, see ?future::supportsMulticore</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 12</span><span>
-#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref    beta    HR
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> sex      FALSE      sex            sex              228   228 -</span><span style='color: #BB0000;'>0.513</span><span>  0.599
-#&gt; </span><span style='color: #555555;'>2</span><span> sex      TRUE       age            age              228   228  0.017  1.02 
-#&gt; </span><span style='color: #555555;'>3</span><span> ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.443  1.56 
-#&gt; </span><span style='color: #555555;'>4</span><span> ph.ecog  TRUE       age            age              228   228  0.011</span><span style='text-decoration: underline;'>3</span><span> 1.01 
-#&gt; </span><span style='color: #555555;'># … with 4 more variables: lower_95 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, upper_95 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, p.value </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   global.pval </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
-
+#&gt; #   global.pval </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Return models</span>
 <span class='fu'>ezcox</span>(<span class='no'>lung</span>,
   <span class='kw'>covariates</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age"</span>, <span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>),

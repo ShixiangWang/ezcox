@@ -1,3 +1,8 @@
+# ezcox 0.3.0
+
+* Remove `parallel` option in `ezcox()`
+* Add `ezcox_parallel()` for better parallel computation (#10)
+
 # ezcox 0.2.5
 
 * Add 'auto' option for filtering

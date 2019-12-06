@@ -1,6 +1,6 @@
 #' Run Cox Analysis in Batch Mode
 #'
-#' @param data a `data.frame`.
+#' @param data a `data.frame` containing variables, time and os status.
 #' @param covariates column names specifying variables.
 #' @param controls column names specifying controls.
 #' @param time column name specifying time, default is 'time'.
@@ -16,9 +16,7 @@
 #' @param return_models default `FALSE`. If `TRUE`, return a `list` contains
 #' cox models.
 #' @param model_dir a path for storing model results.
-#' @param parallel if `TRUE`, do parallel computation by **furrr** package.
-#' @param verbose if `TRUE`, print extra info. If `parallel` is `TRUE`,
-#' set `verbose` to `FALSE` may speed up.
+#' @param verbose if `TRUE`, print extra info.
 #' @import survival
 #' @importFrom stats as.formula
 #' @importFrom dplyr tibble
@@ -36,13 +34,6 @@
 #' # Build multi-variable models
 #' # Control variable 'age'
 #' ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
-#' \donttest{
-#' # Set verbose=FALSE
-#' # may speed up when use parallel computation
-#' # parallel=TRUE is not recommended for
-#' # number of variables less than 100
-#' ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age", parallel = TRUE, verbose = FALSE)
-#' }
 #'
 #' # Return models
 #' ezcox(lung,
@@ -59,8 +50,9 @@ ezcox <- function(data, covariates, controls = NULL,
                   keep_models = FALSE,
                   return_models = FALSE,
                   model_dir = file.path(tempdir(), "ezcox"),
-                  parallel = FALSE,
                   verbose = TRUE) {
+  stopifnot(is.data.frame(data))
+
   if (!"survival" %in% .packages()) {
     loadNamespace("survival")
   }
@@ -149,12 +141,12 @@ ezcox <- function(data, covariates, controls = NULL,
     }
 
     if (is.numeric(data[[y]])) {
-      n_var = 1
+      n_var <- 1
     } else {
-      n_var = length(table(data[[y]])) - 1
+      n_var <- length(table(data[[y]])) - 1
     }
 
-    tbl$is_control = c(rep(FALSE, n_var), rep(TRUE, nrow(tbl) - n_var))
+    tbl$is_control <- c(rep(FALSE, n_var), rep(TRUE, nrow(tbl) - n_var))
 
 
     if (return_models) {
@@ -203,31 +195,12 @@ ezcox <- function(data, covariates, controls = NULL,
     )
   }
 
-  if (parallel) {
-    if (length(covariates2) < 50) {
-      if (verbose) message("Warning: variable < 50, parallel option is not recommended!")
-    }
 
-    if (!requireNamespace("furrr")) {
-      stop("Please install 'furrr' package firstly!")
-    }
-
-    oplan <- future::plan()
-    future::plan("multiprocess")
-    on.exit(future::plan(oplan), add = TRUE)
-    res <- furrr::future_map2_dfr(covariates2, covariates, batch_one,
-      controls = controls,
-      return_models = return_models | keep_models,
-      verbose = verbose,
-      .progress = TRUE
-    )
-  } else {
-    res <- purrr::map2_df(covariates2, covariates, batch_one,
-      controls = controls,
-      return_models = return_models | keep_models,
-      verbose = verbose
-    )
-  }
+  res <- purrr::map2_df(covariates2, covariates, batch_one,
+    controls = controls,
+    return_models = return_models | keep_models,
+    verbose = verbose
+  )
 
   if (return_models | keep_models) {
     models <- dplyr::left_join(
@@ -239,15 +212,9 @@ ezcox <- function(data, covariates, controls = NULL,
     )
 
     if (return_models) {
-      if (parallel) {
-        model_df <- furrr::future_map_dfr(models$model_file, function(x) {
-          readRDS(x)
-        }, .progress = TRUE)
-      } else {
-        model_df <- purrr::map_df(models$model_file, function(x) {
-          readRDS(x)
-        })
-      }
+      model_df <- purrr::map_df(models$model_file, function(x) {
+        readRDS(x)
+      })
 
       models <- dplyr::left_join(models, model_df, by = "Variable")
     }
