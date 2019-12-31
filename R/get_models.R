@@ -38,6 +38,9 @@ get_models <- function(x, variables = NULL) {
 
   model_names <- Map(function(x, y) {
     cc <- strsplit(y, ",")[[1]]
+    if (is.na(cc)) {
+      cc <- NULL
+    }
     paste("Surv ~", paste(c(x, cc), collapse = " + "))
   }, x = model_df$Variable, y = model_df$control)
 

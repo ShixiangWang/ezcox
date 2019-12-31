@@ -1,3 +1,7 @@
+# ezcox 0.3.1
+
+* Fix the bug that a `NA` is added to model names when no control
+
 # ezcox 0.3.0
 
 * Remove `parallel` option in `ezcox()`
