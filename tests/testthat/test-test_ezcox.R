@@ -29,7 +29,8 @@ t5 <- ezcox(lung,
 
 t6 <- ezcox_parallel(lung,
   covariates = c("sex", "ph.ecog"),
-  controls = "age")
+  controls = "age"
+)
 
 test_that("Return ezcox object works", {
   expect_s3_class(t3, "ezcox")
