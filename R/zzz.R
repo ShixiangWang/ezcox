@@ -8,11 +8,7 @@
 Github page  : https://github.com/ShixiangWang/ezcox
 Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html
 
-If you use it in academic field, please cite:
-
-  Wang, Shixiang, et al. “The predictive power of tumor
-mutational burden in lung cancer immunotherapy response is influenced
-by patients’ sex.” International journal of cancer (2019).
+Run citation(\"ezcox\") to see how to cite 'ezcox'.
 =======================================================================
                  ")
   packageStartupMessage(msg)
