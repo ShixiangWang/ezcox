@@ -22,7 +22,8 @@ Imports:
     purrr (>= 0.3.2),
     survival,
     rlang (>= 0.1.2),
-    forestmodel
+    forestmodel,
+    utils
 Suggests: 
     covr (>= 3.2.1),
     testthat (>= 2.1.0),

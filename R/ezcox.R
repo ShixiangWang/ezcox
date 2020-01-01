@@ -17,6 +17,7 @@
 #' cox models.
 #' @param model_dir a path for storing model results.
 #' @param verbose if `TRUE`, print extra info.
+#' @import utils
 #' @import survival
 #' @importFrom stats as.formula
 #' @importFrom dplyr tibble
