@@ -38,7 +38,7 @@ get_models <- function(x, variables = NULL) {
 
   model_names <- Map(function(x, y) {
     cc <- strsplit(y, ",")[[1]]
-    if (is.na(cc)) {
+    if (any(is.na(cc))) {
       cc <- NULL
     }
     paste("Surv ~", paste(c(x, cc), collapse = " + "))
