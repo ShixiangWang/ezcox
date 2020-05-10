@@ -1,3 +1,8 @@
+# ezcox 0.5.0
+
+* Supported other parameters in `coxph`.
+
+
 # ezcox 0.4.0
 
 * Add function `show_forest`, which is a wrapper of

@@ -14,7 +14,8 @@ ezcox(
   keep_models = FALSE,
   return_models = FALSE,
   model_dir = file.path(tempdir(), "ezcox"),
-  verbose = TRUE
+  verbose = TRUE,
+  ...
 )
 }
 \arguments{
@@ -44,6 +45,8 @@ cox models.}
 \item{model_dir}{a path for storing model results.}
 
 \item{verbose}{if \code{TRUE}, print extra info.}
+
+\item{...}{other parameters passing to \code{\link[survival:coxph]{survival::coxph()}}.}
 }
 \value{
 a \code{ezcox} object

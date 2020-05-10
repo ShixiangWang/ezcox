@@ -42,7 +42,7 @@ it removes control variables automatically.}
 
 \item{model_dir}{a path for storing model results.}
 
-\item{...}{other arguments passing to \code{\link[forestmodel:forest_model]{forestmodel::forest_model()}}.}
+\item{...}{other parameters passing to \code{\link[survival:coxph]{survival::coxph()}}.}
 }
 \value{
 a \code{ggplot} object

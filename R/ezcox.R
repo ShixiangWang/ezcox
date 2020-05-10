@@ -17,6 +17,7 @@
 #' cox models.
 #' @param model_dir a path for storing model results.
 #' @param verbose if `TRUE`, print extra info.
+#' @param ... other parameters passing to [survival::coxph()].
 #' @import utils
 #' @import survival
 #' @importFrom stats as.formula
@@ -51,7 +52,7 @@ ezcox <- function(data, covariates, controls = NULL,
                   keep_models = FALSE,
                   return_models = FALSE,
                   model_dir = file.path(tempdir(), "ezcox"),
-                  verbose = TRUE) {
+                  verbose = TRUE, ...) {
   stopifnot(is.data.frame(data))
 
   if (!"survival" %in% .packages()) {
@@ -88,7 +89,7 @@ ezcox <- function(data, covariates, controls = NULL,
     )
   }
 
-  batch_one <- function(x, y, controls = NULL, return_models = FALSE, verbose = TRUE) {
+  batch_one <- function(x, y, controls = NULL, return_models = FALSE, verbose = TRUE, ...) {
     if (!is.null(controls)) {
       type <- "multi"
     } else {
@@ -104,7 +105,7 @@ ezcox <- function(data, covariates, controls = NULL,
         ifelse(type == "multi", paste0("+", paste(controls, collapse = "+")), "")
       ))
       if (verbose) message("==> Building Cox model...")
-      cox <- tryCatch(coxph(fm, data = data),
+      cox <- tryCatch(coxph(fm, data = data, ...),
         error = function(e) {
           if (verbose) {
             message("==> Something wrong with variable ", y)
@@ -200,7 +201,8 @@ ezcox <- function(data, covariates, controls = NULL,
   res <- purrr::map2_df(covariates2, covariates, batch_one,
     controls = controls,
     return_models = return_models | keep_models,
-    verbose = verbose
+    verbose = verbose,
+    ...
   )
 
   if (return_models | keep_models) {
