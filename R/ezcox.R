@@ -114,7 +114,7 @@ ezcox <- function(data, covariates, controls = NULL,
         }
       )
 
-      tbl <- purrr::map_df(c(y, controls), function(x) {
+      tbl <- purrr::map_df(c(y, gsub("`", "", controls)), function(x) {
         if (is.numeric(data[[x]])) {
           dplyr::tibble(
             contrast_level = x,
@@ -232,6 +232,6 @@ ezcox <- function(data, covariates, controls = NULL,
   }
 
   class(res) <- c("ezcox", class(res))
-  attr(res, "controls") <- controls
+  attr(res, "controls") <- gsub("`", "", controls)
   res
 }
