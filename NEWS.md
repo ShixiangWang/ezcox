@@ -1,3 +1,7 @@
+# ezcox 0.6.0
+
+* Fixed bug about showing model with unvalid R variable names.
+
 # ezcox 0.5.0
 
 * Supported other parameters in `coxph`.

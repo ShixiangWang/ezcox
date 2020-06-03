@@ -98,7 +98,7 @@ str(mds, max.level = 1)
 
 ## Show models
 
-```{r}
+```{r, fig.height=6, fig.width=6}
 show_models(mds)
 # Set model names
 show_models(mds, model_names = paste0("Model ", 1:2))

@@ -52,6 +52,11 @@ show_models <- function(models, model_names = NULL, covariates = NULL,
     message("Done.")
   }
 
+  if (!is.null(covariates)) {
+    covariates <- ifelse(isValidAndUnreserved(covariates) | startsWith(covariates, "`"),
+                         covariates, paste0("`", covariates, "`"))
+  }
+
   forestmodel::forest_model(
     model_list = models, covariates = covariates,
     merge_models = merge_models, ...
