@@ -54,7 +54,7 @@ of cox models.
 library(ezcox)
 #> Welcome to 'ezcox' package!
 #> =======================================================================
-#> You are using ezcox version 0.4.0
+#> You are using ezcox version 0.5.0
 #> 
 #> Github page  : https://github.com/ShixiangWang/ezcox
 #> Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html
@@ -108,6 +108,34 @@ ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 #> # … with 4 more variables: lower_95 <dbl>, upper_95 <dbl>, p.value <dbl>,
 #> #   global.pval <dbl>
 ```
+
+``` r
+lung$ph.ecog = factor(lung$ph.ecog)
+zz = ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age", return_models=TRUE)
+#> => Processing variable sex
+#> ==> Building Surv object...
+#> ==> Building Cox model...
+#> ==> Done.
+#> => Processing variable ph.ecog
+#> ==> Building Surv object...
+#> ==> Building Cox model...
+#> ==> Done.
+mds = get_models(zz)
+str(mds, max.level = 1)
+#> List of 2
+#>  $ Surv ~ sex + age    :List of 19
+#>   ..- attr(*, "class")= chr "coxph"
+#>   ..- attr(*, "Variable")= chr "sex"
+#>  $ Surv ~ ph.ecog + age:List of 22
+#>   ..- attr(*, "class")= chr "coxph"
+#>   ..- attr(*, "Variable")= chr "ph.ecog"
+#>  - attr(*, "class")= chr [1:2] "ezcox_models" "list"
+#>  - attr(*, "has_control")= logi TRUE
+
+show_models(mds)
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
 ## Citation
 
