@@ -1,7 +1,7 @@
 #' Show Forest Plot
 #'
 #' This is a wrapper of function [ezcox], [get_models] and
-#' [show_models]. If focus on generating forest plot easily
+#' [show_models]. It focus on generating forest plot easily
 #' and flexibly.
 #'
 #' @inheritParams ezcox

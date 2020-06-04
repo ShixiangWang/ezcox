@@ -49,7 +49,7 @@ a \code{ggplot} object
 }
 \description{
 This is a wrapper of function \link{ezcox}, \link{get_models} and
-\link{show_models}. If focus on generating forest plot easily
+\link{show_models}. It focus on generating forest plot easily
 and flexibly.
 }
 \examples{
