@@ -4,6 +4,8 @@
 #' @param grp_var a group column.
 #' @param covariate a covariable for cox analysis.
 #' @param add_all if `TRUE`, add a group for all data rows.
+#' @param sort if `TRUE`, sort the models by the HR values.
+#' @param decreasing logical, should the sort order be increasing or decreasing?
 #'
 #' @return a `list`.
 #' @export
@@ -14,6 +16,8 @@
 #' ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age", add_all = TRUE)
 ezcox_group <- function(data, grp_var, covariate, controls = NULL,
                   time = "time", status = "status",
+                  sort = FALSE,
+                  decreasing = TRUE,
                   add_all = FALSE,
                   add_caption = TRUE,
                   verbose = TRUE,
@@ -39,7 +43,7 @@ ezcox_group <- function(data, grp_var, covariate, controls = NULL,
 
   run_model <- function(data, grp_var, covariate, controls = NULL,
                         time = "time", status = status, verbose = FALSE) {
-    var <- unique(data[[grp_var]])
+    var <- unique(as.character(data[[grp_var]]))
     data <- data[, c(covariate, controls, time, status)]
     ## modify covariable name
     colnames(data)[colnames(data) == covariate] <- var
@@ -70,6 +74,18 @@ ezcox_group <- function(data, grp_var, covariate, controls = NULL,
 
   names(md_list) <- c("stats", "models")
   class(md_list) <- "ezcox"
+
+  if (sort) {
+    md_orders <- md_list$stats %>%
+      dplyr::filter(!.data$is_control) %>%
+      dplyr::distinct(.data$Group, .keep_all = TRUE) %>%
+      dplyr::filter(.data$Group != "ALL") %>%
+      dplyr::pull(.data$HR)
+    md_orders <- order(md_orders, decreasing = decreasing)
+
+    md_list$models <- md_list$models %>%
+      dplyr::slice(c(md_orders, setdiff(seq_len(nrow(md_list$models)), md_orders)))
+  }
 
   fit_models <- get_models(md_list)
 

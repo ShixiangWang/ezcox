@@ -11,6 +11,8 @@ ezcox_group(
   controls = NULL,
   time = "time",
   status = "status",
+  sort = FALSE,
+  decreasing = TRUE,
   add_all = FALSE,
   add_caption = TRUE,
   verbose = TRUE,
@@ -31,6 +33,10 @@ ezcox_group(
 \item{time}{column name specifying time, default is 'time'.}
 
 \item{status}{column name specifying event status, default is 'status'.}
+
+\item{sort}{if \code{TRUE}, sort the models by the HR values.}
+
+\item{decreasing}{logical, should the sort order be increasing or decreasing?}
 
 \item{add_all}{if \code{TRUE}, add a group for all data rows.}
 
