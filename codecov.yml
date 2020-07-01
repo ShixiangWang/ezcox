@@ -12,4 +12,4 @@ coverage:
         threshold: 1%
 
 codecov:
-  token: 8ec0774d5cef46049856b1468dad5558
+  token: 00b174d6-7797-4185-adbc-98319fc61e05
