@@ -1,5 +1,4 @@
 #' @import magrittr forestmodel
-#' @importFrom forestmodel forest_panel
 cox_panel <- function(headings = list(variable = "Group", n = "N", measure = "Hazard ratio", ci = NULL, p = "p")) {
 
   panels <- list(
@@ -32,5 +31,6 @@ cox_panel <- function(headings = list(variable = "Group", n = "N", measure = "Ha
 }
 
 utils::globalVariables(
-  c("variable", "level", "n", "reference", "estimate", "conf.low", "conf.high", "p.value", "trans")
+  c("variable", "level", "n", "reference", "estimate", "conf.low", "conf.high", "p.value", "trans",
+    "forest_panel")
 )
