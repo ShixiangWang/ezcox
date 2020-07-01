@@ -1,7 +1,7 @@
 Type: Package
 Package: ezcox
 Title: Easily Process a Batch of Cox Models
-Version: 0.6.0
+Version: 0.7.0
 Authors@R: 
     person(given = "Shixiang",
            family = "Wang",
@@ -23,7 +23,8 @@ Imports:
     survival,
     rlang (>= 0.1.2),
     forestmodel,
-    utils
+    utils,
+    ggplot2
 Suggests: 
     covr (>= 3.2.1),
     testthat (>= 2.1.0),

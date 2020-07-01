@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Show Forest Plot — show_forest" />
 <meta property="og:description" content="This is a wrapper of function ezcox, get_models and
-show_models. If focus on generating forest plot easily
+show_models. It focus on generating forest plot easily
 and flexibly." />
 
 
@@ -74,7 +74,7 @@ and flexibly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -91,6 +91,21 @@ and flexibly." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/ezforest.html">ezcox: Easily Show Cox Forestplot in One Command</a>
+    </li>
+    <li>
+      <a href="../articles/ezgroup.html">ezcox: Easy Group Cox Analysis and Visualization</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -123,7 +138,7 @@ and flexibly." />
 
     <div class="ref-description">
     <p>This is a wrapper of function <a href='ezcox.html'>ezcox</a>, <a href='get_models.html'>get_models</a> and
-<a href='show_models.html'>show_models</a>. If focus on generating forest plot easily
+<a href='show_models.html'>show_models</a>. It focus on generating forest plot easily
 and flexibly.</p>
     </div>
 
@@ -137,7 +152,11 @@ and flexibly.</p>
   <span class='kw'>model_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>vars_to_show</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>drop_controls</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>add_caption</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>headings</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>variable</span> <span class='kw'>=</span> <span class='st'>"Variable"</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='st'>"N"</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='st'>"Hazard ratio"</span>, <span class='kw'>ci</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"p"</span>),
   <span class='kw'>model_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"ezcox"</span>),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -184,8 +203,20 @@ to show, but remember, the models have not been changed.</p></td>
 it removes control variables automatically.</p></td>
     </tr>
     <tr>
+      <th>add_caption</th>
+      <td><p>if <code>TRUE</code>, add caption to the plot.</p></td>
+    </tr>
+    <tr>
+      <th>headings</th>
+      <td><p>a <code>list</code> for setting the heading text.</p></td>
+    </tr>
+    <tr>
       <th>model_dir</th>
       <td><p>a path for storing model results.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>if <code>TRUE</code>, print extra info.</p></td>
     </tr>
     <tr>
       <th>...</th>

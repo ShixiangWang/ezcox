@@ -3,5 +3,7 @@ pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   ezcox: ezcox.html
-last_built: 2020-06-03T06:41Z
+  ezforest: ezforest.html
+  ezgroup: ezgroup.html
+last_built: 2020-07-01T05:38Z
 

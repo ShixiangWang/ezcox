@@ -10,6 +10,8 @@ show_models(
   covariates = NULL,
   merge_models = FALSE,
   drop_controls = FALSE,
+  headings = list(variable = "Variable", n = "N", measure = "Hazard ratio", ci = NULL,
+    p = "p"),
   ...
 )
 }
@@ -24,6 +26,8 @@ show_models(
 
 \item{drop_controls}{works when \code{covariates=NULL} and \code{models} is a \code{ezcox_models}, if \code{TRUE},
 it removes control variables automatically.}
+
+\item{headings}{a \code{list} for setting the heading text.}
 
 \item{...}{other arguments passing to \code{\link[forestmodel:forest_model]{forestmodel::forest_model()}}.}
 }

@@ -4,7 +4,7 @@ author: "Shixiang Wang <w_shixiang@163.com>"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ezcox}
+  %\VignetteIndexEntry{ezcox: Easily Process a Batch of Cox Models}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

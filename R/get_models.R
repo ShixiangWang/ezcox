@@ -46,10 +46,18 @@ get_models <- function(x, variables = NULL) {
 
   names(models) <- model_names
   # Add variable attribute
-  models <- Map(function(x, y) {
-    attr(x, "Variable") <- y
-    x
-  }, x = models, y = model_df$Variable)
+  if (!"Group" %in% colnames(model_df)) {
+    models <- Map(function(x, y) {
+      attr(x, "Variable") <- as.character(y)
+      x
+    }, x = models, y = model_df$Variable)
+  } else {
+    ## to fit ezgrp
+    models <- Map(function(x, y) {
+      attr(x, "Variable") <- as.character(y)
+      x
+    }, x = models, y = model_df$Group)
+  }
   class(models) <- c("ezcox_models", class(models))
   attr(models, "has_control") <- !all(is.na(model_df$control))
   models

@@ -1,0 +1,28 @@
+---
+title: "ezcox: Easy Group Cox Analysis and Visualization"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ezcox: Easy Group Cox Analysis and Visualization}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ezcox)
+```
+
+
+```{r}
+library(survival)
+ezgrp(lung, grp_var = "sex", covariate = "ph.ecog")
+ezgrp(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age")
+ezgrp(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age", add_all = TRUE)
+```
+

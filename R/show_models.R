@@ -6,6 +6,7 @@
 #' @param merge_models if 'TRUE', merge all models and keep the plot tight.
 #' @param drop_controls works when `covariates=NULL` and `models` is a `ezcox_models`, if `TRUE`,
 #' it removes control variables automatically.
+#' @param headings a `list` for setting the heading text.
 #' @param ... other arguments passing to [forestmodel::forest_model()].
 #'
 #' @return a `ggplot` object
@@ -23,13 +24,31 @@
 #' show_models(mds, merge_models = TRUE)
 #' show_models(mds, merge_models = TRUE, drop_controls = TRUE)
 show_models <- function(models, model_names = NULL, covariates = NULL,
-                        merge_models = FALSE, drop_controls = FALSE, ...) {
-  stopifnot(inherits(models, "ezcox_models") | all(sapply(models, function(x) inherits(x, "coxph"))))
+                        merge_models = FALSE, drop_controls = FALSE,
+                        headings = list(variable = "Variable", n = "N", measure = "Hazard ratio", ci = NULL, p = "p"),
+                        ...) {
+  stopifnot(inherits(models, "ezcox_models") | all(sapply(models, function(x) inherits(x, "coxph"))), is.list(headings))
+
+  if (is.null(headings$variable)) {
+    headings$variable <- "Variable"
+  }
+  if (is.null(headings$n)) {
+    headings$n <- "N"
+  }
+  if (is.null(headings$measure)) {
+    headings$measure <- "Hazard ratio"
+  }
+  if (is.null(headings$p)) {
+    headings$p <- "p"
+  }
+
   pkg_version <- packageVersion("forestmodel")
   if (pkg_version$major == 0 & pkg_version$minor < 6) {
     message("Please install the recent version of forestmodel firstly.")
     message("Run the following command:")
     message("  remotes::install_github(\"ShixiangWang/forestmodel\")")
+    message("Or")
+    message("  remotes::install_git(\"https://gitee.com/ShixiangWang/forestmodel\")")
     return(invisible())
   }
 
@@ -58,7 +77,9 @@ show_models <- function(models, model_names = NULL, covariates = NULL,
   }
 
   forestmodel::forest_model(
-    model_list = models, covariates = covariates,
+    model_list = models,
+    panels = cox_panel(headings = headings),
+    covariates = covariates,
     merge_models = merge_models, ...
   )
 }

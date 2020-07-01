@@ -1,3 +1,8 @@
+# ezcox 0.7.0
+
+* Added `ezgrp()` for group cox analysis.
+* Added headings control.
+
 # ezcox 0.6.0
 
 * Fixed bug about showing model with unvalid R variable names.
