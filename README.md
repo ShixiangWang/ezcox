@@ -9,10 +9,7 @@
 status](https://www.r-pkg.org/badges/version/ezcox)](https://CRAN.R-project.org/package=ezcox)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/ezcox?color=blue)](https://cran.r-project.org/package=ezcox)
 [![HitCount](http://hits.dwyl.io/ShixiangWang/ezcox.svg)](http://hits.dwyl.io/ShixiangWang/ezcox)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/ezcox?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/ezcox)
-[![Travis build
-status](https://travis-ci.org/ShixiangWang/ezcox.svg?branch=master)](https://travis-ci.org/ShixiangWang/ezcox)
+![R-CMD-check](https://github.com/ShixiangWang/ezcox/workflows/R-CMD-check/badge.svg)
 [![Codecov test
 coverage](https://codecov.io/gh/ShixiangWang/ezcox/branch/master/graph/badge.svg)](https://codecov.io/gh/ShixiangWang/ezcox?branch=master)
 [![Lifecycle:
@@ -54,7 +51,7 @@ of cox models.
 library(ezcox)
 #> Welcome to 'ezcox' package!
 #> =======================================================================
-#> You are using ezcox version 0.5.0
+#> You are using ezcox version 0.7.0
 #> 
 #> Github page  : https://github.com/ShixiangWang/ezcox
 #> Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html
@@ -133,6 +130,19 @@ str(mds, max.level = 1)
 #>  - attr(*, "has_control")= logi TRUE
 
 show_models(mds)
+#> Warning: `funs()` is deprecated as of dplyr 0.8.0.
+#> Please use a list of either functions or lambdas: 
+#> 
+#>   # Simple named list: 
+#>   list(mean = mean, median = median)
+#> 
+#>   # Auto named with `tibble::lst()`: 
+#>   tibble::lst(mean, median)
+#> 
+#>   # Using lambdas
+#>   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_warnings()` to see where this warning was generated.
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
