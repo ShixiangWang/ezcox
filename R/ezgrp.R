@@ -9,10 +9,10 @@
 #' @export
 #' @examples
 #' library(survival)
-#' ezgrp(lung, grp_var = "sex", covariate = "ph.ecog")
-#' ezgrp(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age")
-#' ezgrp(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age", add_all = TRUE)
-ezgrp <- function(data, grp_var, covariate, controls = NULL,
+#' ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog")
+#' ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age")
+#' ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age", add_all = TRUE)
+ezcox_group <- function(data, grp_var, covariate, controls = NULL,
                   time = "time", status = "status",
                   add_all = FALSE,
                   add_caption = TRUE,
@@ -76,6 +76,10 @@ ezgrp <- function(data, grp_var, covariate, controls = NULL,
   ## show_models
   p <- show_models(fit_models, merge_models = TRUE, drop_controls = TRUE, headings = headings, ...)
 
+  if (is.null(p)) {
+    return(invisible(NULL))
+  }
+
   if (add_caption) {
     if (is.null(controls)) {
       p <- p + ggplot2::labs(caption = paste("Univariable analysis for variable", covariate))
@@ -84,8 +88,6 @@ ezgrp <- function(data, grp_var, covariate, controls = NULL,
                                              "with", paste(controls, collapse = " & "), "controlled"))
     }
   }
-
-  print(p)
 
   message("Returns a list containing data and ggplot.")
 

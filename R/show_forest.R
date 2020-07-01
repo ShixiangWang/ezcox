@@ -56,6 +56,10 @@ show_forest <- function(data, covariates, controls = NULL,
     ...
   )
 
+  if (is.null(p)) {
+    return(invisible(NULL))
+  }
+
   if (add_caption) {
     if (is.null(controls)) {
       p <- p + ggplot2::labs(caption = paste("Cox analysis for variable", paste(covariates, collapse = " & ")))

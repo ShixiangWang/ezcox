@@ -49,7 +49,7 @@ show_models <- function(models, model_names = NULL, covariates = NULL,
     message("  remotes::install_github(\"ShixiangWang/forestmodel\")")
     message("Or")
     message("  remotes::install_git(\"https://gitee.com/ShixiangWang/forestmodel\")")
-    return(invisible())
+    return(invisible(NULL))
   }
 
   if (!is.null(model_names)) {

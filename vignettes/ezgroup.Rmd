@@ -19,10 +19,10 @@ library(ezcox)
 ```
 
 
-```{r}
+```{r, fig.width=7, fig.height=5}
 library(survival)
-ezgrp(lung, grp_var = "sex", covariate = "ph.ecog")
-ezgrp(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age")
-ezgrp(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age", add_all = TRUE)
+ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog")
+ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age")
+ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age", add_all = TRUE)
 ```
 

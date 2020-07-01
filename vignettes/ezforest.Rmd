@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(ezcox)
 ```
 
-```{r}
+```{r, fig.width=7, fig.height=5}
 library(survival)
 show_forest(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 show_forest(lung, covariates = c("sex", "ph.ecog"), controls = "age", merge_models = TRUE)
