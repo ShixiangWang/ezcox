@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -98,19 +98,22 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ezcox</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ShixiangWang/ezcox">ezcox</a></span>)
 <span class="co">#&gt; Welcome to 'ezcox' package!</span>
 <span class="co">#&gt; =======================================================================</span>
-<span class="co">#&gt; You are using ezcox version 0.7.0</span>
+<span class="co">#&gt; You are using ezcox version 0.8.0</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Github page  : https://github.com/ShixiangWang/ezcox</span>
 <span class="co">#&gt; Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Run citation("ezcox") to see how to cite 'ezcox'.</span>
 <span class="co">#&gt; =======================================================================</span>
-<span class="co">#&gt; </span></pre></body></html></div>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">survival</span>)
-<span class="fu"><a href="../reference/ezcox_group.html">ezcox_group</a></span>(<span class="no">lung</span>, <span class="kw">grp_var</span> <span class="kw">=</span> <span class="st">"sex"</span>, <span class="kw">covariate</span> <span class="kw">=</span> <span class="st">"ph.ecog"</span>)
+<span class="co">#&gt; </span>
+</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/therneau/survival">survival</a></span>)
+<span class="fu"><a href="../reference/ezcox_group.html">ezcox_group</a></span>(<span class="kw">lung</span>, grp_var = <span class="st">"sex"</span>, covariate = <span class="st">"ph.ecog"</span>)
 <span class="co">#&gt; =&gt; Processing variable 1</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -123,43 +126,32 @@
 <span class="co">#&gt; No. Skipping...</span>
 <span class="co">#&gt; Done.</span>
 <span class="co">#&gt; Resized limits to included dashed line in forest panel</span>
-<span class="co">#&gt; Warning: `funs()` is deprecated as of dplyr 0.8.0.</span>
-<span class="co">#&gt; Please use a list of either functions or lambdas: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   # Simple named list: </span>
-<span class="co">#&gt;   list(mean = mean, median = median)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   # Auto named with `tibble::lst()`: </span>
-<span class="co">#&gt;   tibble::lst(mean, median)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   # Using lambdas</span>
-<span class="co">#&gt;   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</span>
-<span class="co">#&gt; This warning is displayed once every 8 hours.</span>
-<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span>
 <span class="co">#&gt; Returns a list containing data and ggplot.</span>
 <span class="co">#&gt; $data</span>
 <span class="co">#&gt; $stats</span>
 <span class="co">#&gt; # A tibble: 2 x 13</span>
 <span class="co">#&gt;   Group Variable is_control contrast_level ref_level n_contrast n_ref  beta</span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1     1 ph.ecog  FALSE      1              1                137   137 0.426</span>
-<span class="co">#&gt; 2     2 ph.ecog  FALSE      2              2                 90    90 0.637</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 1     ph.ecog  FALSE      1              1                137   137 0.426</span>
+<span class="co">#&gt; 2 2     ph.ecog  FALSE      2              2                 90    90 0.637</span>
 <span class="co">#&gt; # … with 5 more variables: HR &lt;dbl&gt;, lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $models</span>
 <span class="co">#&gt; # A tibble: 2 x 6</span>
 <span class="co">#&gt;   Group Variable control model_file                                 model status</span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;                                      &lt;lis&gt; &lt;lgl&gt; </span>
-<span class="co">#&gt; 1     1 ph.ecog  &lt;NA&gt;    /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80… &lt;cox… TRUE  </span>
-<span class="co">#&gt; 2     2 ph.ecog  &lt;NA&gt;    /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80… &lt;cox… TRUE  </span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;                                      &lt;lis&gt; &lt;lgl&gt; </span>
+<span class="co">#&gt; 1 1     ph.ecog  &lt;NA&gt;    /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80… &lt;cox… TRUE  </span>
+<span class="co">#&gt; 2 2     ph.ecog  &lt;NA&gt;    /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80… &lt;cox… TRUE  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "ezcox"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $plot</span></pre></body></html></div>
+<span class="co">#&gt; $plot</span>
+</pre></div>
 <p><img src="ezgroup_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/ezcox_group.html">ezcox_group</a></span>(<span class="no">lung</span>, <span class="kw">grp_var</span> <span class="kw">=</span> <span class="st">"sex"</span>, <span class="kw">covariate</span> <span class="kw">=</span> <span class="st">"ph.ecog"</span>, <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"age"</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="../reference/ezcox_group.html">ezcox_group</a></span>(<span class="kw">lung</span>, grp_var = <span class="st">"sex"</span>, covariate = <span class="st">"ph.ecog"</span>, controls = <span class="st">"age"</span>)
 <span class="co">#&gt; =&gt; Processing variable 1</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -177,27 +169,29 @@
 <span class="co">#&gt; $stats</span>
 <span class="co">#&gt; # A tibble: 4 x 13</span>
 <span class="co">#&gt;   Group Variable is_control contrast_level ref_level n_contrast n_ref    beta</span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1     1 ph.ecog  FALSE      1              1                137   137  0.419 </span>
-<span class="co">#&gt; 2     1 ph.ecog  TRUE       age            age              138   138  0.0184</span>
-<span class="co">#&gt; 3     2 ph.ecog  FALSE      2              2                 90    90  0.714 </span>
-<span class="co">#&gt; 4     2 ph.ecog  TRUE       age            age               90    90 -0.0112</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 1     ph.ecog  FALSE      1              1                137   137  0.419 </span>
+<span class="co">#&gt; 2 1     ph.ecog  TRUE       age            age              138   138  0.0184</span>
+<span class="co">#&gt; 3 2     ph.ecog  FALSE      2              2                 90    90  0.714 </span>
+<span class="co">#&gt; 4 2     ph.ecog  TRUE       age            age               90    90 -0.0112</span>
 <span class="co">#&gt; # … with 5 more variables: HR &lt;dbl&gt;, lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $models</span>
 <span class="co">#&gt; # A tibble: 2 x 6</span>
 <span class="co">#&gt;   Group Variable control model_file                                 model status</span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;                                      &lt;lis&gt; &lt;lgl&gt; </span>
-<span class="co">#&gt; 1     1 ph.ecog  age     /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80… &lt;cox… TRUE  </span>
-<span class="co">#&gt; 2     2 ph.ecog  age     /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80… &lt;cox… TRUE  </span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;                                      &lt;lis&gt; &lt;lgl&gt; </span>
+<span class="co">#&gt; 1 1     ph.ecog  age     /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80… &lt;cox… TRUE  </span>
+<span class="co">#&gt; 2 2     ph.ecog  age     /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80… &lt;cox… TRUE  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "ezcox"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $plot</span></pre></body></html></div>
+<span class="co">#&gt; $plot</span>
+</pre></div>
 <p><img src="ezgroup_files/figure-html/unnamed-chunk-2-2.png" width="672"></p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/ezcox_group.html">ezcox_group</a></span>(<span class="no">lung</span>, <span class="kw">grp_var</span> <span class="kw">=</span> <span class="st">"sex"</span>, <span class="kw">covariate</span> <span class="kw">=</span> <span class="st">"ph.ecog"</span>, <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"age"</span>, <span class="kw">add_all</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="../reference/ezcox_group.html">ezcox_group</a></span>(<span class="kw">lung</span>, grp_var = <span class="st">"sex"</span>, covariate = <span class="st">"ph.ecog"</span>, controls = <span class="st">"age"</span>, add_all = <span class="fl">TRUE</span>)
 <span class="co">#&gt; =&gt; Processing variable 1</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -240,7 +234,8 @@
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "ezcox"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $plot</span></pre></body></html></div>
+<span class="co">#&gt; $plot</span>
+</pre></div>
 <p><img src="ezgroup_files/figure-html/unnamed-chunk-2-3.png" width="672"></p>
   </div>
 
@@ -257,7 +252,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

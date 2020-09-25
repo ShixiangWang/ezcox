@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -98,18 +98,25 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of ezcox from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"ezcox"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"ezcox"</span>)
+</pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("remotes")</span>
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"ShixiangWang/ezcox"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># install.packages("remotes")</span>
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"ShixiangWang/ezcox"</span>)
+</pre></div>
 <p>Visualization feature of <strong>ezcox</strong> needs the recent version of <strong>forestmodel</strong>, please run the following commands:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"ShixiangWang/forestmodel"</span>)</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"ShixiangWang/forestmodel"</span>)
+</pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to get result from a batch of cox models.</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ezcox</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ShixiangWang/ezcox">ezcox</a></span>)
 <span class="co">#&gt; Welcome to 'ezcox' package!</span>
 <span class="co">#&gt; =======================================================================</span>
 <span class="co">#&gt; You are using ezcox version 0.7.0</span>
@@ -120,10 +127,10 @@
 <span class="co">#&gt; Run citation("ezcox") to see how to cite 'ezcox'.</span>
 <span class="co">#&gt; =======================================================================</span>
 <span class="co">#&gt; </span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"lung"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"survival"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"lung"</span>, package = <span class="st">"survival"</span>)
 
 <span class="co"># Build unvariable models</span>
-<span class="fu"><a href="reference/ezcox.html">ezcox</a></span>(<span class="no">lung</span>, <span class="kw">covariates</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>))
+<span class="fu"><a href="reference/ezcox.html">ezcox</a></span>(<span class="kw">lung</span>, covariates = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>))
 <span class="co">#&gt; =&gt; Processing variable age</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -147,7 +154,7 @@
 
 <span class="co"># Build multi-variable models</span>
 <span class="co"># Control variable 'age'</span>
-<span class="fu"><a href="reference/ezcox.html">ezcox</a></span>(<span class="no">lung</span>, <span class="kw">covariates</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"age"</span>)
+<span class="fu"><a href="reference/ezcox.html">ezcox</a></span>(<span class="kw">lung</span>, covariates = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), controls = <span class="st">"age"</span>)
 <span class="co">#&gt; =&gt; Processing variable sex</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -164,9 +171,11 @@
 <span class="co">#&gt; 3 ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.443  1.56 </span>
 <span class="co">#&gt; 4 ph.ecog  TRUE       age            age              228   228  0.0113 1.01 </span>
 <span class="co">#&gt; # … with 4 more variables: lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   global.pval &lt;dbl&gt;</span></pre></div>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="no">lung</span>$<span class="no">ph.ecog</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">lung</span>$<span class="no">ph.ecog</span>)
-<span class="no">zz</span> <span class="kw">=</span> <span class="fu"><a href="reference/ezcox.html">ezcox</a></span>(<span class="no">lung</span>, <span class="kw">covariates</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"age"</span>, <span class="kw">return_models</span><span class="kw">=</span><span class="fl">TRUE</span>)
+<span class="co">#&gt; #   global.pval &lt;dbl&gt;</span>
+</pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">lung</span><span class="op">$</span><span class="kw">ph.ecog</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="kw">lung</span><span class="op">$</span><span class="kw">ph.ecog</span>)
+<span class="kw">zz</span> <span class="op">=</span> <span class="fu"><a href="reference/ezcox.html">ezcox</a></span>(<span class="kw">lung</span>, covariates = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), controls = <span class="st">"age"</span>, return_models=<span class="fl">TRUE</span>)
 <span class="co">#&gt; =&gt; Processing variable sex</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -175,8 +184,8 @@
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
 <span class="co">#&gt; ==&gt; Done.</span>
-<span class="no">mds</span> <span class="kw">=</span> <span class="fu"><a href="reference/get_models.html">get_models</a></span>(<span class="no">zz</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">mds</span>, <span class="kw">max.level</span> <span class="kw">=</span> <span class="fl">1</span>)
+<span class="kw">mds</span> <span class="op">=</span> <span class="fu"><a href="reference/get_models.html">get_models</a></span>(<span class="kw">zz</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="kw">mds</span>, max.level = <span class="fl">1</span>)
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ Surv ~ sex + age    :List of 19</span>
 <span class="co">#&gt;   ..- attr(*, "class")= chr "coxph"</span>
@@ -187,7 +196,7 @@
 <span class="co">#&gt;  - attr(*, "class")= chr [1:2] "ezcox_models" "list"</span>
 <span class="co">#&gt;  - attr(*, "has_control")= logi TRUE</span>
 
-<span class="fu"><a href="reference/show_models.html">show_models</a></span>(<span class="no">mds</span>)
+<span class="fu"><a href="reference/show_models.html">show_models</a></span>(<span class="kw">mds</span>)
 <span class="co">#&gt; Warning: `funs()` is deprecated as of dplyr 0.8.0.</span>
 <span class="co">#&gt; Please use a list of either functions or lambdas: </span>
 <span class="co">#&gt; </span>
@@ -200,7 +209,8 @@
 <span class="co">#&gt;   # Using lambdas</span>
 <span class="co">#&gt;   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</span>
 <span class="co">#&gt; This warning is displayed once every 8 hours.</span>
-<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span></pre></div>
+<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span>
+</pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"></p>
 </div>
 <div id="citation" class="section level2">
@@ -270,7 +280,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

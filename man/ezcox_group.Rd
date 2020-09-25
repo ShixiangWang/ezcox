@@ -46,7 +46,7 @@ ezcox_group(
 
 \item{headings}{a \code{list} for setting the heading text.}
 
-\item{...}{other parameters passing to \code{\link[survival:coxph]{survival::coxph()}}.}
+\item{...}{other arguments passing to \code{\link[forestmodel:forest_model]{forestmodel::forest_model()}}.}
 }
 \value{
 a \code{list}.

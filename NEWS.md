@@ -1,3 +1,7 @@
+# ezcox 0.8.0
+
+* Added more options in `show_forest()` for better visualization.
+
 # ezcox 0.7.0
 
 * Added `ezgrp()` for group cox analysis.

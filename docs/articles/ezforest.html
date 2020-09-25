@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -98,19 +98,22 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ezcox</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ShixiangWang/ezcox">ezcox</a></span>)
 <span class="co">#&gt; Welcome to 'ezcox' package!</span>
 <span class="co">#&gt; =======================================================================</span>
-<span class="co">#&gt; You are using ezcox version 0.7.0</span>
+<span class="co">#&gt; You are using ezcox version 0.8.0</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Github page  : https://github.com/ShixiangWang/ezcox</span>
 <span class="co">#&gt; Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Run citation("ezcox") to see how to cite 'ezcox'.</span>
 <span class="co">#&gt; =======================================================================</span>
-<span class="co">#&gt; </span></pre></body></html></div>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">survival</span>)
-<span class="fu"><a href="../reference/show_forest.html">show_forest</a></span>(<span class="no">lung</span>, <span class="kw">covariates</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"age"</span>)
+<span class="co">#&gt; </span>
+</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/therneau/survival">survival</a></span>)
+<span class="fu"><a href="../reference/show_forest.html">show_forest</a></span>(<span class="kw">lung</span>, covariates = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), controls = <span class="st">"age"</span>)
 <span class="co">#&gt; =&gt; Processing variable sex</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -119,21 +122,10 @@
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
 <span class="co">#&gt; ==&gt; Done.</span>
-<span class="co">#&gt; Warning: `funs()` is deprecated as of dplyr 0.8.0.</span>
-<span class="co">#&gt; Please use a list of either functions or lambdas: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   # Simple named list: </span>
-<span class="co">#&gt;   list(mean = mean, median = median)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   # Auto named with `tibble::lst()`: </span>
-<span class="co">#&gt;   tibble::lst(mean, median)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   # Using lambdas</span>
-<span class="co">#&gt;   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</span>
-<span class="co">#&gt; This warning is displayed once every 8 hours.</span>
-<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span></pre></body></html></div>
+</pre></div>
 <p><img src="ezforest_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/show_forest.html">show_forest</a></span>(<span class="no">lung</span>, <span class="kw">covariates</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"age"</span>, <span class="kw">merge_models</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="../reference/show_forest.html">show_forest</a></span>(<span class="kw">lung</span>, covariates = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), controls = <span class="st">"age"</span>, merge_models = <span class="fl">TRUE</span>)
 <span class="co">#&gt; =&gt; Processing variable sex</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -141,11 +133,13 @@
 <span class="co">#&gt; =&gt; Processing variable ph.ecog</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
-<span class="co">#&gt; ==&gt; Done.</span></pre></body></html></div>
+<span class="co">#&gt; ==&gt; Done.</span>
+</pre></div>
 <p><img src="ezforest_files/figure-html/unnamed-chunk-2-2.png" width="672"></p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/show_forest.html">show_forest</a></span>(<span class="no">lung</span>,
-  <span class="kw">covariates</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"age"</span>, <span class="kw">merge_models</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">drop_controls</span> <span class="kw">=</span> <span class="fl">TRUE</span>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="../reference/show_forest.html">show_forest</a></span>(<span class="kw">lung</span>,
+  covariates = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), controls = <span class="st">"age"</span>, merge_models = <span class="fl">TRUE</span>,
+  drop_controls = <span class="fl">TRUE</span>
 )
 <span class="co">#&gt; =&gt; Processing variable sex</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
@@ -157,11 +151,13 @@
 <span class="co">#&gt; ==&gt; Done.</span>
 <span class="co">#&gt; covariates=NULL but drop_controls=TRUE, detecting controls...</span>
 <span class="co">#&gt; Yes. Setting variables to keep...</span>
-<span class="co">#&gt; Done.</span></pre></body></html></div>
+<span class="co">#&gt; Done.</span>
+</pre></div>
 <p><img src="ezforest_files/figure-html/unnamed-chunk-2-3.png" width="672"></p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/show_forest.html">show_forest</a></span>(<span class="no">lung</span>,
-  <span class="kw">covariates</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"age"</span>, <span class="kw">merge_models</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">vars_to_show</span> <span class="kw">=</span> <span class="st">"sex"</span>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="../reference/show_forest.html">show_forest</a></span>(<span class="kw">lung</span>,
+  covariates = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), controls = <span class="st">"age"</span>, merge_models = <span class="fl">TRUE</span>,
+  vars_to_show = <span class="st">"sex"</span>
 )
 <span class="co">#&gt; =&gt; Processing variable sex</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
@@ -171,7 +167,8 @@
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
 <span class="co">#&gt; ==&gt; Done.</span>
-<span class="co">#&gt; Resized limits to included dashed line in forest panel</span></pre></body></html></div>
+<span class="co">#&gt; Resized limits to included dashed line in forest panel</span>
+</pre></div>
 <p><img src="ezforest_files/figure-html/unnamed-chunk-2-4.png" width="672"></p>
   </div>
 
@@ -188,7 +185,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

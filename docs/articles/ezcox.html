@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@
                         <h4 class="author">Shixiang Wang <a href="mailto:w_shixiang@163.com" class="email">w_shixiang@163.com</a>
 </h4>
             
-            <h4 class="date">2020-07-01</h4>
+            <h4 class="date">2020-09-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ShixiangWang/ezcox/blob/master/vignettes/ezcox.Rmd"><code>vignettes/ezcox.Rmd</code></a></small>
       <div class="hidden name"><code>ezcox.Rmd</code></div>
@@ -106,21 +106,28 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of ezcox from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"ezcox"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"ezcox"</span>)
+</pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"ShixiangWang/ezcox"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># install.packages("devtools")</span>
+<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"ShixiangWang/ezcox"</span>)
+</pre></div>
 <p>Visualization feature of <strong>ezcox</strong> needs the recent version of <strong>forestmodel</strong>, please run the following commands:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"ShixiangWang/forestmodel"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"ShixiangWang/forestmodel"</span>)
+</pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to get result from a batch of cox models.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ezcox</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ShixiangWang/ezcox">ezcox</a></span>)
 <span class="co">#&gt; Welcome to 'ezcox' package!</span>
 <span class="co">#&gt; =======================================================================</span>
-<span class="co">#&gt; You are using ezcox version 0.7.0</span>
+<span class="co">#&gt; You are using ezcox version 0.8.0</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Github page  : https://github.com/ShixiangWang/ezcox</span>
 <span class="co">#&gt; Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html</span>
@@ -128,10 +135,10 @@
 <span class="co">#&gt; Run citation("ezcox") to see how to cite 'ezcox'.</span>
 <span class="co">#&gt; =======================================================================</span>
 <span class="co">#&gt; </span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"lung"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"survival"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"lung"</span>, package = <span class="st">"survival"</span>)
 
 <span class="co"># Build unvariable models</span>
-<span class="fu"><a href="../reference/ezcox.html">ezcox</a></span>(<span class="no">lung</span>, <span class="kw">covariates</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>))
+<span class="fu"><a href="../reference/ezcox.html">ezcox</a></span>(<span class="kw">lung</span>, covariates = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>))
 <span class="co">#&gt; =&gt; Processing variable age</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -155,7 +162,7 @@
 
 <span class="co"># Build multi-variable models</span>
 <span class="co"># Control variable 'age'</span>
-<span class="fu"><a href="../reference/ezcox.html">ezcox</a></span>(<span class="no">lung</span>, <span class="kw">covariates</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"age"</span>)
+<span class="fu"><a href="../reference/ezcox.html">ezcox</a></span>(<span class="kw">lung</span>, covariates = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), controls = <span class="st">"age"</span>)
 <span class="co">#&gt; =&gt; Processing variable sex</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -172,14 +179,16 @@
 <span class="co">#&gt; 3 ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.443  1.56 </span>
 <span class="co">#&gt; 4 ph.ecog  TRUE       age            age              228   228  0.0113 1.01 </span>
 <span class="co">#&gt; # … with 4 more variables: lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   global.pval &lt;dbl&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   global.pval &lt;dbl&gt;</span>
+</pre></div>
 </div>
 <div id="run-parallelly" class="section level2">
 <h2 class="hasAnchor">
 <a href="#run-parallelly" class="anchor"></a>Run parallelly</h2>
 <p>For parallel computation, users can use <code><a href="../reference/ezcox_parallel.html">ezcox_parallel()</a></code>. This function has same arguments as <code><a href="../reference/ezcox.html">ezcox()</a></code>. For variables &lt; 200, this function is not recommended.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/ezcox_parallel.html">ezcox_parallel</a></span>(<span class="no">lung</span>, <span class="kw">covariates</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"age"</span>)
-<span class="co">#&gt; 载入需要的名字空间：furrr</span>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="../reference/ezcox_parallel.html">ezcox_parallel</a></span>(<span class="kw">lung</span>, covariates = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), controls = <span class="st">"age"</span>)
+<span class="co">#&gt; Loading required namespace: furrr</span>
 <span class="co">#&gt; Warning: [ONE-TIME WARNING] Forked processing ('multicore') is disabled</span>
 <span class="co">#&gt; in future (&gt;= 1.13.0) when running R from RStudio, because it is</span>
 <span class="co">#&gt; considered unstable. Because of this, plan("multicore") will fall</span>
@@ -195,20 +204,22 @@
 <span class="co">#&gt; 3 ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.443  1.56 </span>
 <span class="co">#&gt; 4 ph.ecog  TRUE       age            age              228   228  0.0113 1.01 </span>
 <span class="co">#&gt; # … with 4 more variables: lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   global.pval &lt;dbl&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   global.pval &lt;dbl&gt;</span>
+</pre></div>
 </div>
 <div id="filter" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filter" class="anchor"></a>Filter</h2>
 <p>Sometimes, we may need to filter result from multi-variable models.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">lung</span>$<span class="no">ph.ecog</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">lung</span>$<span class="no">ph.ecog</span>)
-<span class="no">zz</span> <span class="kw">=</span> <span class="fu"><a href="../reference/ezcox.html">ezcox</a></span>(<span class="no">lung</span>, <span class="kw">covariates</span> <span class="kw">=</span> <span class="st">"sex"</span>, <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"ph.ecog"</span>)
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">lung</span><span class="op">$</span><span class="kw">ph.ecog</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="kw">lung</span><span class="op">$</span><span class="kw">ph.ecog</span>)
+<span class="kw">zz</span> <span class="op">=</span> <span class="fu"><a href="../reference/ezcox.html">ezcox</a></span>(<span class="kw">lung</span>, covariates = <span class="st">"sex"</span>, controls = <span class="st">"ph.ecog"</span>)
 <span class="co">#&gt; =&gt; Processing variable sex</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
 <span class="co">#&gt; ==&gt; Done.</span>
 
-<span class="no">zz</span>
+<span class="kw">zz</span>
 <span class="co">#&gt; # A tibble: 4 x 12</span>
 <span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref   beta    HR</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -220,7 +231,7 @@
 <span class="co">#&gt; #   global.pval &lt;dbl&gt;</span>
 
 <span class="co"># At default, it will drop all control variables</span>
-<span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span>(<span class="no">zz</span>)
+<span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span>(<span class="kw">zz</span>)
 <span class="co">#&gt; # A tibble: 1 x 12</span>
 <span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref   beta    HR</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -229,7 +240,7 @@
 <span class="co">#&gt; #   global.pval &lt;dbl&gt;</span>
 
 <span class="co"># You can specify levels to filter out</span>
-<span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span>(<span class="no">zz</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"0"</span>, <span class="st">"2"</span>))
+<span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span>(<span class="kw">zz</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"0"</span>, <span class="st">"2"</span>))
 <span class="co">#&gt; Filtering control levels in 'both' mode:</span>
 <span class="co">#&gt;  0, 2</span>
 <span class="co">#&gt; # A tibble: 1 x 12</span>
@@ -238,7 +249,7 @@
 <span class="co">#&gt; 1 sex      FALSE      sex            sex              228   228 -0.545 0.580</span>
 <span class="co">#&gt; # … with 4 more variables: lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   global.pval &lt;dbl&gt;</span>
-<span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span>(<span class="no">zz</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"0"</span>, <span class="st">"2"</span>), <span class="kw">type</span> <span class="kw">=</span> <span class="st">"contrast"</span>)
+<span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span>(<span class="kw">zz</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"0"</span>, <span class="st">"2"</span>), type = <span class="st">"contrast"</span>)
 <span class="co">#&gt; Filtering control levels in 'contrast' mode:</span>
 <span class="co">#&gt;  0, 2</span>
 <span class="co">#&gt; # A tibble: 3 x 12</span>
@@ -249,7 +260,7 @@
 <span class="co">#&gt; 3 sex      TRUE       3              0                  1    63  2.05  7.76 </span>
 <span class="co">#&gt; # … with 4 more variables: lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   global.pval &lt;dbl&gt;</span>
-<span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span>(<span class="no">zz</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"0"</span>, <span class="st">"2"</span>), <span class="kw">type</span> <span class="kw">=</span> <span class="st">"ref"</span>)
+<span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span>(<span class="kw">zz</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"0"</span>, <span class="st">"2"</span>), type = <span class="st">"ref"</span>)
 <span class="co">#&gt; Filtering control levels in 'ref' mode:</span>
 <span class="co">#&gt;  0, 2</span>
 <span class="co">#&gt; # A tibble: 1 x 12</span>
@@ -259,13 +270,15 @@
 <span class="co">#&gt; # … with 4 more variables: lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   global.pval &lt;dbl&gt;</span>
 
-<span class="co"># More see ?filter_ezcox</span></pre></body></html></div>
+<span class="co"># More see ?filter_ezcox</span>
+</pre></div>
 </div>
 <div id="get-models" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-models" class="anchor"></a>Get models</h2>
 <p>Get raw models may help users understand the detail and do further visualization.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">zz</span> <span class="kw">=</span> <span class="fu"><a href="../reference/ezcox.html">ezcox</a></span>(<span class="no">lung</span>, <span class="kw">covariates</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), <span class="kw">controls</span> <span class="kw">=</span> <span class="st">"age"</span>, <span class="kw">return_models</span><span class="kw">=</span><span class="fl">TRUE</span>)
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">zz</span> <span class="op">=</span> <span class="fu"><a href="../reference/ezcox.html">ezcox</a></span>(<span class="kw">lung</span>, covariates = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sex"</span>, <span class="st">"ph.ecog"</span>), controls = <span class="st">"age"</span>, return_models=<span class="fl">TRUE</span>)
 <span class="co">#&gt; =&gt; Processing variable sex</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -274,8 +287,8 @@
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
 <span class="co">#&gt; ==&gt; Done.</span>
-<span class="no">mds</span> <span class="kw">=</span> <span class="fu"><a href="../reference/get_models.html">get_models</a></span>(<span class="no">zz</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">mds</span>, <span class="kw">max.level</span> <span class="kw">=</span> <span class="fl">1</span>)
+<span class="kw">mds</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_models.html">get_models</a></span>(<span class="kw">zz</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="kw">mds</span>, max.level = <span class="fl">1</span>)
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ Surv ~ sex + age    :List of 19</span>
 <span class="co">#&gt;   ..- attr(*, "class")= chr "coxph"</span>
@@ -284,43 +297,37 @@
 <span class="co">#&gt;   ..- attr(*, "class")= chr "coxph"</span>
 <span class="co">#&gt;   ..- attr(*, "Variable")= chr "ph.ecog"</span>
 <span class="co">#&gt;  - attr(*, "class")= chr [1:2] "ezcox_models" "list"</span>
-<span class="co">#&gt;  - attr(*, "has_control")= logi TRUE</span></pre></body></html></div>
+<span class="co">#&gt;  - attr(*, "has_control")= logi TRUE</span>
+</pre></div>
 </div>
 <div id="show-models" class="section level2">
 <h2 class="hasAnchor">
 <a href="#show-models" class="anchor"></a>Show models</h2>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/show_models.html">show_models</a></span>(<span class="no">mds</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="../reference/show_models.html">show_models</a></span>(<span class="kw">mds</span>)
 <span class="co">#&gt; Warning in recalculate_width_panels(panel_positions, mapped_text =</span>
 <span class="co">#&gt; mapped_text, : Unable to resize forest panel to be smaller than its heading;</span>
 <span class="co">#&gt; consider a smaller text size</span>
-<span class="co">#&gt; Warning: `funs()` is deprecated as of dplyr 0.8.0.</span>
-<span class="co">#&gt; Please use a list of either functions or lambdas: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   # Simple named list: </span>
-<span class="co">#&gt;   list(mean = mean, median = median)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   # Auto named with `tibble::lst()`: </span>
-<span class="co">#&gt;   tibble::lst(mean, median)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   # Using lambdas</span>
-<span class="co">#&gt;   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</span>
-<span class="co">#&gt; This warning is displayed once every 8 hours.</span>
-<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span></pre></body></html></div>
+</pre></div>
 <p><img src="ezcox_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># Set model names</span>
-<span class="fu"><a href="../reference/show_models.html">show_models</a></span>(<span class="no">mds</span>, <span class="kw">model_names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"Model "</span>, <span class="fl">1</span>:<span class="fl">2</span>))
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="co"># Set model names</span>
+<span class="fu"><a href="../reference/show_models.html">show_models</a></span>(<span class="kw">mds</span>, model_names = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"Model "</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>))
 <span class="co">#&gt; Warning in recalculate_width_panels(panel_positions, mapped_text =</span>
 <span class="co">#&gt; mapped_text, : Unable to resize forest panel to be smaller than its heading;</span>
-<span class="co">#&gt; consider a smaller text size</span></pre></body></html></div>
+<span class="co">#&gt; consider a smaller text size</span>
+</pre></div>
 <p><img src="ezcox_files/figure-html/unnamed-chunk-5-2.png" width="576"></p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># Merge all models and drop control variables</span>
-<span class="fu"><a href="../reference/show_models.html">show_models</a></span>(<span class="no">mds</span>, <span class="kw">merge_models</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">drop_controls</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="co"># Merge all models and drop control variables</span>
+<span class="fu"><a href="../reference/show_models.html">show_models</a></span>(<span class="kw">mds</span>, merge_models = <span class="fl">TRUE</span>, drop_controls = <span class="fl">TRUE</span>)
 <span class="co">#&gt; covariates=NULL but drop_controls=TRUE, detecting controls...</span>
 <span class="co">#&gt; Yes. Setting variables to keep...</span>
 <span class="co">#&gt; Done.</span>
 <span class="co">#&gt; Warning in recalculate_width_panels(panel_positions, mapped_text =</span>
 <span class="co">#&gt; mapped_text, : Unable to resize forest panel to be smaller than its heading;</span>
-<span class="co">#&gt; consider a smaller text size</span></pre></body></html></div>
+<span class="co">#&gt; consider a smaller text size</span>
+</pre></div>
 <p><img src="ezcox_files/figure-html/unnamed-chunk-5-3.png" width="576"></p>
 <p>More see <code><a href="../reference/show_models.html">?show_models</a></code>.</p>
 </div>
@@ -348,7 +355,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

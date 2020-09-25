@@ -15,6 +15,10 @@ show_forest(
   vars_to_show = NULL,
   drop_controls = FALSE,
   add_caption = TRUE,
+  point_size = 3,
+  point_shape = 15,
+  color = "red",
+  banded = TRUE,
   headings = list(variable = "Variable", n = "N", measure = "Hazard ratio", ci = NULL,
     p = "p"),
   model_dir = file.path(tempdir(), "ezcox"),
@@ -25,7 +29,7 @@ show_forest(
 \arguments{
 \item{data}{a \code{data.frame} containing variables, time and os status.}
 
-\item{covariates}{column names specifying variables.}
+\item{covariates}{a character vector optionally listing the variables to include in the plot (defaults to all variables).}
 
 \item{controls}{column names specifying controls.}
 
@@ -46,13 +50,21 @@ it removes control variables automatically.}
 
 \item{add_caption}{if \code{TRUE}, add caption to the plot.}
 
+\item{point_size}{size of point.}
+
+\item{point_shape}{shape value of point.}
+
+\item{color}{color for point and segment.}
+
+\item{banded}{if \code{TRUE} (default), create banded background color.}
+
 \item{headings}{a \code{list} for setting the heading text.}
 
 \item{model_dir}{a path for storing model results.}
 
 \item{verbose}{if \code{TRUE}, print extra info.}
 
-\item{...}{other parameters passing to \code{\link[survival:coxph]{survival::coxph()}}.}
+\item{...}{other arguments passing to \code{\link[forestmodel:forest_model]{forestmodel::forest_model()}}.}
 }
 \value{
 a \code{ggplot} object
