@@ -9,7 +9,7 @@ citEntry(
                        as.person("Xue-Song Liu")),
   journal  = "International journal of cancer",
   year     = 2019,
-  url      = "https://www.ncbi.nlm.nih.gov/pubmed/30972745/",
+  url      = "https://pubmed.ncbi.nlm.nih.gov/30972745/",
   textVersion = paste(
    "Wang, Shixiang, et al. \"The predictive power of tumor mutational burden in lung cancer immunotherapy response is influenced by patients’ sex.\" International journal of cancer (2019)."
   )
