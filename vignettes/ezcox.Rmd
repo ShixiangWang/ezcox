@@ -44,8 +44,10 @@ remotes::install_github("ShixiangWang/forestmodel")
 This is a basic example which shows you how to get result from a batch of cox models.
 
 ```{r example}
+library(survival)
 library(ezcox)
-data("lung", package = "survival")
+data(lung)
+head(lung)
 
 # Build unvariable models
 ezcox(lung, covariates = c("age", "sex", "ph.ecog"))

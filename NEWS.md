@@ -1,3 +1,7 @@
+# ezcox 0.8.1
+
+* Tried fixing CRAN checking issue.
+
 # ezcox 0.8.0
 
 * Added more options in `show_forest()` for better visualization.
