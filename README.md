@@ -8,7 +8,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ezcox)](https://CRAN.R-project.org/package=ezcox)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/ezcox?color=blue)](https://cran.r-project.org/package=ezcox)
-[![HitCount](http://hits.dwyl.io/ShixiangWang/ezcox.svg)](http://hits.dwyl.io/ShixiangWang/ezcox)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FShixiangWang%2Fezcox&count_bg=%2379C83D&title_bg=%23555555&icon=fandom.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![R-CMD-check](https://github.com/ShixiangWang/ezcox/workflows/R-CMD-check/badge.svg)
 [![Codecov test
 coverage](https://codecov.io/gh/ShixiangWang/ezcox/branch/master/graph/badge.svg)](https://codecov.io/gh/ShixiangWang/ezcox?branch=master)
@@ -51,7 +51,7 @@ of cox models.
 library(ezcox)
 #> Welcome to 'ezcox' package!
 #> =======================================================================
-#> You are using ezcox version 0.8.0
+#> You are using ezcox version 0.8.1
 #> 
 #> Github page  : https://github.com/ShixiangWang/ezcox
 #> Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html
@@ -59,7 +59,7 @@ library(ezcox)
 #> Run citation("ezcox") to see how to cite 'ezcox'.
 #> =======================================================================
 #> 
-data("lung", package = "survival")
+library(survival)
 
 # Build unvariable models
 ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
@@ -81,7 +81,7 @@ ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
 #> 1 age      FALSE      age            age              228   228  0.0187 1.02 
 #> 2 sex      FALSE      sex            sex              228   228 -0.531  0.588
 #> 3 ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.476  1.61 
-#> # … with 4 more variables: lower_95 <dbl>, upper_95 <dbl>, p.value <dbl>,
+#> # ... with 4 more variables: lower_95 <dbl>, upper_95 <dbl>, p.value <dbl>,
 #> #   global.pval <dbl>
 
 # Build multi-variable models
@@ -102,7 +102,7 @@ ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 #> 2 sex      TRUE       age            age              228   228  0.017  1.02 
 #> 3 ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.443  1.56 
 #> 4 ph.ecog  TRUE       age            age              228   228  0.0113 1.01 
-#> # … with 4 more variables: lower_95 <dbl>, upper_95 <dbl>, p.value <dbl>,
+#> # ... with 4 more variables: lower_95 <dbl>, upper_95 <dbl>, p.value <dbl>,
 #> #   global.pval <dbl>
 ```
 
