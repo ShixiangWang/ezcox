@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,7 +111,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ShixiangWang/ezcox/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,58 +132,84 @@
       <small>Source: <a href='https://github.com/ShixiangWang/ezcox/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ezcox-0-8-0" class="section level1">
+    <div id="ezcox-082" class="section level1">
+<h1 class="page-header" data-toc-text="0.8.2">
+<a href="#ezcox-082" class="anchor"></a>ezcox 0.8.2<small> Unreleased </small>
+</h1>
+<ul>
+<li>Added code to panel function to support new feature from <code>forest_model()</code>.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ShixiangWang/ezcox">ezcox</a></span><span class="op">)</span>
+
+<span class="va">lung</span><span class="op">$</span><span class="va">ph.ecog</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">lung</span><span class="op">$</span><span class="va">ph.ecog</span><span class="op">)</span>
+<span class="co"># Build unvariable models</span>
+<span class="co"># and show global p value for each model</span>
+<span class="co"># aside the 'reference' label.</span>
+<span class="fu"><a href="../reference/show_forest.html">show_forest</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, show_global_p <span class="op">=</span> <span class="st">"aside"</span><span class="op">)</span></code></pre></div>
+</div>
+    <div id="ezcox-081" class="section level1">
+<h1 class="page-header" data-toc-text="0.8.1">
+<a href="#ezcox-081" class="anchor"></a>ezcox 0.8.1<small> 2021-03-16 </small>
+</h1>
+<ul>
+<li>Tried fixing CRAN checking issue.</li>
+</ul>
+</div>
+    <div id="ezcox-080" class="section level1">
 <h1 class="page-header" data-toc-text="0.8.0">
-<a href="#ezcox-0-8-0" class="anchor"></a>ezcox 0.8.0<small> Unreleased </small>
+<a href="#ezcox-080" class="anchor"></a>ezcox 0.8.0<small> 2020-09-25 </small>
 </h1>
 <ul>
 <li>Added more options in <code><a href="../reference/show_forest.html">show_forest()</a></code> for better visualization.</li>
 </ul>
 </div>
-    <div id="ezcox-0-7-0" class="section level1">
+    <div id="ezcox-070" class="section level1">
 <h1 class="page-header" data-toc-text="0.7.0">
-<a href="#ezcox-0-7-0" class="anchor"></a>ezcox 0.7.0<small> 2020-07-01 </small>
+<a href="#ezcox-070" class="anchor"></a>ezcox 0.7.0<small> 2020-07-01 </small>
 </h1>
 <ul>
 <li>Added <code>ezgrp()</code> for group cox analysis.</li>
 <li>Added headings control.</li>
 </ul>
 </div>
-    <div id="ezcox-0-6-0" class="section level1">
+    <div id="ezcox-060" class="section level1">
 <h1 class="page-header" data-toc-text="0.6.0">
-<a href="#ezcox-0-6-0" class="anchor"></a>ezcox 0.6.0<small> 2020-06-03 </small>
+<a href="#ezcox-060" class="anchor"></a>ezcox 0.6.0<small> 2020-06-03 </small>
 </h1>
 <ul>
 <li>Fixed bug about showing model with unvalid R variable names.</li>
 </ul>
 </div>
-    <div id="ezcox-0-5-0" class="section level1">
+    <div id="ezcox-050" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.0">
-<a href="#ezcox-0-5-0" class="anchor"></a>ezcox 0.5.0<small> 2020-05-10 </small>
+<a href="#ezcox-050" class="anchor"></a>ezcox 0.5.0<small> 2020-05-10 </small>
 </h1>
 <ul>
 <li>Supported other parameters in <code>coxph</code>.</li>
 </ul>
 </div>
-    <div id="ezcox-0-4-0" class="section level1">
+    <div id="ezcox-040" class="section level1">
 <h1 class="page-header" data-toc-text="0.4.0">
-<a href="#ezcox-0-4-0" class="anchor"></a>ezcox 0.4.0<small> 2020-01-10 </small>
+<a href="#ezcox-040" class="anchor"></a>ezcox 0.4.0<small> 2020-01-10 </small>
 </h1>
 <ul>
 <li>Add function <code>show_forest</code>, which is a wrapper of function <code>ezcox</code>, <code>get_models</code> and <code>show_models</code>.</li>
 </ul>
 </div>
-    <div id="ezcox-0-3-1" class="section level1">
+    <div id="ezcox-031" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.1">
-<a href="#ezcox-0-3-1" class="anchor"></a>ezcox 0.3.1<small> Unreleased </small>
+<a href="#ezcox-031" class="anchor"></a>ezcox 0.3.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix the bug that a <code>NA</code> is added to model names when no control</li>
 </ul>
 </div>
-    <div id="ezcox-0-3-0" class="section level1">
+    <div id="ezcox-030" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.0">
-<a href="#ezcox-0-3-0" class="anchor"></a>ezcox 0.3.0<small> 2019-12-06 </small>
+<a href="#ezcox-030" class="anchor"></a>ezcox 0.3.0<small> 2019-12-06 </small>
 </h1>
 <ul>
 <li>Remove <code>parallel</code> option in <code><a href="../reference/ezcox.html">ezcox()</a></code>
@@ -191,17 +217,17 @@
 <li>Add <code><a href="../reference/ezcox_parallel.html">ezcox_parallel()</a></code> for better parallel computation (<a href='https://github.com/ShixiangWang/ezcox/issues/10'>#10</a>)</li>
 </ul>
 </div>
-    <div id="ezcox-0-2-5" class="section level1">
+    <div id="ezcox-025" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.5">
-<a href="#ezcox-0-2-5" class="anchor"></a>ezcox 0.2.5<small> Unreleased </small>
+<a href="#ezcox-025" class="anchor"></a>ezcox 0.2.5<small> Unreleased </small>
 </h1>
 <ul>
 <li>Add ‘auto’ option for filtering</li>
 </ul>
 </div>
-    <div id="ezcox-0-2-4" class="section level1">
+    <div id="ezcox-024" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.4">
-<a href="#ezcox-0-2-4" class="anchor"></a>ezcox 0.2.4<small> Unreleased </small>
+<a href="#ezcox-024" class="anchor"></a>ezcox 0.2.4<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix bug: cannot get model result from parallel model</li>
@@ -209,43 +235,43 @@
 </li>
 </ul>
 </div>
-    <div id="ezcox-0-2-3" class="section level1">
+    <div id="ezcox-023" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.3">
-<a href="#ezcox-0-2-3" class="anchor"></a>ezcox 0.2.3<small> Unreleased </small>
+<a href="#ezcox-023" class="anchor"></a>ezcox 0.2.3<small> Unreleased </small>
 </h1>
 <ul>
 <li>Add <code><a href="../reference/show_models.html">show_models()</a></code>
 </li>
 </ul>
 </div>
-    <div id="ezcox-0-2-2" class="section level1">
+    <div id="ezcox-022" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.2">
-<a href="#ezcox-0-2-2" class="anchor"></a>ezcox 0.2.2<small> Unreleased </small>
+<a href="#ezcox-022" class="anchor"></a>ezcox 0.2.2<small> Unreleased </small>
 </h1>
 <ul>
 <li>Add <code><a href="../reference/filter_ezcox.html">filter_ezcox()</a></code> and <code><a href="../reference/get_models.html">get_models()</a></code>
 </li>
 </ul>
 </div>
-    <div id="ezcox-0-2-1" class="section level1">
+    <div id="ezcox-021" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.1">
-<a href="#ezcox-0-2-1" class="anchor"></a>ezcox 0.2.1<small> Unreleased </small>
+<a href="#ezcox-021" class="anchor"></a>ezcox 0.2.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>Add <code>verbose</code> option. This may speed up parallel computation.</li>
 </ul>
 </div>
-    <div id="ezcox-0-2-0" class="section level1">
+    <div id="ezcox-020" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.0">
-<a href="#ezcox-0-2-0" class="anchor"></a>ezcox 0.2.0<small> 2019-11-17 </small>
+<a href="#ezcox-020" class="anchor"></a>ezcox 0.2.0<small> 2019-11-17 </small>
 </h1>
 <ul>
 <li>Parallel computation is implemented in <code>parallel</code> option by <strong>furrr</strong> package.</li>
 </ul>
 </div>
-    <div id="ezcox-0-1-0" class="section level1">
+    <div id="ezcox-010" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0">
-<a href="#ezcox-0-1-0" class="anchor"></a>ezcox 0.1.0<small> 2019-10-20 </small>
+<a href="#ezcox-010" class="anchor"></a>ezcox 0.1.0<small> 2019-10-20 </small>
 </h1>
 <ul>
 <li>The first experimental version submitted to CRAN.</li>

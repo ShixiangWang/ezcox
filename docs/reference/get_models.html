@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -112,7 +112,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ShixiangWang/ezcox/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -138,7 +138,7 @@
     <p>Models are renamed by the formulas.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_models</span>(<span class='kw'>x</span>, variables = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>get_models</span><span class='op'>(</span><span class='va'>x</span>, variables <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,10 +158,10 @@
     <p>a named <code>list</code> with class <code>ezcox_models</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/therneau/survival'>survival</a></span>)
-<span class='kw'>zz</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ezcox.html'>ezcox</a></span>(<span class='kw'>lung</span>, covariates = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>), controls = <span class='st'>"age"</span>, return_models = <span class='fl'>TRUE</span>)
-</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='input'><span class='kw'>mds</span> <span class='op'>&lt;-</span> <span class='fu'>get_models</span>(<span class='kw'>zz</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='kw'>mds</span>, max.level = <span class='fl'>1</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/therneau/survival'>survival</a></span><span class='op'>)</span>
+<span class='va'>zz</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ezcox.html'>ezcox</a></span><span class='op'>(</span><span class='va'>lung</span>, covariates <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span><span class='op'>)</span>, controls <span class='op'>=</span> <span class='st'>"age"</span>, return_models <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='input'><span class='va'>mds</span> <span class='op'>&lt;-</span> <span class='fu'>get_models</span><span class='op'>(</span><span class='va'>zz</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>mds</span>, max.level <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; List of 2
 #&gt;  $ Surv ~ sex + age    :List of 19
 #&gt;   ..- attr(*, "class")= chr "coxph"

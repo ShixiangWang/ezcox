@@ -14,14 +14,15 @@ cox_panel <- function(headings = list(variable = "Group", n = "N", measure = "Ha
     forest_panel(width = 0.03, item = "vline", hjust = 0.5),
     forest_panel(
       width = 0.12,
-      display = dplyr::if_else(reference, "Reference",
+      display = dplyr::if_else(reference, dplyr::if_else(!is.numeric(p.value), "Reference", "Reference;  Variable logrank:"),
                         sprintf("%0.2f (%0.2f, %0.2f)", trans(estimate), trans(conf.low), trans(conf.high))
       ),
       heading = headings$ci,
       display_na = NA
     ),
     forest_panel(
-      width = 0.05, display = dplyr::if_else(reference, "", format.pval(p.value, digits = 1, eps = 1e-3)), display_na = NA,
+      width = 0.05,
+      display = dplyr::if_else(reference & !is.numeric(p.value), "", format.pval(p.value, digits = 1, eps = 1e-3)), display_na = NA,
       hjust = 1, heading = headings$p
     ),
     forest_panel(width = 0.03)

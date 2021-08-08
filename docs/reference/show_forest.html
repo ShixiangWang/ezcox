@@ -74,7 +74,7 @@ and flexibly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ and flexibly." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -114,7 +114,7 @@ and flexibly." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ShixiangWang/ezcox/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -142,27 +142,27 @@ and flexibly." />
 and flexibly.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>show_forest</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>covariates</span>,
-  controls = <span class='kw'>NULL</span>,
-  time = <span class='st'>"time"</span>,
-  status = <span class='st'>"status"</span>,
-  merge_models = <span class='fl'>FALSE</span>,
-  model_names = <span class='kw'>NULL</span>,
-  vars_to_show = <span class='kw'>NULL</span>,
-  drop_controls = <span class='fl'>FALSE</span>,
-  add_caption = <span class='fl'>TRUE</span>,
-  point_size = <span class='fl'>3</span>,
-  point_shape = <span class='fl'>15</span>,
-  color = <span class='st'>"red"</span>,
-  banded = <span class='fl'>TRUE</span>,
-  headings = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(variable = <span class='st'>"Variable"</span>, n = <span class='st'>"N"</span>, measure = <span class='st'>"Hazard ratio"</span>, ci = <span class='kw'>NULL</span>,
-    p = <span class='st'>"p"</span>),
-  model_dir = <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"ezcox"</span>),
-  verbose = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>show_forest</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>covariates</span>,
+  controls <span class='op'>=</span> <span class='cn'>NULL</span>,
+  time <span class='op'>=</span> <span class='st'>"time"</span>,
+  status <span class='op'>=</span> <span class='st'>"status"</span>,
+  merge_models <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  model_names <span class='op'>=</span> <span class='cn'>NULL</span>,
+  vars_to_show <span class='op'>=</span> <span class='cn'>NULL</span>,
+  drop_controls <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  add_caption <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  point_size <span class='op'>=</span> <span class='fl'>3</span>,
+  point_shape <span class='op'>=</span> <span class='fl'>15</span>,
+  color <span class='op'>=</span> <span class='st'>"red"</span>,
+  banded <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  headings <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>variable <span class='op'>=</span> <span class='st'>"Variable"</span>, n <span class='op'>=</span> <span class='st'>"N"</span>, measure <span class='op'>=</span> <span class='st'>"Hazard ratio"</span>, ci <span class='op'>=</span> <span class='cn'>NULL</span>,
+    p <span class='op'>=</span> <span class='st'>"p"</span><span class='op'>)</span>,
+  model_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"ezcox"</span><span class='op'>)</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -249,17 +249,17 @@ it removes control variables automatically.</p></td>
     <p>a <code>ggplot</code> object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/therneau/survival'>survival</a></span>)
-<span class='fu'>show_forest</span>(<span class='kw'>lung</span>, covariates = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>), controls = <span class='st'>"age"</span>)
-</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='img'><img src='show_forest-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>show_forest</span>(<span class='kw'>lung</span>, covariates = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>), controls = <span class='st'>"age"</span>, merge_models = <span class='fl'>TRUE</span>)
-</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='img'><img src='show_forest-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>show_forest</span>(<span class='kw'>lung</span>,
-  covariates = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>), controls = <span class='st'>"age"</span>, merge_models = <span class='fl'>TRUE</span>,
-  drop_controls = <span class='fl'>TRUE</span>
-)
-</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>covariates=NULL but drop_controls=TRUE, detecting controls...</span></div><div class='output co'>#&gt; <span class='message'>Yes. Setting variables to keep...</span></div><div class='output co'>#&gt; <span class='message'>Done.</span></div><div class='img'><img src='show_forest-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>show_forest</span>(<span class='kw'>lung</span>,
-  covariates = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span>), controls = <span class='st'>"age"</span>, merge_models = <span class='fl'>TRUE</span>,
-  vars_to_show = <span class='st'>"sex"</span>
-)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/therneau/survival'>survival</a></span><span class='op'>)</span>
+<span class='fu'>show_forest</span><span class='op'>(</span><span class='va'>lung</span>, covariates <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span><span class='op'>)</span>, controls <span class='op'>=</span> <span class='st'>"age"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='img'><img src='show_forest-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>show_forest</span><span class='op'>(</span><span class='va'>lung</span>, covariates <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span><span class='op'>)</span>, controls <span class='op'>=</span> <span class='st'>"age"</span>, merge_models <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='img'><img src='show_forest-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>show_forest</span><span class='op'>(</span><span class='va'>lung</span>,
+  covariates <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span><span class='op'>)</span>, controls <span class='op'>=</span> <span class='st'>"age"</span>, merge_models <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  drop_controls <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>covariates=NULL but drop_controls=TRUE, detecting controls...</span></div><div class='output co'>#&gt; <span class='message'>Yes. Setting variables to keep...</span></div><div class='output co'>#&gt; <span class='message'>Done.</span></div><div class='img'><img src='show_forest-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>show_forest</span><span class='op'>(</span><span class='va'>lung</span>,
+  covariates <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sex"</span>, <span class='st'>"ph.ecog"</span><span class='op'>)</span>, controls <span class='op'>=</span> <span class='st'>"age"</span>, merge_models <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  vars_to_show <span class='op'>=</span> <span class='st'>"sex"</span>
+<span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable sex</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ph.ecog</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>Resized limits to included dashed line in forest panel</span></div><div class='img'><img src='show_forest-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

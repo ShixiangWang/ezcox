@@ -1,3 +1,18 @@
+# ezcox 0.8.2
+
+* Added code to panel function to support new feature from `forest_model()`.
+
+```r
+library(survival)
+library(ezcox)
+
+lung$ph.ecog <- factor(lung$ph.ecog)
+# Build unvariable models
+# and show global p value for each model
+# aside the 'reference' label.
+show_forest(lung, covariates = c("age", "sex", "ph.ecog"), show_global_p = "aside")
+```
+
 # ezcox 0.8.1
 
 * Tried fixing CRAN checking issue.
