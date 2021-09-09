@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 
 The goal of ezcox is to operate a batch of univariate or multivariate Cox models and return tidy result.
 
-## Installation
+## :arrow_double_down: Installation
 
 You can install the released version of ezcox from [CRAN](https://CRAN.R-project.org) with:
 
@@ -46,7 +46,7 @@ Visualization feature of **ezcox** needs the recent version of **forestmodel**, 
 remotes::install_github("ShixiangWang/forestmodel")
 ```
 
-## Example
+## :beginner: Example
 
 This is a basic example which shows you how to get result from a batch of cox models.
 
@@ -72,6 +72,10 @@ show_models(mds)
 ```
 
 
-## Citation
+## :page_with_curl: Citation
 
-* Wang, Shixiang, et al. “The predictive power of tumor mutational burden in lung cancer immunotherapy response is influenced by patients’ sex.” International journal of cancer (2019).
+**ezcox** has not been published, if you are using it in academic research,
+please cite:
+
+- Shixiang Wang (2021). ezcox: Easily Process a Batch of Cox Models. R package version 1.0.0.
+  https://github.com/ShixiangWang/ezcox

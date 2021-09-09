@@ -19,7 +19,7 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 The goal of ezcox is to operate a batch of univariate or multivariate
 Cox models and return tidy result.
 
-## Installation
+## :arrow\_double\_down: Installation
 
 You can install the released version of ezcox from
 [CRAN](https://CRAN.R-project.org) with:
@@ -42,7 +42,7 @@ Visualization feature of **ezcox** needs the recent version of
 remotes::install_github("ShixiangWang/forestmodel")
 ```
 
-## Example
+## :beginner: Example
 
 This is a basic example which shows you how to get result from a batch
 of cox models.
@@ -75,13 +75,13 @@ ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
 #> ==> Building Surv object...
 #> ==> Building Cox model...
 #> ==> Done.
-#> # A tibble: 3 x 12
+#> # A tibble: 3 × 12
 #>   Variable is_control contrast_level ref_level n_contrast n_ref    beta    HR
 #>   <chr>    <lgl>      <chr>          <chr>          <int> <int>   <dbl> <dbl>
 #> 1 age      FALSE      age            age              228   228  0.0187 1.02 
 #> 2 sex      FALSE      sex            sex              228   228 -0.531  0.588
 #> 3 ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.476  1.61 
-#> # ... with 4 more variables: lower_95 <dbl>, upper_95 <dbl>, p.value <dbl>,
+#> # … with 4 more variables: lower_95 <dbl>, upper_95 <dbl>, p.value <dbl>,
 #> #   global.pval <dbl>
 
 # Build multi-variable models
@@ -95,14 +95,14 @@ ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 #> ==> Building Surv object...
 #> ==> Building Cox model...
 #> ==> Done.
-#> # A tibble: 4 x 12
+#> # A tibble: 4 × 12
 #>   Variable is_control contrast_level ref_level n_contrast n_ref    beta    HR
 #>   <chr>    <lgl>      <chr>          <chr>          <int> <int>   <dbl> <dbl>
 #> 1 sex      FALSE      sex            sex              228   228 -0.513  0.599
 #> 2 sex      TRUE       age            age              228   228  0.017  1.02 
 #> 3 ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.443  1.56 
 #> 4 ph.ecog  TRUE       age            age              228   228  0.0113 1.01 
-#> # ... with 4 more variables: lower_95 <dbl>, upper_95 <dbl>, p.value <dbl>,
+#> # … with 4 more variables: lower_95 <dbl>, upper_95 <dbl>, p.value <dbl>,
 #> #   global.pval <dbl>
 ```
 
@@ -134,8 +134,10 @@ show_models(mds)
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-## Citation
+## :page\_with\_curl: Citation
 
--   Wang, Shixiang, et al. “The predictive power of tumor mutational
-    burden in lung cancer immunotherapy response is influenced by
-    patients’ sex.” International journal of cancer (2019).
+**ezcox** has not been published, if you are using it in academic
+research, please cite:
+
+-   Shixiang Wang (2021). ezcox: Easily Process a Batch of Cox Models. R
+    package version 1.0.0. <https://github.com/ShixiangWang/ezcox>

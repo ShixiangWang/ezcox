@@ -5,7 +5,7 @@
 =======================================================================
 ", "You are using ", pkgname, " version ", version, "
 
-Github page  : https://github.com/ShixiangWang/ezcox
+Project home : https://github.com/ShixiangWang/ezcox
 Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html
 
 Run citation(\"ezcox\") to see how to cite 'ezcox'.
