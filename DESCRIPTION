@@ -1,7 +1,7 @@
 Type: Package
 Package: ezcox
 Title: Easily Process a Batch of Cox Models
-Version: 0.9.9
+Version: 1.0.0
 Date: 2021-09-09
 Authors@R: 
     person(given = "Shixiang",
@@ -19,13 +19,19 @@ Depends:
     R (>= 3.5)
 Imports: 
     dplyr (>= 0.8.3),
+    broom,
     forestmodel,
     ggplot2,
     magrittr (>= 1.5),
     purrr (>= 0.3.2),
     rlang (>= 0.1.2),
     survival,
-    utils
+    utils,
+    gridExtra,
+    tibble,
+    systemfonts,
+    grid,
+    patchwork
 Suggests: 
     covr (>= 3.2.1),
     furrr,

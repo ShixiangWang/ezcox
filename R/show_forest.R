@@ -62,7 +62,7 @@ show_forest <- function(data, covariates, controls = NULL,
     drop_controls = drop_controls,
     headings = headings,
     format_options = forestmodel::forest_model_format_options(
-      point_size  = point_size, shape = point_shape, color = color, banded = banded
+      point_size = point_size, shape = point_shape, color = color, banded = banded
     ),
     ...
   )
@@ -75,8 +75,10 @@ show_forest <- function(data, covariates, controls = NULL,
     if (is.null(controls)) {
       p <- p + ggplot2::labs(caption = paste("Cox analysis for variable", paste(covariates, collapse = " & ")))
     } else {
-      p <- p + ggplot2::labs(caption = paste("Cox analysis for variable", paste(covariates, collapse = " & "), "\n",
-                                             "with", paste(controls, collapse = " & "), "controlled"))
+      p <- p + ggplot2::labs(caption = paste(
+        "Cox analysis for variable", paste(covariates, collapse = " & "), "\n",
+        "with", paste(controls, collapse = " & "), "controlled"
+      ))
     }
   }
 

@@ -1,17 +1,15 @@
 #' Run Cox Analysis in Batch Mode
 #'
+#' We build model for each covariate with the following formula,
+#' the controls are optional.
+#'
+#' coxph(Surv(time, status) ~ covariate + controls)
+#'
 #' @param data a `data.frame` containing variables, time and os status.
 #' @param covariates column names specifying variables.
 #' @param controls column names specifying controls.
 #' @param time column name specifying time, default is 'time'.
 #' @param status column name specifying event status, default is 'status'.
-#' @param global_method method used to obtain global p value for cox model,
-#' should be one of "likelihood", "wald", "logrank".
-#' The likelihood-ratio test, Wald test, and score logrank statistics.
-#' These three methods are asymptotically equivalent. For large enough N,
-#' they will give similar results. For small N, they may differ somewhat.
-#' The Likelihood ratio test has better behavior for small sample sizes,
-#' so it is generally preferred.
 #' @param keep_models If `TRUE`, keep models as local files.
 #' @param return_models default `FALSE`. If `TRUE`, return a `list` contains
 #' cox models.
@@ -48,7 +46,6 @@
 #' )
 ezcox <- function(data, covariates, controls = NULL,
                   time = "time", status = "status",
-                  global_method = c("likelihood", "wald", "logrank"),
                   keep_models = FALSE,
                   return_models = FALSE,
                   model_dir = file.path(tempdir(), "ezcox"),
@@ -65,13 +62,6 @@ ezcox <- function(data, covariates, controls = NULL,
 
   data$time <- data[[time]]
   data$status <- data[[status]]
-
-  test_method <- match.arg(global_method)
-  test_method <- switch(test_method,
-    likelihood = test <- "logtest",
-    wald = test <- "waldtest",
-    logrank = test <- "sctest"
-  )
 
   covariates2 <- ifelse(isValidAndUnreserved(covariates), covariates, paste0("`", covariates, "`"))
   if (!is.null(controls)) {
@@ -114,23 +104,23 @@ ezcox <- function(data, covariates, controls = NULL,
         }
       )
 
-      tbl <- purrr::map_df(c(y, gsub("`", "", controls)), function(x) {
-        if (is.numeric(data[[x]])) {
-          dplyr::tibble(
-            contrast_level = x,
-            ref_level = x,
-            n_contrast = sum(!is.na(data[[x]])),
-            n_ref = sum(!is.na(data[[x]]))
-          )
-        } else {
-          dplyr::tibble(
-            contrast_level = names(table(data[[x]]))[-1],
-            ref_level = names(table(data[[x]]))[1],
-            n_contrast = as.numeric(table(data[[x]]))[-1],
-            n_ref = as.numeric(table(data[[x]]))[1]
-          )
-        }
-      })
+      tbl <- dplyr::bind_cols(
+        dplyr::tibble(
+          Variable = y,
+        ),
+        broom::tidy(
+          cox,
+          exponentiate = TRUE, conf.int = TRUE,
+          conf.level = 0.95
+        ) %>% dplyr::rename(
+          HR = .data$estimate
+        ),
+        broom::glance(cox) %>%
+          dplyr::select(c(
+            "n", "nevent", "p.value.log", "p.value.sc", "p.value.wald",
+            "r.squared", "AIC", "BIC"
+          ))
+      )
     } else {
       if (verbose) message("==> Variable ", y, "has less than 2 levels, skipping it...")
       tbl <- dplyr::tibble(
@@ -161,42 +151,11 @@ ezcox <- function(data, covariates, controls = NULL,
       saveRDS(model_df, file = model_file)
     }
 
-    if (class(cox) != "coxph" | all(is.na(tbl[["ref_level"]]))) {
-      glob.pval <- p.value <- beta <- HR <- lower_95 <- upper_95 <- NA
-    } else {
-      cox <- summary(cox)
-      p.value <- cox$coefficients[, "Pr(>|z|)"] %>%
-        signif(digits = 3) %>%
-        as.numeric()
-      glob.pval <- signif(cox[[test]]["pvalue"], digits = 3)
+    tbl$model_file <- ifelse(exists("model_file"), model_file, NA_character_)
 
-      beta <- signif(cox$coefficients[, 1], digits = 3)
-      HR <- signif(cox$coefficients[, 2], digits = 3)
-      lower_95 <- tryCatch(signif(cox$conf.int[, "lower .95"], 3),
-        error = function(e) NA
-      )
-      upper_95 <- tryCatch(signif(cox$conf.int[, "upper .95"], 3),
-        error = function(e) NA
-      )
-    }
     if (verbose) message("==> Done.")
-    dplyr::tibble(
-      Variable = y,
-      is_control = tbl[["is_control"]],
-      contrast_level = tbl[["contrast_level"]],
-      ref_level = tbl[["ref_level"]],
-      n_contrast = tbl[["n_contrast"]],
-      n_ref = tbl[["n_ref"]],
-      beta = beta,
-      HR = HR,
-      lower_95 = lower_95,
-      upper_95 = upper_95,
-      p.value = p.value,
-      global.pval = glob.pval,
-      model_file = ifelse(exists("model_file"), model_file, NA_character_)
-    )
+    tbl
   }
-
 
   res <- purrr::map2_df(covariates2, covariates, batch_one,
     controls = controls,

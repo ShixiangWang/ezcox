@@ -7,8 +7,6 @@
 get_models(x, variables = NULL)
 }
 \arguments{
-\item{x}{a \code{ezcox} object from \code{\link[=ezcox]{ezcox()}}.}
-
 \item{variables}{a character vector representing variables to select.}
 }
 \value{
