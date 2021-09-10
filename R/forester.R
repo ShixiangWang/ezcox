@@ -285,7 +285,7 @@ forester <- function(left_side_data,
       axis.text.y = ggplot2::element_blank(),
       axis.ticks.y = ggplot2::element_blank(),
       axis.line.y = ggplot2::element_blank(),
-      axis.ticks.length.x = grid::unit(.07, "in"),
+      #axis.ticks.length.x = grid::unit(.07, "npc"),
       text = ggplot2::element_text(family = font_family, size = 12),
       panel.background = ggplot2::element_rect(fill = "transparent"),
       plot.background = ggplot2::element_rect(fill = "transparent", color = NA),
@@ -314,7 +314,7 @@ forester <- function(left_side_data,
         arrow = ggplot2::arrow(
           angle = 15,
           type = "closed",
-          length = grid::unit(0.1, "in")
+          length = grid::unit(0.1, "npc")
         )
       )
   }
@@ -391,7 +391,7 @@ forester <- function(left_side_data,
           x = .data$xstart, xend = .data$xend,
           y = .data$y, yend = .data$y
         ),
-        arrow = ggplot2::arrow(angle = 15, type = "closed", length = grid::unit(0.1, "in"))
+        arrow = ggplot2::arrow(angle = 15, type = "closed", length = grid::unit(0.1, "npc"))
       ) +
       ggplot2::geom_text(
         data = xlab_df, ggplot2::aes(
@@ -440,8 +440,10 @@ forester <- function(left_side_data,
     ncol(left_side_data) + 1
   )
 
-  table_final$widths[ncol(left_side_data) + 1] <- grid::unit(ggplot_width / 10, "in")
-  table_final$heights <- grid::unit(rep(0.255, times = length(table_final$heights)), "in")
+  #table_final$widths[ncol(left_side_data) + 1] <- grid::unit(ggplot_width / 10, "npc")
+  #table_final$heights <- grid::unit(rep(0.255, times = length(table_final$heights)), "npc")
+
+  # grid::grid.ls(table_final)
 
   # 0.15, 0.23, 0.6, 0.785
   final <- patchwork::wrap_elements(table_final) +
@@ -526,25 +528,6 @@ mono_column <- function(table, col) {
   ind <- col_indexes(table, col, "core-fg")
 
   for (i in ind) {
-    table$grobs[i][[1]][["gp"]] <- grid::gpar(fontfamily = "mono")
-  }
-  return(table)
-}
-
-white_column <- function(table, col) {
-  col_indexes <- function(table, col, name = "core-bg") {
-    l <- table$layout
-    which(l$l == col & l$name == name)
-  }
-
-  ind <- col_indexes(table, col, "core-bg")
-  ind_fg <- col_indexes(table, col, "core-fg")
-
-  for (i in ind) {
-    table$grobs[i][[1]][["gp"]] <- grid::gpar(fill = background_colour, col = background_colour)
-  }
-
-  for (i in ind_fg) {
     table$grobs[i][[1]][["gp"]] <- grid::gpar(fontfamily = "mono")
   }
   return(table)
