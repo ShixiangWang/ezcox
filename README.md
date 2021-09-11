@@ -51,9 +51,9 @@ of cox models.
 library(ezcox)
 #> Welcome to 'ezcox' package!
 #> =======================================================================
-#> You are using ezcox version 0.8.1
+#> You are using ezcox version 1.0.0
 #> 
-#> Github page  : https://github.com/ShixiangWang/ezcox
+#> Project home : https://github.com/ShixiangWang/ezcox
 #> Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html
 #> 
 #> Run citation("ezcox") to see how to cite 'ezcox'.
@@ -130,6 +130,9 @@ str(mds, max.level = 1)
 #>  - attr(*, "has_control")= logi TRUE
 
 show_models(mds)
+#> Warning in recalculate_width_panels(panel_positions, mapped_text =
+#> mapped_text, : Unable to resize forest panel to be smaller than its heading;
+#> consider a smaller text size
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
