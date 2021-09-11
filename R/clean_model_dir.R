@@ -6,7 +6,11 @@
 #' @export
 #'
 #' @examples
-#' clean_model_dir
+#' \donttest{
+#' clean_model_dir()
+#' }
+#' @testexamples
+#' expect_message(clean_model_dir(), "Done")
 clean_model_dir <- function(model_dir = file.path(tempdir(), "ezcox")) {
   if (dir.exists(model_dir)) {
     message("Cleaning...")

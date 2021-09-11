@@ -26,10 +26,13 @@
 #'   covariates = c("sex", "ph.ecog"), controls = "age", merge_models = TRUE,
 #'   drop_controls = TRUE
 #' )
-#' show_forest(lung,
+#' p <- show_forest(lung,
 #'   covariates = c("sex", "ph.ecog"), controls = "age", merge_models = TRUE,
 #'   vars_to_show = "sex"
 #' )
+#' p
+#' @testexamples
+#' expect_s3_class(p, "ggplot")
 show_forest <- function(data, covariates, controls = NULL,
                         time = "time",
                         status = "status",

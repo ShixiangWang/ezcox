@@ -16,5 +16,7 @@ nothing
 Clean ezcox Model File Directory
 }
 \examples{
-clean_model_dir
+\donttest{
+clean_model_dir()
+}
 }
