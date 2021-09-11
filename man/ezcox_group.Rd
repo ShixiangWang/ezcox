@@ -58,5 +58,8 @@ Group Cox Analysis and Visualization
 library(survival)
 ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog")
 ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age")
-ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age", add_all = TRUE)
+p <- ezcox_group(lung,
+  grp_var = "sex", covariate = "ph.ecog",
+  controls = "age", add_all = TRUE
+)
 }

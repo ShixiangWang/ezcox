@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -85,14 +85,13 @@
 
       
 
-      </header><script src="ezcox_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="ezcox_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ezcox: Easily Process a Batch of Cox Models</h1>
-                        <h4 class="author">Shixiang Wang <a href="mailto:w_shixiang@163.com" class="email">w_shixiang@163.com</a>
-</h4>
+                        <h4 class="author">Shixiang Wang  SYSUCC</h4>
             
-            <h4 class="date">2021-08-08</h4>
+            <h4 class="date">2021-09-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ShixiangWang/ezcox/blob/master/vignettes/ezcox.Rmd"><code>vignettes/ezcox.Rmd</code></a></small>
       <div class="hidden name"><code>ezcox.Rmd</code></div>
@@ -125,10 +124,10 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ShixiangWang/ezcox">ezcox</a></span><span class="op">)</span>
 <span class="co">#&gt; Welcome to 'ezcox' package!</span>
 <span class="co">#&gt; =======================================================================</span>
-<span class="co">#&gt; You are using ezcox version 0.8.2</span>
+<span class="co">#&gt; You are using ezcox version 1.0.0</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Github page  : https://github.com/ShixiangWang/ezcox</span>
-<span class="co">#&gt; Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html</span>
+<span class="co">#&gt; Project home : https://github.com/ShixiangWang/ezcox</span>
+<span class="co">#&gt; Documentation: https://shixiangwang.github.io/ezcox</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Run citation("ezcox") to see how to cite 'ezcox'.</span>
 <span class="co">#&gt; =======================================================================</span>
@@ -158,7 +157,7 @@
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
 <span class="co">#&gt; ==&gt; Done.</span>
-<span class="co">#&gt; # A tibble: 3 x 12</span>
+<span class="co">#&gt; # A tibble: 3 × 12</span>
 <span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref    beta    HR</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 age      FALSE      age            age              228   228  0.0187 1.02 </span>
@@ -178,7 +177,7 @@
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
 <span class="co">#&gt; ==&gt; Done.</span>
-<span class="co">#&gt; # A tibble: 4 x 12</span>
+<span class="co">#&gt; # A tibble: 4 × 12</span>
 <span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref    beta    HR</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 sex      FALSE      sex            sex              228   228 -0.513  0.599</span>
@@ -194,16 +193,8 @@
 <p>For parallel computation, users can use <code><a href="../reference/ezcox_parallel.html">ezcox_parallel()</a></code>. This function has same arguments as <code><a href="../reference/ezcox.html">ezcox()</a></code>. For variables &lt; 200, this function is not recommended.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ezcox_parallel.html">ezcox_parallel</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, controls <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span>
-<span class="co">#&gt; Loading required namespace: furrr</span>
-<span class="co">#&gt; Warning: Strategy 'multiprocess' is deprecated in future (&gt;= 1.20.0). Instead,</span>
-<span class="co">#&gt; explicitly specify either 'multisession' or 'multicore'. In the current R</span>
-<span class="co">#&gt; session, 'multiprocess' equals 'multisession'.</span>
-<span class="co">#&gt; Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked</span>
-<span class="co">#&gt; processing ('multicore') is not supported when running R from RStudio</span>
-<span class="co">#&gt; because it is considered unstable. For more details, how to control forked</span>
-<span class="co">#&gt; processing or not, and how to silence this warning in future R sessions, see ?</span>
-<span class="co">#&gt; parallelly::supportsMulticore</span>
-<span class="co">#&gt; # A tibble: 4 x 12</span>
+<span class="co">#&gt; 载入需要的名字空间：furrr</span>
+<span class="co">#&gt; # A tibble: 4 × 12</span>
 <span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref    beta    HR</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 sex      FALSE      sex            sex              228   228 -0.513  0.599</span>
@@ -226,7 +217,7 @@
 <span class="co">#&gt; ==&gt; Done.</span>
 
 <span class="va">zz</span>
-<span class="co">#&gt; # A tibble: 4 x 12</span>
+<span class="co">#&gt; # A tibble: 4 × 12</span>
 <span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref   beta    HR</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 sex      FALSE      sex            sex              228   228 -0.545  0.58</span>
@@ -238,7 +229,7 @@
 
 <span class="co"># At default, it will drop all control variables</span>
 <span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span><span class="op">(</span><span class="va">zz</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 12</span>
+<span class="co">#&gt; # A tibble: 1 × 12</span>
 <span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref   beta    HR</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 sex      FALSE      sex            sex              228   228 -0.545  0.58</span>
@@ -249,7 +240,7 @@
 <span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span><span class="op">(</span><span class="va">zz</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="st">"2"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Filtering control levels in 'both' mode:</span>
 <span class="co">#&gt;  0, 2</span>
-<span class="co">#&gt; # A tibble: 1 x 12</span>
+<span class="co">#&gt; # A tibble: 1 × 12</span>
 <span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref   beta    HR</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 sex      FALSE      sex            sex              228   228 -0.545  0.58</span>
@@ -258,7 +249,7 @@
 <span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span><span class="op">(</span><span class="va">zz</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="st">"2"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"contrast"</span><span class="op">)</span>
 <span class="co">#&gt; Filtering control levels in 'contrast' mode:</span>
 <span class="co">#&gt;  0, 2</span>
-<span class="co">#&gt; # A tibble: 3 x 12</span>
+<span class="co">#&gt; # A tibble: 3 × 12</span>
 <span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref   beta    HR</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 sex      FALSE      sex            sex              228   228 -0.545  0.58</span>
@@ -269,7 +260,7 @@
 <span class="fu"><a href="../reference/filter_ezcox.html">filter_ezcox</a></span><span class="op">(</span><span class="va">zz</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="st">"2"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"ref"</span><span class="op">)</span>
 <span class="co">#&gt; Filtering control levels in 'ref' mode:</span>
 <span class="co">#&gt;  0, 2</span>
-<span class="co">#&gt; # A tibble: 1 x 12</span>
+<span class="co">#&gt; # A tibble: 1 × 12</span>
 <span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref   beta    HR</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 sex      FALSE      sex            sex              228   228 -0.545  0.58</span>
@@ -336,7 +327,8 @@
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
 <ul>
-<li>Wang, Shixiang, et al. “The predictive power of tumor mutational burden in lung cancer immunotherapy response is influenced by patients’ sex.” International journal of cancer (2019).</li>
+<li>Shixiang Wang (2021). ezcox: Easily Process a Batch of Cox Models. R package version 1.0.0. <a href="https://github.com/ShixiangWang/ezcox" class="uri">https://github.com/ShixiangWang/ezcox</a>
+</li>
 </ul>
 </div>
   </div>

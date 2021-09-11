@@ -46,5 +46,6 @@ show_models(mds, model_names = paste0("Model ", 1:2))
 show_models(mds, covariates = c("sex", "ph.ecog"))
 show_models(mds, drop_controls = TRUE)
 show_models(mds, merge_models = TRUE)
-show_models(mds, merge_models = TRUE, drop_controls = TRUE)
+p <- show_models(mds, merge_models = TRUE, drop_controls = TRUE)
+p
 }

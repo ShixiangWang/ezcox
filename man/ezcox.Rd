@@ -58,21 +58,25 @@ Run Cox Analysis in Batch Mode
 library(survival)
 
 # Build unvariable models
-ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
+t1 <- ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
+t1
 
 # Build multi-variable models
 # Control variable 'age'
-ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+t2 <- ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+t2
 
 # Return models
-ezcox(lung,
+t3 <- ezcox(lung,
   covariates = c("age", "sex", "ph.ecog"),
   return_models = TRUE
 )
-ezcox(lung,
+t3
+t4 <- ezcox(lung,
   covariates = c("sex", "ph.ecog"), controls = "age",
   return_models = TRUE
 )
+t4
 }
 \author{
 Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}

@@ -1,8 +1,15 @@
 ---
 title: "ezcox: Easily Process a Batch of Cox Models"
-author: "Shixiang Wang <w_shixiang@163.com>"
+author: "Shixiang Wang \\
+        SYSUCC"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  prettydoc::html_pretty:
+    toc: true
+    theme: cayman
+    highlight: github
+  pdf_document:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{ezcox: Easily Process a Batch of Cox Models}
   %\VignetteEngine{knitr::rmarkdown}
@@ -100,7 +107,7 @@ str(mds, max.level = 1)
 
 ## Show models
 
-```{r, fig.height=6, fig.width=6}
+```{r, fig.height=5, fig.width=6}
 show_models(mds)
 # Set model names
 show_models(mds, model_names = paste0("Model ", 1:2))
@@ -112,4 +119,5 @@ More see `?show_models`.
 
 ## Citation
 
-* Wang, Shixiang, et al. “The predictive power of tumor mutational burden in lung cancer immunotherapy response is influenced by patients’ sex.” International journal of cancer (2019).
+- Shixiang Wang (2021). ezcox: Easily Process a Batch of Cox Models. R package version 1.0.0.
+  https://github.com/ShixiangWang/ezcox

@@ -29,9 +29,11 @@
 #' @export
 #'
 #' @examples
-#'
 #' library(survival)
-#' ezcox_parallel(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+#' t <- ezcox_parallel(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+#' t
+#' @testexamples
+#' expect_s3_class(t, "ezcox")
 ezcox_parallel <- function(data, covariates, controls = NULL,
                            time = "time", status = "status",
                            batch_size = 100,
@@ -56,7 +58,7 @@ ezcox_parallel <- function(data, covariates, controls = NULL,
     }
 
     oplan <- future::plan()
-    future::plan("multiprocess")
+    future::plan("multisession")
     on.exit(future::plan(oplan), add = TRUE)
     res <- furrr::future_map(var_list,
       ezcox_caller,

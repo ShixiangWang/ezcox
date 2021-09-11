@@ -31,21 +31,30 @@
 #' library(survival)
 #'
 #' # Build unvariable models
-#' ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
+#' t1 <- ezcox(lung, covariates = c("age", "sex", "ph.ecog"))
+#' t1
 #'
 #' # Build multi-variable models
 #' # Control variable 'age'
-#' ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+#' t2 <- ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+#' t2
 #'
 #' # Return models
-#' ezcox(lung,
+#' t3 <- ezcox(lung,
 #'   covariates = c("age", "sex", "ph.ecog"),
 #'   return_models = TRUE
 #' )
-#' ezcox(lung,
+#' t3
+#' t4 <- ezcox(lung,
 #'   covariates = c("sex", "ph.ecog"), controls = "age",
 #'   return_models = TRUE
 #' )
+#' t4
+#' @testexamples
+#' expect_s3_class(t1, "ezcox")
+#' expect_s3_class(t2, "ezcox")
+#' expect_s3_class(t3, "ezcox")
+#' expect_s3_class(t4, "ezcox")
 ezcox <- function(data, covariates, controls = NULL,
                   time = "time", status = "status",
                   global_method = c("likelihood", "wald", "logrank"),

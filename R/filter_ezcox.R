@@ -17,7 +17,10 @@
 #' filter_ezcox(zz)
 #' filter_ezcox(zz, c("0", "2"))
 #' filter_ezcox(zz, c("0", "2"), type = "contrast")
-#' filter_ezcox(zz, c("0", "2"), type = "ref")
+#' t <- filter_ezcox(zz, c("0", "2"), type = "ref")
+#' t
+#' @testexamples
+#' expect_s3_class(t, "ezcox")
 filter_ezcox <- function(x, levels = "auto", type = c("both", "contrast", "ref")) {
   stopifnot(inherits(x, "ezcox"))
   controls <- attr(x, "controls")

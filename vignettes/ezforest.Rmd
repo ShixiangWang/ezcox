@@ -1,6 +1,15 @@
 ---
 title: "ezcox: Easily Show Cox Forestplot in One Command"
-output: rmarkdown::html_vignette
+author: "Shixiang Wang \\
+        SYSUCC"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    toc: true
+    theme: cayman
+    highlight: github
+  pdf_document:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{ezcox: Easily Show Cox Forestplot in One Command}
   %\VignetteEngine{knitr::rmarkdown}
@@ -15,11 +24,32 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
+library(survival)
 library(ezcox)
 ```
 
+## forester
+
+For simple and general forest data, you can use `forester()`, it is lightweight
+and can be applied to any proper data (not limited to Cox model).
+
+```{r fig.width=4, fig.height=3}
+t1 <- ezcox(lung, covariates = c(
+  "age", "sex",
+  "ph.karno", "pat.karno"
+))
+p <- forester(t1, xlim = c(0, 1.5))
+p
+p2 <- forester(t1, xlim = c(0.5, 1.5))
+p2
+```
+
+## show_forest
+
+For more powerful plot features, you need to use `show_forest()`.
+Unlike the `forester()`, the `ezcox()` is included in the function.
+
 ```{r, fig.width=7, fig.height=5}
-library(survival)
 show_forest(lung, covariates = c("sex", "ph.ecog"), controls = "age")
 show_forest(lung, covariates = c("sex", "ph.ecog"), controls = "age", merge_models = TRUE)
 show_forest(lung,
@@ -30,6 +60,5 @@ show_forest(lung,
   covariates = c("sex", "ph.ecog"), controls = "age", merge_models = TRUE,
   vars_to_show = "sex"
 )
-
 ```
 

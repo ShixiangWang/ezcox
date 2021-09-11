@@ -1,6 +1,5 @@
 #' @import magrittr forestmodel
 cox_panel <- function(headings = list(variable = "Group", n = "N", measure = "Hazard ratio", ci = NULL, p = "p")) {
-
   panels <- list(
     forest_panel(width = 0.03),
     forest_panel(width = 0.1, display = variable, fontface = "bold", heading = headings$variable),
@@ -15,7 +14,7 @@ cox_panel <- function(headings = list(variable = "Group", n = "N", measure = "Ha
     forest_panel(
       width = 0.12,
       display = dplyr::if_else(reference, dplyr::if_else(!is.numeric(p.value), "Reference", "Reference;  Variable logrank:"),
-                        sprintf("%0.2f (%0.2f, %0.2f)", trans(estimate), trans(conf.low), trans(conf.high))
+        sprintf("%0.2f (%0.2f, %0.2f)", trans(estimate), trans(conf.low), trans(conf.high))
       ),
       heading = headings$ci,
       display_na = NA
@@ -32,6 +31,8 @@ cox_panel <- function(headings = list(variable = "Group", n = "N", measure = "Ha
 }
 
 utils::globalVariables(
-  c("variable", "level", "n", "reference", "estimate", "conf.low", "conf.high", "p.value", "trans",
-    "forest_panel")
+  c(
+    "variable", "level", "n", "reference", "estimate", "conf.low", "conf.high", "p.value", "trans",
+    "forest_panel"
+  )
 )

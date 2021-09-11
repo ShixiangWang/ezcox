@@ -59,9 +59,9 @@ a \code{ezcox} object
 Parallelly Run Cox Analysis in Batch Mode
 }
 \examples{
-
 library(survival)
-ezcox_parallel(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+t <- ezcox_parallel(lung, covariates = c("sex", "ph.ecog"), controls = "age")
+t
 }
 \author{
 Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}

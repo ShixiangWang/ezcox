@@ -22,7 +22,10 @@
 #' show_models(mds, covariates = c("sex", "ph.ecog"))
 #' show_models(mds, drop_controls = TRUE)
 #' show_models(mds, merge_models = TRUE)
-#' show_models(mds, merge_models = TRUE, drop_controls = TRUE)
+#' p <- show_models(mds, merge_models = TRUE, drop_controls = TRUE)
+#' p
+#' @testexamples
+#' expect_s3_class(p, "ggplot")
 show_models <- function(models, model_names = NULL, covariates = NULL,
                         merge_models = FALSE, drop_controls = FALSE,
                         headings = list(variable = "Variable", n = "N", measure = "Hazard ratio", ci = NULL, p = "p"),
@@ -73,7 +76,8 @@ show_models <- function(models, model_names = NULL, covariates = NULL,
 
   if (!is.null(covariates)) {
     covariates <- ifelse(isValidAndUnreserved(covariates) | startsWith(covariates, "`"),
-                         covariates, paste0("`", covariates, "`"))
+      covariates, paste0("`", covariates, "`")
+    )
   }
 
   forestmodel::forest_model(

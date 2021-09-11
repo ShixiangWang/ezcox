@@ -13,17 +13,21 @@
 #' library(survival)
 #' ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog")
 #' ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age")
-#' ezcox_group(lung, grp_var = "sex", covariate = "ph.ecog", controls = "age", add_all = TRUE)
+#' p <- ezcox_group(lung,
+#'   grp_var = "sex", covariate = "ph.ecog",
+#'   controls = "age", add_all = TRUE
+#' )
+#' @testexamples
+#' expect_is(p, "list")
 ezcox_group <- function(data, grp_var, covariate, controls = NULL,
-                  time = "time", status = "status",
-                  sort = FALSE,
-                  decreasing = TRUE,
-                  add_all = FALSE,
-                  add_caption = TRUE,
-                  verbose = TRUE,
-                  headings = list(variable = "Group", n = "N", measure = "Hazard ratio", ci = NULL, p = "p"),
-                  ...) {
-
+                        time = "time", status = "status",
+                        sort = FALSE,
+                        decreasing = TRUE,
+                        add_all = FALSE,
+                        add_caption = TRUE,
+                        verbose = TRUE,
+                        headings = list(variable = "Group", n = "N", measure = "Hazard ratio", ci = NULL, p = "p"),
+                        ...) {
   stopifnot(is.list(headings), length(grp_var) == 1L, length(covariate) == 1L)
 
   if (length(data[[grp_var]]) == length(table(data[grp_var]))) {
@@ -47,22 +51,25 @@ ezcox_group <- function(data, grp_var, covariate, controls = NULL,
     data <- data[, c(covariate, controls, time, status)]
     ## modify covariable name
     colnames(data)[colnames(data) == covariate] <- var
-    ezcox(data = data, covariates = var,
-          controls = controls,
-          time = time, status = status,
-          return_models = TRUE,
-          verbose = verbose)
+    ezcox(
+      data = data, covariates = var,
+      controls = controls,
+      time = time, status = status,
+      return_models = TRUE,
+      verbose = verbose
+    )
   }
 
   md_list <- data %>%
     dplyr::group_split(.data[[grp_var]]) %>%
     purrr::map(run_model,
-    grp_var = grp_var,
-    covariate = covariate,
-    controls = controls,
-    time = time,
-    status = status,
-    verbose = verbose) %>%
+      grp_var = grp_var,
+      covariate = covariate,
+      controls = controls,
+      time = time,
+      status = status,
+      verbose = verbose
+    ) %>%
     purrr::transpose() %>%
     purrr::map(dplyr::bind_rows) %>%
     purrr::map(function(x) {
@@ -100,8 +107,10 @@ ezcox_group <- function(data, grp_var, covariate, controls = NULL,
     if (is.null(controls)) {
       p <- p + ggplot2::labs(caption = paste("Univariable analysis for variable", covariate))
     } else {
-      p <- p + ggplot2::labs(caption = paste("Multivariable analysis for variable", covariate, "\n",
-                                             "with", paste(controls, collapse = " & "), "controlled"))
+      p <- p + ggplot2::labs(caption = paste(
+        "Multivariable analysis for variable", covariate, "\n",
+        "with", paste(controls, collapse = " & "), "controlled"
+      ))
     }
   }
 

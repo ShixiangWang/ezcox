@@ -29,7 +29,8 @@ zz
 filter_ezcox(zz)
 filter_ezcox(zz, c("0", "2"))
 filter_ezcox(zz, c("0", "2"), type = "contrast")
-filter_ezcox(zz, c("0", "2"), type = "ref")
+t <- filter_ezcox(zz, c("0", "2"), type = "ref")
+t
 }
 \author{
 Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}

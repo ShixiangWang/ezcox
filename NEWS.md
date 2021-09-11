@@ -1,3 +1,8 @@
+# ezcox 1.0.0
+
+* Added `forester()`.
+* Used roxytest for unit testing.
+
 # ezcox 0.8.2
 
 * Added code to panel function to support new feature from `forest_model()`.

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -85,11 +85,13 @@
 
       
 
-      </header><script src="ezforest_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="ezforest_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ezcox: Easily Show Cox Forestplot in One Command</h1>
+                        <h4 class="author">Shixiang Wang  SYSUCC</h4>
             
+            <h4 class="date">2021-09-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ShixiangWang/ezcox/blob/master/vignettes/ezforest.Rmd"><code>vignettes/ezforest.Rmd</code></a></small>
       <div class="hidden name"><code>ezforest.Rmd</code></div>
@@ -99,20 +101,57 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ShixiangWang/ezcox">ezcox</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ShixiangWang/ezcox">ezcox</a></span><span class="op">)</span>
 <span class="co">#&gt; Welcome to 'ezcox' package!</span>
 <span class="co">#&gt; =======================================================================</span>
-<span class="co">#&gt; You are using ezcox version 0.8.2</span>
+<span class="co">#&gt; You are using ezcox version 1.0.0</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Github page  : https://github.com/ShixiangWang/ezcox</span>
-<span class="co">#&gt; Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html</span>
+<span class="co">#&gt; Project home : https://github.com/ShixiangWang/ezcox</span>
+<span class="co">#&gt; Documentation: https://shixiangwang.github.io/ezcox</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Run citation("ezcox") to see how to cite 'ezcox'.</span>
 <span class="co">#&gt; =======================================================================</span>
 <span class="co">#&gt; </span></code></pre></div>
+<div id="forester" class="section level2">
+<h2 class="hasAnchor">
+<a href="#forester" class="anchor"></a>forester</h2>
+<p>For simple and general forest data, you can use <code><a href="../reference/forester.html">forester()</a></code>, it is lightweight and can be applied to any proper data (not limited to Cox model).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span>
-<span class="fu"><a href="../reference/show_forest.html">show_forest</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, controls <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ezcox.html">ezcox</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  <span class="st">"age"</span>, <span class="st">"sex"</span>,
+  <span class="st">"ph.karno"</span>, <span class="st">"pat.karno"</span>
+<span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; =&gt; Processing variable age</span>
+<span class="co">#&gt; ==&gt; Building Surv object...</span>
+<span class="co">#&gt; ==&gt; Building Cox model...</span>
+<span class="co">#&gt; ==&gt; Done.</span>
+<span class="co">#&gt; =&gt; Processing variable sex</span>
+<span class="co">#&gt; ==&gt; Building Surv object...</span>
+<span class="co">#&gt; ==&gt; Building Cox model...</span>
+<span class="co">#&gt; ==&gt; Done.</span>
+<span class="co">#&gt; =&gt; Processing variable ph.karno</span>
+<span class="co">#&gt; ==&gt; Building Surv object...</span>
+<span class="co">#&gt; ==&gt; Building Cox model...</span>
+<span class="co">#&gt; ==&gt; Done.</span>
+<span class="co">#&gt; =&gt; Processing variable pat.karno</span>
+<span class="co">#&gt; ==&gt; Building Surv object...</span>
+<span class="co">#&gt; ==&gt; Building Cox model...</span>
+<span class="co">#&gt; ==&gt; Done.</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/forester.html">forester</a></span><span class="op">(</span><span class="va">t1</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
+<p><img src="ezforest_files/figure-html/unnamed-chunk-2-1.png" width="384"></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/forester.html">forester</a></span><span class="op">(</span><span class="va">t1</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span>
+<span class="va">p2</span></code></pre></div>
+<p><img src="ezforest_files/figure-html/unnamed-chunk-2-2.png" width="384"></p>
+</div>
+<div id="show_forest" class="section level2">
+<h2 class="hasAnchor">
+<a href="#show_forest" class="anchor"></a>show_forest</h2>
+<p>For more powerful plot features, you need to use <code><a href="../reference/show_forest.html">show_forest()</a></code>. Unlike the <code><a href="../reference/forester.html">forester()</a></code>, the <code><a href="../reference/ezcox.html">ezcox()</a></code> is included in the function.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/show_forest.html">show_forest</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, controls <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span>
 <span class="co">#&gt; =&gt; Processing variable sex</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
@@ -121,8 +160,8 @@
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
 <span class="co">#&gt; ==&gt; Done.</span></code></pre></div>
-<p><img src="ezforest_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p><img src="ezforest_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/show_forest.html">show_forest</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, controls <span class="op">=</span> <span class="st">"age"</span>, merge_models <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; =&gt; Processing variable sex</span>
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
@@ -132,8 +171,8 @@
 <span class="co">#&gt; ==&gt; Building Surv object...</span>
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
 <span class="co">#&gt; ==&gt; Done.</span></code></pre></div>
-<p><img src="ezforest_files/figure-html/unnamed-chunk-2-2.png" width="672"></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p><img src="ezforest_files/figure-html/unnamed-chunk-3-2.png" width="672"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/show_forest.html">show_forest</a></span><span class="op">(</span><span class="va">lung</span>,
   covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, controls <span class="op">=</span> <span class="st">"age"</span>, merge_models <span class="op">=</span> <span class="cn">TRUE</span>,
   drop_controls <span class="op">=</span> <span class="cn">TRUE</span>
@@ -149,8 +188,8 @@
 <span class="co">#&gt; covariates=NULL but drop_controls=TRUE, detecting controls...</span>
 <span class="co">#&gt; Yes. Setting variables to keep...</span>
 <span class="co">#&gt; Done.</span></code></pre></div>
-<p><img src="ezforest_files/figure-html/unnamed-chunk-2-3.png" width="672"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p><img src="ezforest_files/figure-html/unnamed-chunk-3-3.png" width="672"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/show_forest.html">show_forest</a></span><span class="op">(</span><span class="va">lung</span>,
   covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, controls <span class="op">=</span> <span class="st">"age"</span>, merge_models <span class="op">=</span> <span class="cn">TRUE</span>,
   vars_to_show <span class="op">=</span> <span class="st">"sex"</span>
@@ -164,12 +203,15 @@
 <span class="co">#&gt; ==&gt; Building Cox model...</span>
 <span class="co">#&gt; ==&gt; Done.</span>
 <span class="co">#&gt; Resized limits to included dashed line in forest panel</span></code></pre></div>
-<p><img src="ezforest_files/figure-html/unnamed-chunk-2-4.png" width="672"></p>
+<p><img src="ezforest_files/figure-html/unnamed-chunk-3-4.png" width="672"></p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 

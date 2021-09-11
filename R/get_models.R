@@ -11,6 +11,8 @@
 #' zz <- ezcox(lung, covariates = c("sex", "ph.ecog"), controls = "age", return_models = TRUE)
 #' mds <- get_models(zz)
 #' str(mds, max.level = 1)
+#' @testexamples
+#' expect_s3_class(mds, "ezcox_models")
 get_models <- function(x, variables = NULL) {
   stopifnot(inherits(x, "ezcox"))
   if (is.data.frame(x)) {

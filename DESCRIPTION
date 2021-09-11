@@ -1,8 +1,8 @@
 Type: Package
 Package: ezcox
 Title: Easily Process a Batch of Cox Models
-Version: 0.9.9
-Date: 2021-09-09
+Version: 1.0.0
+Date: 2021-09-10
 Authors@R: 
     person(given = "Shixiang",
            family = "Wang",
@@ -24,7 +24,9 @@ Imports:
     magrittr (>= 1.5),
     purrr (>= 0.3.2),
     rlang (>= 0.1.2),
+    scales,
     survival,
+    tibble,
     utils
 Suggests: 
     covr (>= 3.2.1),
@@ -33,10 +35,12 @@ Suggests:
     knitr,
     rmarkdown,
     roxygen2 (>= 6.1.1),
-    testthat (>= 2.1.0)
+    testthat (>= 2.1.0),
+    prettydoc
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
 LazyData: true
-Roxygen: list(markdown = TRUE)
+Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
+    "roxytest::testthat_roclet"))
 RoxygenNote: 7.1.1
