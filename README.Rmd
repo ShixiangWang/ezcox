@@ -29,15 +29,21 @@ The goal of ezcox is to operate a batch of univariate or multivariate Cox models
 
 You can install the released version of ezcox from [CRAN](https://CRAN.R-project.org) with:
 
-``` r
+```r
 install.packages("ezcox")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
-``` r
+```r
 # install.packages("remotes")
 remotes::install_github("ShixiangWang/ezcox")
+```
+
+It is possible to install **ezcox** from Conda `conda-forge` channel:
+
+```r
+conda install r-ezcox --channel conda-forge
 ```
 
 Visualization feature of **ezcox** needs the recent version of **forestmodel**, please run the following commands:
