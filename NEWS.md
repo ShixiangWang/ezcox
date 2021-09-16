@@ -1,5 +1,6 @@
 # ezcox 1.0.1
 
+* A vignette for advanced usage has been added to <https://shixiangwang.github.io/ezcox-adv-usage/>.
 * Fixed label rendering for global p value.
 
 # ezcox 1.0.0

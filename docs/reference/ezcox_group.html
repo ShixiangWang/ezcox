@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -217,56 +217,14 @@
     <p>a <code>list</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/therneau/survival'>survival</a></span><span class='op'>)</span>
+    <pre class="examples"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/therneau/survival'>survival</a></span><span class='op'>)</span>
 <span class='fu'>ezcox_group</span><span class='op'>(</span><span class='va'>lung</span>, grp_var <span class='op'>=</span> <span class='st'>"sex"</span>, covariate <span class='op'>=</span> <span class='st'>"ph.ecog"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable 1</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable 2</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>covariates=NULL but drop_controls=TRUE, detecting controls...</span></div><div class='output co'>#&gt; <span class='message'>No. Skipping...</span></div><div class='output co'>#&gt; <span class='message'>Done.</span></div><div class='output co'>#&gt; <span class='message'>Resized limits to included dashed line in forest panel</span></div><div class='output co'>#&gt; <span class='message'>Returns a list containing data and ggplot.</span></div><div class='output co'>#&gt; $data
-#&gt; $stats
-#&gt; <span style='color: #949494;'># A tibble: 2 × 13</span>
-#&gt;   Group Variable is_control contrast_level ref_level n_contrast n_ref  beta
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> 1     ph.ecog  FALSE      1              1                137   137 0.426
-#&gt; <span style='color: #BCBCBC;'>2</span> 2     ph.ecog  FALSE      2              2                 90    90 0.637
-#&gt; <span style='color: #949494;'># … with 5 more variables: HR &lt;dbl&gt;, lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</span>
-#&gt; 
-#&gt; $models
-#&gt; <span style='color: #949494;'># A tibble: 2 × 6</span>
-#&gt;   Group Variable control model_file                                 model status
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                      <span style='color: #949494; font-style: italic;'>&lt;lis&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span> 
-#&gt; <span style='color: #BCBCBC;'>1</span> 1     ph.ecog  <span style='color: #BB0000;'>NA</span>      /var/folders/qx/5tqxhrrd5xd_n9rfbb_m5c200… <span style='color: #949494;'>&lt;cox</span>… TRUE  
-#&gt; <span style='color: #BCBCBC;'>2</span> 2     ph.ecog  <span style='color: #BB0000;'>NA</span>      /var/folders/qx/5tqxhrrd5xd_n9rfbb_m5c200… <span style='color: #949494;'>&lt;cox</span>… TRUE  
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "ezcox"
-#&gt; 
-#&gt; $plot</div><div class='img'><img src='ezcox_group-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; </div><div class='input'><span class='fu'>ezcox_group</span><span class='op'>(</span><span class='va'>lung</span>, grp_var <span class='op'>=</span> <span class='st'>"sex"</span>, covariate <span class='op'>=</span> <span class='st'>"ph.ecog"</span>, controls <span class='op'>=</span> <span class='st'>"age"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable 1</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable 2</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>covariates=NULL but drop_controls=TRUE, detecting controls...</span></div><div class='output co'>#&gt; <span class='message'>Yes. Setting variables to keep...</span></div><div class='output co'>#&gt; <span class='message'>Done.</span></div><div class='output co'>#&gt; <span class='message'>Resized limits to included dashed line in forest panel</span></div><div class='output co'>#&gt; <span class='message'>Returns a list containing data and ggplot.</span></div><div class='output co'>#&gt; $data
-#&gt; $stats
-#&gt; <span style='color: #949494;'># A tibble: 4 × 13</span>
-#&gt;   Group Variable is_control contrast_level ref_level n_contrast n_ref    beta
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> 1     ph.ecog  FALSE      1              1                137   137  0.419 
-#&gt; <span style='color: #BCBCBC;'>2</span> 1     ph.ecog  TRUE       age            age              138   138  0.018<span style='text-decoration: underline;'>4</span>
-#&gt; <span style='color: #BCBCBC;'>3</span> 2     ph.ecog  FALSE      2              2                 90    90  0.714 
-#&gt; <span style='color: #BCBCBC;'>4</span> 2     ph.ecog  TRUE       age            age               90    90 -<span style='color: #BB0000;'>0.011</span><span style='color: #BB0000; text-decoration: underline;'>2</span>
-#&gt; <span style='color: #949494;'># … with 5 more variables: HR &lt;dbl&gt;, lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   p.value &lt;dbl&gt;, global.pval &lt;dbl&gt;</span>
-#&gt; 
-#&gt; $models
-#&gt; <span style='color: #949494;'># A tibble: 2 × 6</span>
-#&gt;   Group Variable control model_file                                 model status
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                      <span style='color: #949494; font-style: italic;'>&lt;lis&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span> 
-#&gt; <span style='color: #BCBCBC;'>1</span> 1     ph.ecog  age     /var/folders/qx/5tqxhrrd5xd_n9rfbb_m5c200… <span style='color: #949494;'>&lt;cox</span>… TRUE  
-#&gt; <span style='color: #BCBCBC;'>2</span> 2     ph.ecog  age     /var/folders/qx/5tqxhrrd5xd_n9rfbb_m5c200… <span style='color: #949494;'>&lt;cox</span>… TRUE  
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "ezcox"
-#&gt; 
-#&gt; $plot</div><div class='img'><img src='ezcox_group-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; </div><div class='input'><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>ezcox_group</span><span class='op'>(</span><span class='va'>lung</span>,
+<span class='fu'>ezcox_group</span><span class='op'>(</span><span class='va'>lung</span>, grp_var <span class='op'>=</span> <span class='st'>"sex"</span>, covariate <span class='op'>=</span> <span class='st'>"ph.ecog"</span>, controls <span class='op'>=</span> <span class='st'>"age"</span><span class='op'>)</span>
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>ezcox_group</span><span class='op'>(</span><span class='va'>lung</span>,
   grp_var <span class='op'>=</span> <span class='st'>"sex"</span>, covariate <span class='op'>=</span> <span class='st'>"ph.ecog"</span>,
   controls <span class='op'>=</span> <span class='st'>"age"</span>, add_all <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable 1</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable 2</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>=&gt; Processing variable ALL</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Surv object...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Building Cox model...</span></div><div class='output co'>#&gt; <span class='message'>==&gt; Done.</span></div><div class='output co'>#&gt; <span class='message'>covariates=NULL but drop_controls=TRUE, detecting controls...</span></div><div class='output co'>#&gt; <span class='message'>Yes. Setting variables to keep...</span></div><div class='output co'>#&gt; <span class='message'>Done.</span></div><div class='output co'>#&gt; <span class='message'>Resized limits to included dashed line in forest panel</span></div><div class='output co'>#&gt; <span class='message'>Returns a list containing data and ggplot.</span></div></pre>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
