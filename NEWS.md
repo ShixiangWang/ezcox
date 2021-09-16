@@ -1,3 +1,7 @@
+# ezcox 1.0.1
+
+* Fixed label rendering for global p value.
+
 # ezcox 1.0.0
 
 * Added `forester()`.
