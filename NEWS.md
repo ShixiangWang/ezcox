@@ -1,5 +1,6 @@
 # ezcox 1.0.1
 
+* Fixed sample counting when input data contains unavailable time and status values.
 * A vignette for advanced usage has been added to <https://shixiangwang.github.io/ezcox-adv-usage/>.
 * Fixed label rendering for global p value.
 

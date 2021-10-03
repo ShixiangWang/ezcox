@@ -74,6 +74,7 @@ ezcox <- function(data, covariates, controls = NULL,
 
   data$time <- data[[time]]
   data$status <- data[[status]]
+  data <- dplyr::filter(data, !is.na(.data$time), !is.na(.data$status))
 
   test_method <- match.arg(global_method)
   test_method <- switch(test_method,
