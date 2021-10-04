@@ -57,10 +57,10 @@ of cox models.
 library(ezcox)
 #> Welcome to 'ezcox' package!
 #> =======================================================================
-#> You are using ezcox version 1.0.0
+#> You are using ezcox version 0.8.1
 #> 
-#> Project home : https://github.com/ShixiangWang/ezcox
-#> Documentation: https://shixiangwang.github.io/ezcox
+#> Github page  : https://github.com/ShixiangWang/ezcox
+#> Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html
 #> 
 #> Run citation("ezcox") to see how to cite 'ezcox'.
 #> =======================================================================
@@ -143,11 +143,11 @@ show_models(mds)
 ## :star2: Vignettes
 
 -   [ezcox: Easily Process a Batch of Cox
-    Models](https://cran.r-project.org/web/packages/ezcox/vignettes/ezcox.html)
+    Models](https://CRAN.R-project.org/package=ezcox/vignettes/ezcox.html)
 -   [ezcox: Easily Show Cox Forestplot in One
-    Command](https://cran.r-project.org/web/packages/ezcox/vignettes/ezforest.html)
+    Command](https://CRAN.R-project.org/package=ezcox/vignettes/ezforest.html)
 -   [ezcox: Easy Group Cox Analysis and
-    Visualization](https://cran.r-project.org/web/packages/ezcox/vignettes/ezgroup.html)
+    Visualization](https://CRAN.R-project.org/package=ezcox/vignettes/ezgroup.html)
 -   [ezcox: an R Package for Cox Model Batch Processing and
     Visualization - An Use
     Case](https://shixiangwang.github.io/ezcox-adv-usage/)
