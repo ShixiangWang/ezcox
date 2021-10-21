@@ -1,7 +1,6 @@
 #' @import magrittr forestmodel
 #' @importFrom dplyr if_else
 cox_panel <- function(headings = list(variable = "Group", n = "N", measure = "Hazard ratio", ci = NULL, p = "p")) {
-
   is_na <- function(x) sapply(x, is.na)
 
   panels <- list(

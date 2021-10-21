@@ -48,7 +48,6 @@ ezcox_group <- function(data, grp_var, covariate, controls = NULL,
   run_model <- function(data, grp_var, covariate, controls = NULL,
                         time = "time", status = status, verbose = FALSE) {
     var <- unique(as.character(data[[grp_var]]))
-    data <- data[, c(covariate, controls, time, status)]
     ## modify covariable name
     colnames(data)[colnames(data) == covariate] <- var
     ezcox(

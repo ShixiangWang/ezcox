@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -165,7 +165,9 @@
     </tr>
     <tr>
       <th>controls</th>
-      <td><p>column names specifying controls.</p></td>
+      <td><p>column names specifying controls.
+The names with pattern "*:|()" will be treated as interaction/combination
+term, please make sure all column names in <code>data</code> are valid R variable names.</p></td>
     </tr>
     <tr>
       <th>time</th>
@@ -262,9 +264,9 @@ cox models.</p></td>
 #&gt; <span style='color: #949494;'># A tibble: 3 × 5</span>
 #&gt;   Variable control model_file                                      model  status
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                           <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span> 
-#&gt; <span style='color: #BCBCBC;'>1</span> age      <span style='color: #BB0000;'>NA</span>      /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn… <span style='color: #949494;'>&lt;coxp</span>… TRUE  
-#&gt; <span style='color: #BCBCBC;'>2</span> sex      <span style='color: #BB0000;'>NA</span>      /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn… <span style='color: #949494;'>&lt;coxp</span>… TRUE  
-#&gt; <span style='color: #BCBCBC;'>3</span> ph.ecog  <span style='color: #BB0000;'>NA</span>      /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn… <span style='color: #949494;'>&lt;coxp</span>… TRUE  
+#&gt; <span style='color: #BCBCBC;'>1</span> age      <span style='color: #BB0000;'>NA</span>      /Volumes/Extra/R/Rtmp//RtmpAMN0PG/ezcox/ezcox_… <span style='color: #949494;'>&lt;coxp</span>… TRUE  
+#&gt; <span style='color: #BCBCBC;'>2</span> sex      <span style='color: #BB0000;'>NA</span>      /Volumes/Extra/R/Rtmp//RtmpAMN0PG/ezcox/ezcox_… <span style='color: #949494;'>&lt;coxp</span>… TRUE  
+#&gt; <span style='color: #BCBCBC;'>3</span> ph.ecog  <span style='color: #BB0000;'>NA</span>      /Volumes/Extra/R/Rtmp//RtmpAMN0PG/ezcox/ezcox_… <span style='color: #949494;'>&lt;coxp</span>… TRUE  
 #&gt; 
 #&gt; attr(,"class")
 #&gt; [1] "ezcox" "list" 
@@ -289,13 +291,14 @@ cox models.</p></td>
 #&gt; <span style='color: #949494;'># A tibble: 2 × 5</span>
 #&gt;   Variable control model_file                                      model  status
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                           <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span> 
-#&gt; <span style='color: #BCBCBC;'>1</span> sex      age     /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn… <span style='color: #949494;'>&lt;coxp</span>… TRUE  
-#&gt; <span style='color: #BCBCBC;'>2</span> ph.ecog  age     /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn… <span style='color: #949494;'>&lt;coxp</span>… TRUE  
+#&gt; <span style='color: #BCBCBC;'>1</span> sex      age     /Volumes/Extra/R/Rtmp//RtmpAMN0PG/ezcox/ezcox_… <span style='color: #949494;'>&lt;coxp</span>… TRUE  
+#&gt; <span style='color: #BCBCBC;'>2</span> ph.ecog  age     /Volumes/Extra/R/Rtmp//RtmpAMN0PG/ezcox/ezcox_… <span style='color: #949494;'>&lt;coxp</span>… TRUE  
 #&gt; 
 #&gt; attr(,"class")
 #&gt; [1] "ezcox" "list" 
 #&gt; attr(,"controls")
-#&gt; [1] "age"</div></pre>
+#&gt;   age 
+#&gt; "age" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

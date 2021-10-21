@@ -2,7 +2,7 @@
 
 # File R/ezcox.R: @testexamples
 
-test_that("Function ezcox() @ L58", {
+test_that("Function ezcox() @ L60", {
   
   library(survival)
   

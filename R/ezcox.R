@@ -3,6 +3,8 @@
 #' @param data a `data.frame` containing variables, time and os status.
 #' @param covariates column names specifying variables.
 #' @param controls column names specifying controls.
+#' The names with pattern "*:|()" will be treated as interaction/combination
+#' term, please make sure all column names in `data` are valid R variable names.
 #' @param time column name specifying time, default is 'time'.
 #' @param status column name specifying event status, default is 'status'.
 #' @param global_method method used to obtain global p value for cox model,
@@ -132,6 +134,14 @@ ezcox <- function(data, covariates, controls = NULL,
             n_contrast = sum(!is.na(data[[x]])),
             n_ref = sum(!is.na(data[[x]]))
           )
+        } else if (is.null(data[[x]])) {
+          message("==> Handling combination term, some columns will be set to NA")
+          dplyr::tibble(
+            contrast_level = NA,
+            ref_level = NA,
+            n_contrast = NA,
+            n_ref = NA
+          )
         } else {
           dplyr::tibble(
             contrast_level = names(table(data[[x]]))[-1],
@@ -171,40 +181,66 @@ ezcox <- function(data, covariates, controls = NULL,
       saveRDS(model_df, file = model_file)
     }
 
-    if (class(cox) != "coxph" | all(is.na(tbl[["ref_level"]]))) {
-      glob.pval <- p.value <- beta <- HR <- lower_95 <- upper_95 <- NA
-    } else {
-      cox <- summary(cox)
-      p.value <- cox$coefficients[, "Pr(>|z|)"] %>%
-        signif(digits = 3) %>%
-        as.numeric()
-      glob.pval <- signif(cox[[test]]["pvalue"], digits = 3)
+    if (any(grepl("[*:|()]", controls)) & class(cox) == "coxph") {
+      out <- as.data.frame(summary(cox)$coef)
+      cox_sum <- summary(cox)
+      glob.pval <- signif(cox_sum[[test]]["pvalue"], digits = 3)
 
-      beta <- signif(cox$coefficients[, 1], digits = 3)
-      HR <- signif(cox$coefficients[, 2], digits = 3)
-      lower_95 <- tryCatch(signif(cox$conf.int[, "lower .95"], 3),
-        error = function(e) NA
+      dplyr::tibble(
+        Variable = y,
+        is_control = y != rownames(out),
+        contrast_level = rownames(out),
+        ref_level = NA,
+        n_contrast = NA,
+        n_ref = NA,
+        beta = out[, 1],
+        HR = out[, 2],
+        lower_95 = tryCatch(signif(cox_sum$conf.int[, "lower .95"], 3),
+          error = function(e) NA
+        ),
+        upper_95 = tryCatch(signif(cox_sum$conf.int[, "upper .95"], 3),
+          error = function(e) NA
+        ),
+        p.value = out[, 5],
+        global.pval = glob.pval,
+        model_file = ifelse(exists("model_file"), model_file, NA_character_)
       )
-      upper_95 <- tryCatch(signif(cox$conf.int[, "upper .95"], 3),
-        error = function(e) NA
+    } else {
+      if (class(cox) != "coxph" | all(is.na(tbl[["ref_level"]]))) {
+        glob.pval <- p.value <- beta <- HR <- lower_95 <- upper_95 <- NA
+      } else {
+        cox <- summary(cox)
+        p.value <- cox$coefficients[, "Pr(>|z|)"] %>%
+          signif(digits = 3) %>%
+          as.numeric()
+        glob.pval <- signif(cox[[test]]["pvalue"], digits = 3)
+
+        beta <- signif(cox$coefficients[, 1], digits = 3)
+        HR <- signif(cox$coefficients[, 2], digits = 3)
+        lower_95 <- tryCatch(signif(cox$conf.int[, "lower .95"], 3),
+          error = function(e) NA
+        )
+        upper_95 <- tryCatch(signif(cox$conf.int[, "upper .95"], 3),
+          error = function(e) NA
+        )
+      }
+      if (verbose) message("==> Done.")
+      dplyr::tibble(
+        Variable = y,
+        is_control = tbl[["is_control"]],
+        contrast_level = tbl[["contrast_level"]],
+        ref_level = tbl[["ref_level"]],
+        n_contrast = tbl[["n_contrast"]],
+        n_ref = tbl[["n_ref"]],
+        beta = beta,
+        HR = HR,
+        lower_95 = lower_95,
+        upper_95 = upper_95,
+        p.value = p.value,
+        global.pval = glob.pval,
+        model_file = ifelse(exists("model_file"), model_file, NA_character_)
       )
     }
-    if (verbose) message("==> Done.")
-    dplyr::tibble(
-      Variable = y,
-      is_control = tbl[["is_control"]],
-      contrast_level = tbl[["contrast_level"]],
-      ref_level = tbl[["ref_level"]],
-      n_contrast = tbl[["n_contrast"]],
-      n_ref = tbl[["n_ref"]],
-      beta = beta,
-      HR = HR,
-      lower_95 = lower_95,
-      upper_95 = upper_95,
-      p.value = p.value,
-      global.pval = glob.pval,
-      model_file = ifelse(exists("model_file"), model_file, NA_character_)
-    )
   }
 
 

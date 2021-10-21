@@ -1,6 +1,12 @@
 # https://stackoverflow.com/questions/8396577/check-if-character-value-is-a-valid-r-object-name
 isValidAndUnreserved <- function(string) {
-  make.names(string) == string
+  sapply(string, function(x) {
+    if (grepl("[*:|()]", x)) {
+      TRUE
+    } else {
+      make.names(x) == x
+    }
+  })
 }
 
 # Modify from https://stackoverflow.com/questions/3318333/split-a-vector-into-chunks-in-r

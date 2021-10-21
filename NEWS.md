@@ -1,3 +1,23 @@
+# ezcox 1.0.2
+
+* Supported interaction term in `controls` option.
+
+
+```R
+library(survival)
+library(ezcox)
+
+lung$ph.ecog <- factor(lung$ph.ecog)
+ezcox(lung, covariates = c("age"), controls = "sex:ph.ecog")
+ezcox(lung, covariates = c("age", "wt.loss"), controls = "sex:ph.ecog")
+
+show_forest(lung, covariates = c("age", "wt.loss"), controls = "sex:ph.ecog")
+
+lung2 <- lung
+lung2$sex <- ifelse(lung2$sex == 1, "M", "F")
+ezcox_group(lung2, grp_var = "sex", covariate = "ph.ecog", controls = "age : wt.loss")
+```
+
 # ezcox 1.0.1
 
 * Fixed sample counting when input data contains unavailable time and status values.

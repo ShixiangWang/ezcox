@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
       <h1 data-toc-skip>ezcox: Easily Process a Batch of Cox Models</h1>
                         <h4 class="author">Shixiang Wang  SYSUCC</h4>
             
-            <h4 class="date">2021-10-04</h4>
+            <h4 class="date">2021-10-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ShixiangWang/ezcox/blob/master/vignettes/ezcox.Rmd"><code>vignettes/ezcox.Rmd</code></a></small>
       <div class="hidden name"><code>ezcox.Rmd</code></div>
@@ -124,7 +124,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ShixiangWang/ezcox">ezcox</a></span><span class="op">)</span>
 <span class="co">#&gt; Welcome to 'ezcox' package!</span>
 <span class="co">#&gt; =======================================================================</span>
-<span class="co">#&gt; You are using ezcox version 1.0.1</span>
+<span class="co">#&gt; You are using ezcox version 1.0.2</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Project home : https://github.com/ShixiangWang/ezcox</span>
 <span class="co">#&gt; Documentation: https://shixiangwang.github.io/ezcox</span>
@@ -193,7 +193,7 @@
 <p>For parallel computation, users can use <code><a href="../reference/ezcox_parallel.html">ezcox_parallel()</a></code>. This function has same arguments as <code><a href="../reference/ezcox.html">ezcox()</a></code>. For variables &lt; 200, this function is not recommended.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ezcox_parallel.html">ezcox_parallel</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, controls <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span>
-<span class="co">#&gt; Loading required namespace: furrr</span>
+<span class="co">#&gt; 载入需要的名字空间：furrr</span>
 <span class="co">#&gt; # A tibble: 4 × 12</span>
 <span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref    beta    HR</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>

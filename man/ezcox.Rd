@@ -23,7 +23,9 @@ ezcox(
 
 \item{covariates}{column names specifying variables.}
 
-\item{controls}{column names specifying controls.}
+\item{controls}{column names specifying controls.
+The names with pattern "*:|()" will be treated as interaction/combination
+term, please make sure all column names in \code{data} are valid R variable names.}
 
 \item{time}{column name specifying time, default is 'time'.}
 

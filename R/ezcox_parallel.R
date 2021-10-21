@@ -44,8 +44,6 @@ ezcox_parallel <- function(data, covariates, controls = NULL,
                            parallel = TRUE,
                            verbose = FALSE) {
   stopifnot(is.data.frame(data))
-  all_cols <- unique(c(covariates, controls, time, status))
-  data <- data[, all_cols]
   var_list <- split_vector(covariates, batch_size)
 
   if (parallel) {
