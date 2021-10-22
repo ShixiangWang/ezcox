@@ -1,5 +1,6 @@
 # ezcox 1.0.2
 
+* Fixed changable `ALL` group in `ezcox_group()`.
 * Supported interaction term in `controls` option.
 
 

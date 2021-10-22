@@ -96,6 +96,16 @@ ezcox_group <- function(data, grp_var, covariate, controls = NULL,
   fit_models <- get_models(md_list)
 
   ## show_models
+  if ("ALL" %in% md_list$models$Group) {
+    # Move this model to bottom
+    idx_all <- which(md_list$models$Group == "ALL")
+    idx <- seq_len(length(md_list$models$Group))
+    if (idx_all != max(idx)) {
+      new_order <- c(setdiff(idx, idx_all), idx_all)
+      fit_models <- fit_models[new_order]
+    }
+  }
+
   p <- show_models(fit_models, merge_models = TRUE, drop_controls = TRUE, headings = headings, ...)
 
   if (is.null(p)) {
