@@ -102,7 +102,9 @@ ezcox_group <- function(data, grp_var, covariate, controls = NULL,
     idx <- seq_len(length(md_list$models$Group))
     if (idx_all != max(idx)) {
       new_order <- c(setdiff(idx, idx_all), idx_all)
+      fit_models2 <- fit_models
       fit_models <- fit_models[new_order]
+      attributes(fit_models) <- attributes(fit_models2)
     }
   }
 
