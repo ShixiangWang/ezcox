@@ -87,7 +87,5 @@ show_models(mds)
 
 ## :page_with_curl: Citation
 
-**ezcox** has not been published, if you are using it in academic research,
-please cite the following paper along with URL of this repo:
-
-- Wang, S., Zhang, J., He, Z., Wu, K., & Liu, X. S. (2019). The predictive power of tumor mutational burden in lung cancer immunotherapy response is influenced by patients’ sex. International journal of cancer, 145(10), 2840-2849.
+If you are using it in academic research,
+please cite the preprint [arXiv:2110.14232](https://arxiv.org/abs/2110.14232) along with URL of this repo.

@@ -7,8 +7,7 @@
 
 Project home : https://github.com/ShixiangWang/ezcox
 Documentation: https://shixiangwang.github.io/ezcox
-
-Run citation(\"ezcox\") to see how to cite 'ezcox'.
+Cite as      : arXiv:2110.14232
 =======================================================================
                  ")
   packageStartupMessage(msg)
