@@ -1,7 +1,7 @@
 Type: Package
 Package: ezcox
 Title: Easily Process a Batch of Cox Models
-Version: 1.0.2
+Version: 1.0.3
 Date: 2021-10-03
 Authors@R: 
     person(given = "Shixiang",
@@ -27,7 +27,8 @@ Imports:
     scales,
     survival,
     tibble,
-    utils
+    utils,
+    utf8
 Suggests: 
     covr (>= 3.2.1),
     furrr,
