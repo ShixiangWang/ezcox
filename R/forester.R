@@ -129,13 +129,13 @@ forester <- function(data,
     if (ra) {
       right_arrows <- dplyr::select(
         dplyr::filter(oob_arrows, conf.high > .data$x_high),
-        start = .data$estimate, end = .data$x_high, y = .data$row_num
+        start = .data$conf.low, end = .data$x_high, y = .data$row_num
       )
     }
     if (la) {
       left_arrows <- dplyr::select(
         dplyr::filter(oob_arrows, conf.low < .data$x_low),
-        start = .data$estimate, end = .data$x_low, y = .data$row_num
+        start = .data$conf.high, end = .data$x_low, y = .data$row_num
       )
     }
 
@@ -169,7 +169,19 @@ forester <- function(data,
       na.rm = TRUE
     ) +
     ggplot2::geom_text(
-      ggplot2::aes(y = .data$row_num, x = .data$estimate, label = .data$Estimate),
+      ggplot2::aes(y = .data$row_num, x = if (nrow(g_oob) > 0) {
+        dplyr::mutate(
+          oob_arrows,
+          estimate2 = dplyr::case_when(
+            conf.high > x_high & conf.low < x_low ~ (x_low + x_high) / 2.1,
+            conf.high > x_high ~ (conf.low + x_high) / 2.1,
+            conf.low < x_low ~ (x_low + conf.high) / 2.1,
+            TRUE ~ .data$estimate
+          )
+        ) %>% dplyr::pull(estimate2)
+      } else {
+        .data$estimate
+      }, label = .data$Estimate),
       hjust = label_hjust, vjust = label_vjust,
       color = label_color, size = label_size
     ) +

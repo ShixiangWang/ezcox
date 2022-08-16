@@ -1,3 +1,7 @@
+# ezcox 1.0.4
+
+* Enhanced the `forester()` to render labels better.
+
 # ezcox 1.0.3
 
 * Add `utf8` as dependency to try passing check.
