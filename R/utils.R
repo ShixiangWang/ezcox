@@ -15,3 +15,8 @@ isValidAndUnreserved <- function(string) {
 split_vector <- function(x, batch_size) {
   split(x, ceiling(seq_along(x) / batch_size))
 }
+
+utils::globalVariables(
+  "estimate2"
+)
+.x = utf8::output_utf8

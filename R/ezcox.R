@@ -25,6 +25,8 @@
 #' @importFrom stats as.formula
 #' @importFrom dplyr tibble
 #' @importFrom purrr map2_df
+#' @importFrom methods is
+#' @importFrom utf8 output_utf8
 #' @return a `ezcox` object
 #' @author Shixiang Wang <w_shixiang@163.com>
 #' @export
@@ -176,12 +178,12 @@ ezcox <- function(data, covariates, controls = NULL,
       model_df <- dplyr::tibble(
         Variable = y,
         model = list(cox),
-        status = ifelse(class(cox) == "coxph", TRUE, FALSE)
+        status = ifelse(is(cox, "coxph"), TRUE, FALSE)
       )
       saveRDS(model_df, file = model_file)
     }
 
-    if (any(grepl("[*:|()]", controls)) & class(cox) == "coxph") {
+    if (any(grepl("[*:|()]", controls)) & is(cox, "coxph")) {
       out <- as.data.frame(summary(cox)$coef)
       cox_sum <- summary(cox)
       glob.pval <- signif(cox_sum[[test]]["pvalue"], digits = 3)
@@ -206,7 +208,7 @@ ezcox <- function(data, covariates, controls = NULL,
         model_file = ifelse(exists("model_file"), model_file, NA_character_)
       )
     } else {
-      if (class(cox) != "coxph" | all(is.na(tbl[["ref_level"]]))) {
+      if (is(cox, "coxph") | all(is.na(tbl[["ref_level"]]))) {
         glob.pval <- p.value <- beta <- HR <- lower_95 <- upper_95 <- NA
       } else {
         cox <- summary(cox)

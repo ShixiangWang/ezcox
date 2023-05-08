@@ -2,12 +2,9 @@ Type: Package
 Package: ezcox
 Title: Easily Process a Batch of Cox Models
 Version: 1.0.4
-Date: 2022-8-16
+Date: 2023-5-8
 Authors@R: 
-    person(given = "Shixiang",
-           family = "Wang",
-           role = c("aut", "cre"),
-           email = "w_shixiang@163.com",
+    person("Shixiang", "Wang", , "w_shixiang@163.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9855-7357"))
 Maintainer: Shixiang Wang <w_shixiang@163.com>
 Description: A tool to operate a batch of univariate or multivariate Cox
@@ -22,26 +19,27 @@ Imports:
     forestmodel,
     ggplot2,
     magrittr (>= 1.5),
+    methods,
     purrr (>= 0.3.2),
     rlang (>= 0.1.2),
     scales,
     survival,
     tibble,
-    utils,
-    utf8
+    utf8,
+    utils
 Suggests: 
     covr (>= 3.2.1),
     furrr,
     future,
     knitr,
+    prettydoc,
     rmarkdown,
     roxygen2 (>= 6.1.1),
-    testthat (>= 2.1.0),
-    prettydoc
+    testthat (>= 2.1.0)
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxytest::testthat_roclet"))
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3

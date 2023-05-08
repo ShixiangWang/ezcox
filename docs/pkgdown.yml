@@ -1,9 +1,9 @@
-pandoc: 2.11.4
-pkgdown: 1.6.1
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   ezcox: ezcox.html
   ezforest: ezforest.html
   ezgroup: ezgroup.html
-last_built: 2021-10-28T01:46Z
+last_built: 2023-05-08T06:55Z
 

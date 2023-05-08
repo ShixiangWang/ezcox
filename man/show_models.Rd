@@ -10,8 +10,8 @@ show_models(
   covariates = NULL,
   merge_models = FALSE,
   drop_controls = FALSE,
-  headings = list(variable = "Variable", n = "N", measure = "Hazard ratio", ci = NULL,
-    p = "p"),
+  headings = list(variable = "Variable", n = "N", measure = "Hazard ratio", ci = NULL, p
+    = "p"),
   ...
 )
 }

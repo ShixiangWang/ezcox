@@ -20,6 +20,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -32,18 +34,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ezcox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/ezcox.html">Get started</a>
 </li>
@@ -51,7 +47,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -71,7 +67,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ShixiangWang/ezcox/">
+  <a href="https://github.com/ShixiangWang/ezcox/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -88,185 +84,197 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="ezcox-easily-process-a-batch-of-cox-models" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#ezcox-easily-process-a-batch-of-cox-models" class="anchor"></a>ezcox: Easily Process a Batch of Cox Models</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="ezcox-easily-process-a-batch-of-cox-models">ezcox: Easily Process a Batch of Cox Models<a class="anchor" aria-label="anchor" href="#ezcox-easily-process-a-batch-of-cox-models"></a>
+</h1></div>
 <!-- badges: start -->
 
 <p>The goal of ezcox is to operate a batch of univariate or multivariate Cox models and return tidy result.</p>
-<div id="arrow_double_down-installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#arrow_double_down-installation" class="anchor"></a>:arrow_double_down: Installation</h2>
-<p>You can install the released version of ezcox from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="section level2">
+<h2 id="arrow_double_down-installation">:arrow_double_down: Installation<a class="anchor" aria-label="anchor" href="#arrow_double_down-installation"></a>
+</h2>
+<p>You can install the released version of ezcox from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ezcox"</span><span class="op">)</span></code></pre></div>
-<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ezcox"</span><span class="op">)</span></span></code></pre></div>
+<p>And the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"ShixiangWang/ezcox"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ShixiangWang/ezcox"</span><span class="op">)</span></span></code></pre></div>
 <p>It is possible to install <strong>ezcox</strong> from Conda <code>conda-forge</code> channel:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>conda install r<span class="sc">-</span>ezcox <span class="sc">--</span>channel conda<span class="sc">-</span>forge</span></code></pre></div>
 <p>Visualization feature of <strong>ezcox</strong> needs the recent version of <strong>forestmodel</strong>, please run the following commands:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"ShixiangWang/forestmodel"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ShixiangWang/forestmodel"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="beginner-example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#beginner-example" class="anchor"></a><span class="emoji" data-emoji="beginner">🔰</span> Example</h2>
+<div class="section level2">
+<h2 id="beginner-example">
+<span class="emoji" data-emoji="beginner">🔰</span> Example<a class="anchor" aria-label="anchor" href="#beginner-example"></a>
+</h2>
 <p>This is a basic example which shows you how to get result from a batch of cox models.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ShixiangWang/ezcox">ezcox</a></span><span class="op">)</span>
-<span class="co">#&gt; Welcome to 'ezcox' package!</span>
-<span class="co">#&gt; =======================================================================</span>
-<span class="co">#&gt; You are using ezcox version 0.8.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Github page  : https://github.com/ShixiangWang/ezcox</span>
-<span class="co">#&gt; Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Run citation("ezcox") to see how to cite 'ezcox'.</span>
-<span class="co">#&gt; =======================================================================</span>
-<span class="co">#&gt; </span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span>
-
-<span class="co"># Build unvariable models</span>
-<span class="fu"><a href="reference/ezcox.html">ezcox</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; =&gt; Processing variable age</span>
-<span class="co">#&gt; ==&gt; Building Surv object...</span>
-<span class="co">#&gt; ==&gt; Building Cox model...</span>
-<span class="co">#&gt; ==&gt; Done.</span>
-<span class="co">#&gt; =&gt; Processing variable sex</span>
-<span class="co">#&gt; ==&gt; Building Surv object...</span>
-<span class="co">#&gt; ==&gt; Building Cox model...</span>
-<span class="co">#&gt; ==&gt; Done.</span>
-<span class="co">#&gt; =&gt; Processing variable ph.ecog</span>
-<span class="co">#&gt; ==&gt; Building Surv object...</span>
-<span class="co">#&gt; ==&gt; Building Cox model...</span>
-<span class="co">#&gt; ==&gt; Done.</span>
-<span class="co">#&gt; # A tibble: 3 × 12</span>
-<span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref    beta    HR</span>
-<span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 age      FALSE      age            age              228   228  0.0187 1.02 </span>
-<span class="co">#&gt; 2 sex      FALSE      sex            sex              228   228 -0.531  0.588</span>
-<span class="co">#&gt; 3 ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.476  1.61 </span>
-<span class="co">#&gt; # … with 4 more variables: lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   global.pval &lt;dbl&gt;</span>
-
-<span class="co"># Build multi-variable models</span>
-<span class="co"># Control variable 'age'</span>
-<span class="fu"><a href="reference/ezcox.html">ezcox</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, controls <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span>
-<span class="co">#&gt; =&gt; Processing variable sex</span>
-<span class="co">#&gt; ==&gt; Building Surv object...</span>
-<span class="co">#&gt; ==&gt; Building Cox model...</span>
-<span class="co">#&gt; ==&gt; Done.</span>
-<span class="co">#&gt; =&gt; Processing variable ph.ecog</span>
-<span class="co">#&gt; ==&gt; Building Surv object...</span>
-<span class="co">#&gt; ==&gt; Building Cox model...</span>
-<span class="co">#&gt; ==&gt; Done.</span>
-<span class="co">#&gt; # A tibble: 4 × 12</span>
-<span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref    beta    HR</span>
-<span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 sex      FALSE      sex            sex              228   228 -0.513  0.599</span>
-<span class="co">#&gt; 2 sex      TRUE       age            age              228   228  0.017  1.02 </span>
-<span class="co">#&gt; 3 ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.443  1.56 </span>
-<span class="co">#&gt; 4 ph.ecog  TRUE       age            age              228   228  0.0113 1.01 </span>
-<span class="co">#&gt; # … with 4 more variables: lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   global.pval &lt;dbl&gt;</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ShixiangWang/ezcox" class="external-link">ezcox</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Welcome to 'ezcox' package!</span></span>
+<span><span class="co">#&gt; =======================================================================</span></span>
+<span><span class="co">#&gt; You are using ezcox version 0.8.1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Github page  : https://github.com/ShixiangWang/ezcox</span></span>
+<span><span class="co">#&gt; Documentation: https://shixiangwang.github.io/ezcox/articles/ezcox.html</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Run citation("ezcox") to see how to cite 'ezcox'.</span></span>
+<span><span class="co">#&gt; =======================================================================</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival" class="external-link">survival</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Build unvariable models</span></span>
+<span><span class="fu"><a href="reference/ezcox.html">ezcox</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; =&gt; Processing variable age</span></span>
+<span><span class="co">#&gt; ==&gt; Building Surv object...</span></span>
+<span><span class="co">#&gt; ==&gt; Building Cox model...</span></span>
+<span><span class="co">#&gt; ==&gt; Done.</span></span>
+<span><span class="co">#&gt; =&gt; Processing variable sex</span></span>
+<span><span class="co">#&gt; ==&gt; Building Surv object...</span></span>
+<span><span class="co">#&gt; ==&gt; Building Cox model...</span></span>
+<span><span class="co">#&gt; ==&gt; Done.</span></span>
+<span><span class="co">#&gt; =&gt; Processing variable ph.ecog</span></span>
+<span><span class="co">#&gt; ==&gt; Building Surv object...</span></span>
+<span><span class="co">#&gt; ==&gt; Building Cox model...</span></span>
+<span><span class="co">#&gt; ==&gt; Done.</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 12</span></span>
+<span><span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref    beta    HR</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 age      FALSE      age            age              228   228  0.0187 1.02 </span></span>
+<span><span class="co">#&gt; 2 sex      FALSE      sex            sex              228   228 -0.531  0.588</span></span>
+<span><span class="co">#&gt; 3 ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.476  1.61 </span></span>
+<span><span class="co">#&gt; # … with 4 more variables: lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   global.pval &lt;dbl&gt;</span></span>
+<span></span>
+<span><span class="co"># Build multi-variable models</span></span>
+<span><span class="co"># Control variable 'age'</span></span>
+<span><span class="fu"><a href="reference/ezcox.html">ezcox</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, controls <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; =&gt; Processing variable sex</span></span>
+<span><span class="co">#&gt; ==&gt; Building Surv object...</span></span>
+<span><span class="co">#&gt; ==&gt; Building Cox model...</span></span>
+<span><span class="co">#&gt; ==&gt; Done.</span></span>
+<span><span class="co">#&gt; =&gt; Processing variable ph.ecog</span></span>
+<span><span class="co">#&gt; ==&gt; Building Surv object...</span></span>
+<span><span class="co">#&gt; ==&gt; Building Cox model...</span></span>
+<span><span class="co">#&gt; ==&gt; Done.</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 12</span></span>
+<span><span class="co">#&gt;   Variable is_control contrast_level ref_level n_contrast n_ref    beta    HR</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;      &lt;chr&gt;          &lt;chr&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 sex      FALSE      sex            sex              228   228 -0.513  0.599</span></span>
+<span><span class="co">#&gt; 2 sex      TRUE       age            age              228   228  0.017  1.02 </span></span>
+<span><span class="co">#&gt; 3 ph.ecog  FALSE      ph.ecog        ph.ecog          227   227  0.443  1.56 </span></span>
+<span><span class="co">#&gt; 4 ph.ecog  TRUE       age            age              228   228  0.0113 1.01 </span></span>
+<span><span class="co">#&gt; # … with 4 more variables: lower_95 &lt;dbl&gt;, upper_95 &lt;dbl&gt;, p.value &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   global.pval &lt;dbl&gt;</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">lung</span><span class="op">$</span><span class="va">ph.ecog</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">lung</span><span class="op">$</span><span class="va">ph.ecog</span><span class="op">)</span>
-<span class="va">zz</span> <span class="op">=</span> <span class="fu"><a href="reference/ezcox.html">ezcox</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, controls <span class="op">=</span> <span class="st">"age"</span>, return_models<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; =&gt; Processing variable sex</span>
-<span class="co">#&gt; ==&gt; Building Surv object...</span>
-<span class="co">#&gt; ==&gt; Building Cox model...</span>
-<span class="co">#&gt; ==&gt; Done.</span>
-<span class="co">#&gt; =&gt; Processing variable ph.ecog</span>
-<span class="co">#&gt; ==&gt; Building Surv object...</span>
-<span class="co">#&gt; ==&gt; Building Cox model...</span>
-<span class="co">#&gt; ==&gt; Done.</span>
-<span class="va">mds</span> <span class="op">=</span> <span class="fu"><a href="reference/get_models.html">get_models</a></span><span class="op">(</span><span class="va">zz</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">mds</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; List of 2</span>
-<span class="co">#&gt;  $ Surv ~ sex + age    :List of 19</span>
-<span class="co">#&gt;   ..- attr(*, "class")= chr "coxph"</span>
-<span class="co">#&gt;   ..- attr(*, "Variable")= chr "sex"</span>
-<span class="co">#&gt;  $ Surv ~ ph.ecog + age:List of 22</span>
-<span class="co">#&gt;   ..- attr(*, "class")= chr "coxph"</span>
-<span class="co">#&gt;   ..- attr(*, "Variable")= chr "ph.ecog"</span>
-<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "ezcox_models" "list"</span>
-<span class="co">#&gt;  - attr(*, "has_control")= logi TRUE</span>
-
-<span class="fu"><a href="reference/show_models.html">show_models</a></span><span class="op">(</span><span class="va">mds</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">lung</span><span class="op">$</span><span class="va">ph.ecog</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">lung</span><span class="op">$</span><span class="va">ph.ecog</span><span class="op">)</span></span>
+<span><span class="va">zz</span> <span class="op">=</span> <span class="fu"><a href="reference/ezcox.html">ezcox</a></span><span class="op">(</span><span class="va">lung</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ph.ecog"</span><span class="op">)</span>, controls <span class="op">=</span> <span class="st">"age"</span>, return_models<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; =&gt; Processing variable sex</span></span>
+<span><span class="co">#&gt; ==&gt; Building Surv object...</span></span>
+<span><span class="co">#&gt; ==&gt; Building Cox model...</span></span>
+<span><span class="co">#&gt; ==&gt; Done.</span></span>
+<span><span class="co">#&gt; =&gt; Processing variable ph.ecog</span></span>
+<span><span class="co">#&gt; ==&gt; Building Surv object...</span></span>
+<span><span class="co">#&gt; ==&gt; Building Cox model...</span></span>
+<span><span class="co">#&gt; ==&gt; Done.</span></span>
+<span><span class="va">mds</span> <span class="op">=</span> <span class="fu"><a href="reference/get_models.html">get_models</a></span><span class="op">(</span><span class="va">zz</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">mds</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 2</span></span>
+<span><span class="co">#&gt;  $ Surv ~ sex + age    :List of 19</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "class")= chr "coxph"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "Variable")= chr "sex"</span></span>
+<span><span class="co">#&gt;  $ Surv ~ ph.ecog + age:List of 22</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "class")= chr "coxph"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "Variable")= chr "ph.ecog"</span></span>
+<span><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "ezcox_models" "list"</span></span>
+<span><span class="co">#&gt;  - attr(*, "has_control")= logi TRUE</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/show_models.html">show_models</a></span><span class="op">(</span><span class="va">mds</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"></p>
 </div>
-<div id="star2-vignettes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#star2-vignettes" class="anchor"></a><span class="emoji" data-emoji="star2">🌟</span> Vignettes</h2>
+<div class="section level2">
+<h2 id="star2-vignettes">
+<span class="emoji" data-emoji="star2">🌟</span> Vignettes<a class="anchor" aria-label="anchor" href="#star2-vignettes"></a>
+</h2>
 <ul>
-<li><a href="https://CRAN.R-project.org/package=ezcox/vignettes/ezcox.html">ezcox: Easily Process a Batch of Cox Models</a></li>
-<li><a href="https://CRAN.R-project.org/package=ezcox/vignettes/ezforest.html">ezcox: Easily Show Cox Forestplot in One Command</a></li>
-<li><a href="https://CRAN.R-project.org/package=ezcox/vignettes/ezgroup.html">ezcox: Easy Group Cox Analysis and Visualization</a></li>
-<li><a href="https://shixiangwang.github.io/ezcox-adv-usage/">ezcox: an R Package for Cox Model Batch Processing and Visualization - An Use Case</a></li>
+<li><a href="https://CRAN.R-project.org/package=ezcox/vignettes/ezcox.html" class="external-link">ezcox: Easily Process a Batch of Cox Models</a></li>
+<li><a href="https://CRAN.R-project.org/package=ezcox/vignettes/ezforest.html" class="external-link">ezcox: Easily Show Cox Forestplot in One Command</a></li>
+<li><a href="https://CRAN.R-project.org/package=ezcox/vignettes/ezgroup.html" class="external-link">ezcox: Easy Group Cox Analysis and Visualization</a></li>
+<li><a href="https://shixiangwang.github.io/ezcox-adv-usage/" class="external-link">ezcox: an R Package for Cox Model Batch Processing and Visualization - An Use Case</a></li>
 </ul>
 </div>
-<div id="page_with_curl-citation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#page_with_curl-citation" class="anchor"></a>:page_with_curl: Citation</h2>
-<p>If you are using it in academic research, please cite the preprint <a href="https://arxiv.org/abs/2110.14232">arXiv:2110.14232</a> along with URL of this repo.</p>
+<div class="section level2">
+<h2 id="page_with_curl-citation">:page_with_curl: Citation<a class="anchor" aria-label="anchor" href="#page_with_curl-citation"></a>
+</h2>
+<p>If you are using it in academic research, please cite the preprint <a href="https://arxiv.org/abs/2110.14232" class="external-link">arXiv:2110.14232</a> along with URL of this repo.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=ezcox">https://​cloud.r-project.org/​package=ezcox</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/ShixiangWang/ezcox/">https://​github.com/​ShixiangWang/​ezcox/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/ShixiangWang/ezcox/issues">https://​github.com/​ShixiangWang/​ezcox/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=ezcox" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/ShixiangWang/ezcox/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/ShixiangWang/ezcox/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></small></li>
+<li><small><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></small></li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Shixiang Wang <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9855-7357" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing ezcox</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=ezcox"><img src="https://www.r-pkg.org/badges/version/ezcox" alt="CRAN status"></a></li>
-<li><a href="https://cran.r-project.org/package=ezcox"><img src="https://cranlogs.r-pkg.org/badges/grand-total/ezcox?color=blue"></a></li>
-<li><a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FShixiangWang%2Fezcox&amp;count_bg=%2379C83D&amp;title_bg=%23555555&amp;icon=fandom.svg&amp;icon_color=%23E7E7E7&amp;title=hits&amp;edge_flat=false" alt="Hits"></a></li>
-<li><a href="https://codecov.io/gh/ShixiangWang/ezcox?branch=master"><img src="https://codecov.io/gh/ShixiangWang/ezcox/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
+<li>Shixiang Wang <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9855-7357" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://CRAN.R-project.org/package=ezcox" class="external-link"><img src="https://www.r-pkg.org/badges/version/ezcox" alt="CRAN status"></a></li>
+<li><a href="https://cran.r-project.org/package=ezcox" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/ezcox?color=blue"></a></li>
+<li><a href="https://hits.seeyoufarm.com" class="external-link"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FShixiangWang%2Fezcox&amp;count_bg=%2379C83D&amp;title_bg=%23555555&amp;icon=fandom.svg&amp;icon_color=%23E7E7E7&amp;title=hits&amp;edge_flat=false" alt="Hits"></a></li>
+<li><a href="https://app.codecov.io/gh/ShixiangWang/ezcox?branch=master" class="external-link"><img src="https://app.codecov.io/gh/ShixiangWang/ezcox/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
+</ul>
 </div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Shixiang Wang.</p>
+  <p></p>
+<p>Developed by Shixiang Wang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -274,6 +282,8 @@
 
   
 
+
+  
 
   </body>
 </html>

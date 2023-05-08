@@ -19,8 +19,8 @@ show_forest(
   point_shape = 15,
   color = "red",
   banded = TRUE,
-  headings = list(variable = "Variable", n = "N", measure = "Hazard ratio", ci = NULL,
-    p = "p"),
+  headings = list(variable = "Variable", n = "N", measure = "Hazard ratio", ci = NULL, p
+    = "p"),
   model_dir = file.path(tempdir(), "ezcox"),
   verbose = TRUE,
   ...

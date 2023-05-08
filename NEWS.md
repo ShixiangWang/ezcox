@@ -1,5 +1,6 @@
 # ezcox 1.0.4
 
+* Refined the handle of `isValidAndUnreserved()`.
 * Enhanced the `forester()` to render labels better.
 
 # ezcox 1.0.3
