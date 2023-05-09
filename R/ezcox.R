@@ -208,7 +208,7 @@ ezcox <- function(data, covariates, controls = NULL,
         model_file = ifelse(exists("model_file"), model_file, NA_character_)
       )
     } else {
-      if (is(cox, "coxph") | all(is.na(tbl[["ref_level"]]))) {
+      if (!is(cox, "coxph") | all(is.na(tbl[["ref_level"]]))) {
         glob.pval <- p.value <- beta <- HR <- lower_95 <- upper_95 <- NA
       } else {
         cox <- summary(cox)
